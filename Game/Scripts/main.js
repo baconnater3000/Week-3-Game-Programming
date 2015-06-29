@@ -155,6 +155,11 @@ function controlsStateUpdate(deltaTime)
 
 function gameStateUpdate(deltaTime)
 {	
+<<<<<<< HEAD
+
+	
+=======
+>>>>>>> origin/master
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	

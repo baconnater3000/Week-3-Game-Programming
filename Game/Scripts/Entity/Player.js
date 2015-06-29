@@ -24,9 +24,38 @@ var player = function(){
 }
 
 player.prototype.update = function(deltaTime){
+	var sine = Math.sin(player.angle);
+	var cosine = Math.cos(player.angle);
 	
+	var xDir = -sine * player.directionY;
+	var yDir = cosine * player.directionY;
+	
+	var xVel = xDir * player.speed;
+	var yVel = yDir * player.speed;
+	
+	player.xPos += xVel * deltaTime;
+	player.yPos += yVel * deltaTime;
+	
+	player.angle += player.angularVelocity * deltaTime * player.rotationSpeed;
+	
+	if(keyboard.isKeyDown(keyboard.KEY_A) == true){
+		this.angularVelocity = -this.rotationSpeed;
+	}else if(keyboard.isKeyDown(keyboard.KEY_D) == true){
+		this.angularVelocity = this.rotationSpeed;
+	}else if(keyboard.isKeyDown(keyboard.KEY_W) == true){
+		
+	}else if(keyboard.isKeyDown(keyboard.KEY_S) == true){
+		
+	}
 }
 
 player.prototype.draw = function(){
-	context.drawImage(playerImage, canvas.width / 2, canvas.height / 2);
+	
+	context.save();
+	context.translate(this.position.x, this.position.y);
+	context.rotate(this.angle);
+	
+	context.drawImage(playerImage, canvas.width / 2 - this.width / 1, canvas.height / 2 - this.height / 2);
+	
+	context.restore();
 }
