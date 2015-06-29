@@ -1,6 +1,5 @@
-/** Retrieving 2d context from the canvas **/
-var c = document.getElementById("WebGameCanvas");
-var ct = c.getContext("2d");
+var canvas = document.getElementById("gameCanvas");
+var context = canvas.getContext("2d");
 
 var thrust = document.createElement("img");
 thrust.src = 'Media/Art/thrust.png';
@@ -11,8 +10,8 @@ var player = {
 	width : 63,
 	height : 123,
 
-	x : c.width / 2,
-	y : c.height / 2,
+	x : canvas.width / 2,
+	y : canvas.height / 2,
 	
 	speed : 550,
 	angle : 0,
