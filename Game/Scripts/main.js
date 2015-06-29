@@ -115,6 +115,9 @@ function gameStateUpdate(deltaTime)
 {	
 	var deltaTime = getDeltaTime();
 	
+	canvas.width = canvas.width;
+	context.drawImage(background, 0, 0);
+	
 	player.update(deltaTime);
 	player.draw();
 		
@@ -129,7 +132,7 @@ function gameStateUpdate(deltaTime)
 	}		
 		
 	// draw the FPS
-	context.fillStyle = "#f00";
+	context.fillStyle = "000000";
 	context.font="16px Arial";
 	context.fillText("FPS: " + fps, 5, 20, 100);
 }
