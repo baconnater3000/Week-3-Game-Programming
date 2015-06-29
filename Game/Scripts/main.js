@@ -84,18 +84,18 @@ function splashStateUpdate(deltaTime)
 	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2);
 	
 	context.fillStyle = "white";
-	context.font = "50px Cooper Black";
+	context.font = "25px Cooper Black";
 	var startText = "Press 'Space' To Play";
 	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 100);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
 
 	var contText = "Press 'I' For Controls";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 400);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 80);
 	
 	var contText = "Press 'Esc' To Quit The Game";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 460);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 110);
 
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{

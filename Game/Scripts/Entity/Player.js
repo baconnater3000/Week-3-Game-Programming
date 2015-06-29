@@ -14,7 +14,7 @@ var player = function(){
 	this.position = new Vector2();
 	this.position.set(0, 0);
 	
-	this.speed = 550,
+	this.speed = 200,
 	this.angle = 0,
 	this.rotationSpeed = 2,
 	
