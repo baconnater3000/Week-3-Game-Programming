@@ -132,7 +132,7 @@ function gameStateUpdate(deltaTime)
 	}		
 		
 	// draw the FPS
-	context.fillStyle = "000000";
+	context.fillStyle = "FFFFFF";
 	context.font="16px Arial";
 	context.fillText("FPS: " + fps, 5, 20, 100);
 }
