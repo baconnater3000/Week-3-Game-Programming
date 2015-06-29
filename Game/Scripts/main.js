@@ -33,7 +33,7 @@ var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
 var background = document.createElement("img");
-background.src = "Resources/Graphics/background.png";
+background.src = "Resources/Graphics/gBackground.png";
 
 // some variables to calculate the Frames Per Second (FPS - this tells use
 // how fast our game is running, and allows us to make the game run at a 
