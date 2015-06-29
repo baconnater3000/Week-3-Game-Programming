@@ -5,6 +5,7 @@ var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
 var keyboard = new Keyboard();
+var player = new Player();
 
 var background = document.createElement("img");
 background.src = "Media/Art/background.png";
@@ -76,6 +77,24 @@ function splashStateUpdate(deltaTime)
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
+	context.fillStyle = "white";
+	context.font = "100px Cooper Black";
+	var startText = "Prototype";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var startText = "Press 'Space' To Play";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 100);
+
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "Press 'I' For Controls";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 400);
+
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{
 		gameState = stateGame; 
