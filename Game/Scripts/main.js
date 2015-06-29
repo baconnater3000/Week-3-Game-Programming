@@ -4,6 +4,7 @@ var context = canvas.getContext("2d");
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
+var player = new player();
 var keyboard = new Keyboard();
 
 var background = document.createElement("img");
