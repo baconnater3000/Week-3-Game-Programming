@@ -19,7 +19,7 @@ var player = function(){
 	
 	directionX = 0,
 	directionY = 0,
-	angularVelocity = 0,
+	angularVelocity = 0
 }
 
 player.image.src = 'Media/Art/ship.png';
