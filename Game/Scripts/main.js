@@ -32,9 +32,6 @@ function getDeltaTime()
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
-var background = document.createElement("img");
-background.src = "Media/Art/gBackground.png"; 
-
 // some variables to calculate the Frames Per Second (FPS - this tells use
 // how fast our game is running, and allows us to make the game run at a 
 // constant speed)
@@ -43,10 +40,7 @@ var fpsCount = 0;
 var fpsTime = 0;
 
 function run()
-{
-	canvas.width = canvas.width;
-	context.drawImage(background, 0 ,0);
-	
+{	
 	var deltaTime = getDeltaTime();
 	
 	context.drawImage(player.image, canvas.width / 2, canvas.height/2);
@@ -63,7 +57,7 @@ function run()
 		
 	// draw the FPS
 	context.fillStyle = "#f00";
-	context.font="14px Arial";
+	context.font="16px Arial";
 	context.fillText("FPS: " + fps, 5, 20, 100);
 }
 
