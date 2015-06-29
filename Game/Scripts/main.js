@@ -110,6 +110,58 @@ function controlsStateUpdate(deltaTime)
 {
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
+	
+	context.fillStyle = "white";
+	context.font = "100px Cooper Black";
+	var startText = "Controls";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "W = Forward";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "A = Rotate Left";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 300);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "D = Rotate Right";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 400);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "S = Backward";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 500);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "Space = Shoot";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 600);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 900);
+	
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
+	{
+		gameState = stateGame; 
+	}
+	
+	if(keyboard.isKeyDown(keyboard.KEY_BACKSPACE) == true)
+	{
+		gameState = stateSplash; 
+	}
 }
 
 function gameStateUpdate(deltaTime)

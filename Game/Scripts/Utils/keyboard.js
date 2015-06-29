@@ -23,6 +23,7 @@ var Keyboard = function() {
 	this.KEY_SHIFT = 16;
 	
 	this.KEY_I = 73;
+	this.KEY_BACKSPACE = 8;
 };
 
 Keyboard.prototype.onKeyDown = function(evt){
