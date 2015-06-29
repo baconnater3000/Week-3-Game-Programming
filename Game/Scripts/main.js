@@ -100,7 +100,7 @@ function splashStateUpdate(deltaTime)
 		gameState = stateGame; 
 	}
 	
-	if(keyboard.isKeyDown(keyboard.KEY_SHIFT) == true)
+	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
 	{
 		gameState = stateControls; 
 	}
@@ -108,7 +108,8 @@ function splashStateUpdate(deltaTime)
 
 function controlsStateUpdate(deltaTime)
 {
-	
+	canvas.width = canvas.width;
+	context.drawImage(background, 0, 0);
 }
 
 function gameStateUpdate(deltaTime)
