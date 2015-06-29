@@ -4,6 +4,11 @@ var context = canvas.getContext("2d");
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
+var keyboard = new Keyboard();
+
+var background = document.createElement("img");
+background.src = "Media/Art/background.png";
+
 // This function will return the time in seconds since the function 
 // was last called
 // You should only call this function once per frame
@@ -39,7 +44,50 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 
+var stateSplash = 0;
+var stateGame = 1;
+var stateControls = 2;
+var gameState = stateSplash;
+
 function run()
+{
+	var deltaTime = getDeltaTime();
+	switch(gameState)
+	{
+		case stateSplash:
+		splashStateUpdate(deltaTime);
+		break;
+		
+		case stateGame:
+		gameStateUpdate(deltaTime);
+		break;
+		
+		case stateControls:
+		controlsStateUpdate(deltaTime);
+		break;
+	}
+}
+
+function splashStateUpdate(deltaTime)
+{
+	context.canvas.width = window.innerWidth - 20;
+	context.canvas.height = window.innerHeight - 20;
+	
+	canvas.width = canvas.width;
+	context.drawImage(background, 0, 0);
+	
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
+	{
+		gameState = stateGame; 
+	}
+}
+
+function controlsStateUpdate(deltaTime)
+{
+	
+}
+
+function gameStateUpdate(deltaTime)
 {	
 	var deltaTime = getDeltaTime();
 	
