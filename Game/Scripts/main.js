@@ -113,7 +113,7 @@ function controlsStateUpdate(deltaTime)
 
 function gameStateUpdate(deltaTime)
 {	
-	var deltaTime = getDeltaTime();
+
 	
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
