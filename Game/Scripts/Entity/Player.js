@@ -21,6 +21,25 @@ var player = function(){
 	this.directionX = 0,
 	this.directionY = 0,
 	this.angularVelocity = 0
+	/*
+	x : 800,
+	y : 390,
+	width : 63,
+	height : 123,
+	rotation : 0,
+	
+	directionX : 0,
+	directionY : 0,
+	angularVelocity : 0,
+	
+	speed : 190,
+	turnSpeed : 2.4,
+	score : 0,
+	fireRate : 10,
+	
+	isMoving : false,
+	isDead : false,
+	*/
 }
 
 player.prototype.update = function(deltaTime){
