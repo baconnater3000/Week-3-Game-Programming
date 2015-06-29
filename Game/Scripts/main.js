@@ -4,12 +4,6 @@ var context = canvas.getContext("2d");
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
-var player = new player();
-var keyboard = new Keyboard();
-
-var background = document.createElement("img");
-background.src = "Media/Art/background.png";
-
 // This function will return the time in seconds since the function 
 // was last called
 // You should only call this function once per frame
@@ -34,6 +28,12 @@ function getDeltaTime()
 }
 
 //-------------------- Don't modify anything above here
+
+var player = new player();
+var keyboard = new Keyboard();
+
+var background = document.createElement("img");
+background.src = "Media/Art/background.png";
 
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
@@ -100,7 +100,7 @@ function splashStateUpdate(deltaTime)
 		gameState = stateGame; 
 	}
 	
-	if(keyboard.isKeyDown(keyboard.KEY_A) == true)
+	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
 	{
 		gameState = stateControls; 
 	}
@@ -108,13 +108,69 @@ function splashStateUpdate(deltaTime)
 
 function controlsStateUpdate(deltaTime)
 {
+	canvas.width = canvas.width;
+	context.drawImage(background, 0, 0);
 	
+	context.fillStyle = "white";
+	context.font = "100px Cooper Black";
+	var startText = "Controls";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "W = Forward";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "A = Rotate Left";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 300);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "D = Rotate Right";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 400);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "S = Backward";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 500);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "Space = Shoot";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 600);
+	
+	context.fillStyle = "white";
+	context.font = "50px Cooper Black";
+	var contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 900);
+	
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
+	{
+		gameState = stateGame; 
+	}
+	
+	if(keyboard.isKeyDown(keyboard.KEY_BACKSPACE) == true)
+	{
+		gameState = stateSplash; 
+	}
 }
 
 function gameStateUpdate(deltaTime)
 {	
+<<<<<<< HEAD
 
 	
+=======
+>>>>>>> origin/master
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
