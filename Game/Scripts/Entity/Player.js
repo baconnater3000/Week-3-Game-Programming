@@ -1,29 +1,32 @@
 var canvas = document.getElementById("gameCanvas");
 var context = canvas.getContext("2d");
 
-var thrust = document.createElement("img");
-thrust.src = 'Media/Art/thrust.png';
+var thrustImage = document.createElement("img");
+thrustImage.src = 'Media/Art/thrust.png';
+
+var playerImage = document.createElement("img");
+playerImage.src = 'Media/Art/ship.png';
 
 var player = function(){
-	image = document.createElement("img"),
-	
-	width = 63,
-	height = 123,
+	this.width = 63,
+	this.height = 123,
 
-	x = canvas.width / 2,
-	y = canvas.height / 2,
+	this.position = new Vector2();
+	this.position.set(0, 0);
 	
-	speed = 550,
-	angle = 0,
-	rotationSpeed = 2,
+	this.speed = 550,
+	this.angle = 0,
+	this.rotationSpeed = 2,
 	
-	directionX = 0,
-	directionY = 0,
-	angularVelocity = 0,
+	this.directionX = 0,
+	this.directionY = 0,
+	this.angularVelocity = 0
 }
-
-player.image.src = 'Media/Art/ship.png';
 
 player.prototype.update = function(deltaTime){
 	
+}
+
+player.prototype.draw = function(){
+	context.drawImage(playerImage, canvas.width / 2, canvas.height / 2);
 }

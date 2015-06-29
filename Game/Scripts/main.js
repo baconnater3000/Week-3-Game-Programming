@@ -110,7 +110,8 @@ function gameStateUpdate(deltaTime)
 {	
 	var deltaTime = getDeltaTime();
 	
-	context.drawImage(player.image, canvas.width / 2, canvas.height/2);
+	player.update(deltaTime);
+	player.draw();
 		
 	// update the frame counter 
 	fpsTime += deltaTime;
