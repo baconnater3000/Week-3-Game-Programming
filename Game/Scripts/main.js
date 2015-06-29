@@ -99,6 +99,11 @@ function splashStateUpdate(deltaTime)
 	{
 		gameState = stateGame; 
 	}
+	
+	if(keyboard.isKeyDown(keyboard.KEY_A) == true)
+	{
+		gameState = stateControls; 
+	}
 }
 
 function controlsStateUpdate(deltaTime)
