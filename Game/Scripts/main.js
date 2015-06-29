@@ -5,7 +5,6 @@ var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
 var keyboard = new Keyboard();
-var player = new Player();
 
 var background = document.createElement("img");
 background.src = "Media/Art/background.png";
