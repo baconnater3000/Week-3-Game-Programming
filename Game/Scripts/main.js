@@ -89,11 +89,13 @@ function splashStateUpdate(deltaTime)
 	var center = context.measureText(startText);
 	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 100);
 
-	context.fillStyle = "white";
-	context.font = "50px Cooper Black";
 	var contText = "Press 'I' For Controls";
 	var center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 400);
+	
+	var contText = "Press 'Esc' To Quit The Game";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 460);
 
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{
@@ -103,6 +105,10 @@ function splashStateUpdate(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
 	{
 		gameState = stateControls; 
+	}
+	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
+	{
+		close(); 
 	}
 }
 
@@ -140,7 +146,7 @@ function controlsStateUpdate(deltaTime)
 	
 	var contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 900);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 960);
 	
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{
@@ -155,11 +161,6 @@ function controlsStateUpdate(deltaTime)
 
 function gameStateUpdate(deltaTime)
 {	
-<<<<<<< HEAD
-
-	
-=======
->>>>>>> origin/master
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
