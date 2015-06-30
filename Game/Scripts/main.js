@@ -406,30 +406,6 @@ function gameStateUpdate(deltaTime)
 		}
 	}
 	
-	fpsTime += deltaTime;
-	fpsCount++;
-	if(fpsTime >= 1)
-	{
-		fpsTime -= 1;
-		fps = fpsCount;
-		fpsCount = 0;
-	}		
-	
-	context.fillStyle = "White";
-	context.font="16px Arial";
-	context.fillText("FPS: " + fps, 5, 20);
-	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
-	context.fillText("Score: " + player.score, 5, 60);
-	context.fillText("Lives: " + player.lives, 5, 80);
-
-	for(var i = 0; i < player.lives; i++)
-	{
-		if(!gameOverBool)
-		{		
-			context.drawImage(heart, 75 - ((heart.width - 270) * i) - 15, canvas.height - 100, 50, 50);
-		}
-	}
-	
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		gameState = statePause;
@@ -496,7 +472,8 @@ function gameStateUpdate(deltaTime)
 	context.fillText("FPS: " + fps, 5, 20);
 	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
 	context.fillText("Score: " + player.score, 5, 60);
-	context.fillText("Lives: " + player.lives, 5, 80);
+	context.fillText("Lives: " + player.lives, 20, canvas.height - 20);
+	context.fillText("Health: ", 20, canvas.height - 110);
 	
 	
 }
