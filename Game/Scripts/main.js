@@ -69,9 +69,6 @@ background.src = "Media/Art/background.png";
 var pauseBackground = document.createElement("img");
 pauseBackground.src = "Media/Art/pause.png";
 
-var heart = document.createElement("img");
-heart.src = "Media/PlayerHealth/Heart.png";
-
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
@@ -409,6 +406,22 @@ function gameStateUpdate(deltaTime)
 		}
 	}
 	
+	fpsTime += deltaTime;
+	fpsCount++;
+	if(fpsTime >= 1)
+	{
+		fpsTime -= 1;
+		fps = fpsCount;
+		fpsCount = 0;
+	}		
+	
+	context.fillStyle = "White";
+	context.font="16px Arial";
+	context.fillText("FPS: " + fps, 5, 20);
+	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
+	context.fillText("Score: " + player.score, 5, 60);
+	context.fillText("Lives: " + player.lives, 5, 80);
+
 	for(var i = 0; i < player.lives; i++)
 	{
 		if(!gameOverBool)
