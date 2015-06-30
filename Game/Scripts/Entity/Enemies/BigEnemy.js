@@ -65,7 +65,7 @@ BigEnemy.prototype.onScreen = function()
 		{
 			allEnemiesOnScreen = false;
 		}
-		if(bigEnemies[j].x <= 0)
+		if(bigEnemies[j].x <= menuSize)
 		{
 			allEnemiesOnScreen = false;
 		}
@@ -86,19 +86,19 @@ BigEnemy.prototype.update = function(deltaTime)
 	
 	if (this.enemyOnScreen)
 	{
-		if(this.y < -(this.height / 2))
+		if(this.y < - (this.height / this.height))
 		{
 			this.velocityY = -this.velocityY;
 		}
-		if(this.y > canvas.height + (this.height / 2))
+		if(this.y > canvas.height + (this.height / this.height))
 		{
 			this.velocityY = -this.velocityY;
 		}
-		if(this.x < -(this.height / 2))
+		if(this.x < - (this.height / this.height) + menuSize)
 		{
 			this.velocityX = -this.velocityX;
 		}
-		if(this.x >= canvas.width - (this.height / 2))
+		if(this.x >= canvas.width - (this.height / this.height))
 		{
 			this.velocityX = -this.velocityX;
 		}
