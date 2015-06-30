@@ -35,6 +35,9 @@ var keyboard = new Keyboard();
 var background = document.createElement("img");
 background.src = "Media/Art/background.png";
 
+var pauseBackground = document.createElement("img");
+pauseBackground.src = "Media/Art/pause.png";
+
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
@@ -54,6 +57,7 @@ var stateSplash = 0;
 var stateGame = 1;
 var stateControls = 2;
 var statePause = 3;
+var statePauseControls = 4;
 var gameState = stateSplash;
 
 function run()
@@ -76,6 +80,10 @@ function run()
 		case statePause:
 		pauseStateUpdate(deltaTime);
 		break;
+		
+		case statePauseControls:
+		pauseControlsStateUpdate(deltaTime);
+		break;
 	}
 }
 
@@ -89,7 +97,7 @@ function splashStateUpdate(deltaTime)
 	
 	context.fillStyle = "white";
 	context.font = "100px Cooper Black";
-	var startText = "Frends Franny";
+	var startText = "Prototype";
 	var center = context.measureText(startText);
 	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2);
 	
@@ -161,7 +169,7 @@ function controlsStateUpdate(deltaTime)
 	
 	var contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);//960
+	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
 	
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{
@@ -176,6 +184,8 @@ function controlsStateUpdate(deltaTime)
 
 function pauseStateUpdate(deltaTime)
 {
+	context.drawImage(pauseBackground, canvas.width /2 - 350, 15, 700, 450);
+	
 	context.fillStyle = "white";
 	context.font = "100px Cooper Black";
 	var startText = "Paused Game";
@@ -191,9 +201,13 @@ function pauseStateUpdate(deltaTime)
 	var center = context.measureText(startText);
 	context.fillText(startText, canvas.width / 2 - center.width / 2, 190);
 	
+	var startText = "Press 'I' For Controls";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 230);
+	
 	var contText = "Press 'Q' To Quit The Game";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 300);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 435);
 	
 	if(keyboard.isKeyDown(keyboard.KEY_ENTER) == true)
 	{
@@ -206,6 +220,56 @@ function pauseStateUpdate(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_Q) == true)
 	{
 		close();
+	}
+	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
+	{
+		gameState = statePauseControls;
+	}
+}
+
+function pauseControlsStateUpdate(deltaTime)
+{
+	context.drawImage(pauseBackground, canvas.width /2 - 350, 15, 700, 450);
+	
+	context.fillStyle = "white";
+	context.font = "100px Cooper Black";
+	var startText = "Controls";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);
+	
+	context.font = "25px Cooper Black";
+	var contText = "W = Forward";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 150);
+	
+	var contText = "A = Rotate Left";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 190);
+	
+	var contText = "D = Rotate Right";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 230);
+	
+	var contText = "S = Backward";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 270);
+	
+	var contText = "Space = Shoot";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 310);
+	
+	var contText = "ESC = Pause";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 350);
+	
+	var contText = "Press 'ESC' To Go Back";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 435);
+	
+	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
+	{
+		gameState = stateGame;
+		gameState = statePause;
 	}
 }
 

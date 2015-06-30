@@ -1,79 +1,79 @@
 var Vector2 = new Vector2();
-var enemies = [];
 
-var enemyImage = document.createElement("img");
-enemyImage.src = 'Enemy.png';
+function rand(floor, ceil)
+{
+	return Math.floor( (Math.random()* (ceil-floor)) +floor );
+}
 
 var Enemy = function()
 {
-	this.position = Vector2,
-	this.velocity = Vector2,
+	var enemy = {};
+	
+	this.image = document.createElement("img");
+	this.image.src = "Enemy.png";
+	
+	this.height = 20;
+	this.width = 20;
+	// to set a random position just off screen, we'll start at the centre of the
+	// screen then move in a random direction by the width of the screen
+	var x = canvas.width * Math.random();
+	var y = canvas.height * Math.random();
+	
+	var dirX = Math.random();
+	var dirY = Math.random();
+	// 'normalize' the direction (the hypotenuse of the triangle formed
+	// by x,y will equal 1)
+	var magnitude = (dirX * dirX) + (dirY * dirY);
+	if(magnitude != 0)
+	{
+		var oneOverMag = 1 / Math.sqrt(magnitude);
+		dirX *= oneOverMag;
+		dirY *= oneOverMag;
+	}
+	
+	var movX = dirX * canvas.width;
+	var movY = dirY * canvas.height;
+	
+	this.x = x + movX;
+	this.y = y + movY;
+	
+	this.speed = rand(60, 120);
+	
+	this.velocityX = -dirX * this.speed;
+	this.velocityY = -dirY * this.speed;
 
-	this.angularVelocity = 0,
-	this.rotation = 0,
-
-	this.height = 28,
-	this.width = 28,
-	this.isDead = false
-};
-
-function SpawnEnemies(inputX, inoutY)
-{
-	var enemy = Enemy();
-	enemies.push(enemy)
+	this.isDead = false;
+	this.onScreen = false;
 }
-
-for(var i = 0; i < enemies.length; i++)
-	{
-		if (!enemies[i].isDead)
-		{		
-			enemies[i].x += enemies[i].velocityX * deltaTime;
-			enemies[i].y += enemies[i].velocityY * deltaTime;
-		}
-		else
-		{
-			enemies.splice(i, 1);
-		}
-	}
-
-/*function border()
-{	
-	var enemy = Enemy();
-
-	if(enemy.position.y <= 0 - (enemy.height / 2))
-	{
-		enemy.position.y = canvas.height + (enemy.height / 2);
-	}else
-	if(enemy.position.y >= canvas.height + (enemy.height / 2))
-	{
-		enemy.position.y = 0 - (enemy.height / 2);
-	}else
-	if(enemy.position.x <= 0 - (enemy.height / 2))
-	{
-		enemy.position.x = canvas.width + (enemy.height / 2);
-	}else
-	if(enemy.position.x >= canvas.width + (enemy.height / 2))
-	{
-		enemy.position.x = 0 - (enemy.height / 2);
-	}
-}*/
 
 Enemy.prototype.update = function(deltaTime)
 {
-	var playerAccel = 50;
+	// update the enemies position according to its current velocity.
+	this.x += this.velocityX * deltaTime;
+	this.y += this.velocityY * deltaTime;
 	
-	if ( keyboard.isKeyDown(keyboard.KEY_W) )
+	if (this.onScreen)
 	{
-		enemy.position.x -= playerAccel;
-	}
-	
-	for(var i = 0; i < 0; i++)
-	{
-		SpawnEnemies(Math.random() * canvas.width, Math.random() * canvas.height);
+		if(this.y < -(this.height / 2))
+		{
+			this.velocityY = -this.velocityY;
+		}
+		if(this.y > canvas.height + (this.height / 2))
+		{
+			this.velocityY = -this.velocityY;
+		}
+		if(this.x < -(this.height / 2))
+		{
+			this.velocityX = -this.velocityX;
+		}
+		if(this.x >= canvas.width - (this.height / 2))
+		{
+			this.velocityX = -this.velocityX;
+		}
 	}
 }
 
 Enemy.prototype.draw = function()
 {
-	context.drawImage(enemyImage, enemy.position.x, enemy.position.y);
+	context.drawImage(this.image, this.x, this.y);
 }
