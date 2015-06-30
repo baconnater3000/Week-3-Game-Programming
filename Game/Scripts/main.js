@@ -180,9 +180,14 @@ function pauseStateUpdate(deltaTime)
 	context.font = "100px Cooper Black";
 	var startText = "Paused Game";
 	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);	
 	
-	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
+	context.font = "25px Cooper Black";
+	var startText = "Press 'Enter' To Continue Playing";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 150);
+	
+	if(keyboard.isKeyDown(keyboard.KEY_ENTER) == true)
 	{
 		gameState = stateGame;
 	}
