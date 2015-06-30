@@ -1,19 +1,23 @@
-var player = function(){	
-	this.thrustImage = document.createElement("img");
-	this.thrustImage.src = 'Media/Art/thrust.png';
-
-	this.playerKeys = new playerKeys();
-	
-	this.width = 63,
-	this.height = 123,
-	this.healthWidth = 98,
-	this.healthHeight = 12,
-
+var player = function(){
 	this.playerImage = document.createElement("img");
 	this.playerImage.src = 'Media/Art/ship.png';
 	
+	this.thrustImage = document.createElement("img");
+	this.thrustImage.src = 'Media/Art/thrust.png';
+
+	this.playerHealthImage = document.createElement("img");
+
+	this.playerKeys = new playerKeys();
+	
+	this.width = 40,
+	this.height = 60,
+	this.healthWidth = 98,
+	this.healthHeight = 12,
+	
 	this.position = new Vector2();
 	this.position.set(canvas.width / 2 - this.width / 2, canvas.height / 2 - this.height / 2);
+	
+	this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 	
 	this.speed = 200,
 	this.angle = 0,
@@ -29,8 +33,6 @@ var player = function(){
 	this.score = 0,
 	this.health = 4,
 	this.lives = 3
-	
-	this.playerHealthImage = document.createElement("img");
 }
 
 player.prototype.playerBorders = function(){
@@ -70,6 +72,9 @@ player.prototype.update = function(deltaTime){
 	
 	this.playerBorders();
 	this.playerKeys.keybinds(deltaTime);
+	
+	this.fireEmitter.update(deltaTime);
+	this.fireEmitter.draw();
 }
 
 player.prototype.draw = function(){
