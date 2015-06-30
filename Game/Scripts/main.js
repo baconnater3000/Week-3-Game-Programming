@@ -417,29 +417,10 @@ function gameStateUpdate(deltaTime)
 		}
 	}
 	
-	fpsTime += deltaTime;
-	fpsCount++;
-	if(fpsTime >= 1)
-	{
-		fpsTime -= 1;
-		fps = fpsCount;
-		fpsCount = 0;
-	}		
-	
-	context.fillStyle = "White";
-	context.font="16px Arial";
-	context.fillText("FPS: " + fps, 5, 20);
-	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
-	context.fillText("Score: " + player.score, 5, 60);
-	context.fillText("Lives: " + player.lives, 5, 80);
-	
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		gameState = statePause;
 	}
-	
-	
-	
 	
 	if (!player.isDead)
 	{
@@ -488,8 +469,21 @@ function gameStateUpdate(deltaTime)
 		}
 	}
 	
+	fpsTime += deltaTime;
+	fpsCount++;
+	if(fpsTime >= 1)
+	{
+		fpsTime -= 1;
+		fps = fpsCount;
+		fpsCount = 0;
+	}		
 	
-	
+	context.fillStyle = "White";
+	context.font="16px Arial";
+	context.fillText("FPS: " + fps, 5, 20);
+	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
+	context.fillText("Score: " + player.score, 5, 60);
+	context.fillText("Lives: " + player.lives, 5, 80);
 	
 }
 
