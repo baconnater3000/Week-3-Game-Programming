@@ -38,6 +38,9 @@ background.src = "Media/Art/background.png";
 var pauseBackground = document.createElement("img");
 pauseBackground.src = "Media/Art/pause.png";
 
+var heart = document.createElement("img");
+heart.src = "Media/PlayerHealth/Heart.png";
+
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
@@ -52,6 +55,8 @@ var timer = 0;
 var hour = 0;
 var min = 0;
 var sec = 0;
+
+var gameOverBool = false;
 
 var stateSplash = 0;
 var stateGame = 1;
@@ -268,7 +273,6 @@ function pauseControlsStateUpdate(deltaTime)
 	
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
-		gameState = stateGame;
 		gameState = statePause;
 	}
 }
@@ -280,7 +284,15 @@ function gameStateUpdate(deltaTime)
 	
 	player.update(deltaTime);
 	player.draw();
-		
+	
+	for(var i = 0; i < player.lives; i++)
+	{
+		if(!gameOverBool)
+		{		
+			context.drawImage(heart, 175 - ((heart.width - 160) * i) - 15, canvas.height - 100, 50, 50);
+		}
+	}
+	
 	fpsTime += deltaTime;
 	fpsCount++;
 	if(fpsTime >= 1)
