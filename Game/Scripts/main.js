@@ -370,18 +370,18 @@ function gameStateUpdate(deltaTime)
 	}		
 	
 	context.save();
-	context.shadowBlur = 200;
-	context.shadowColor = "red";
-	
-	context.fillStyle = "White";
 	context.font="16px Arial";
+	context.fillStyle = "White";
+	context.shadowBlur = 120;
+	context.shadowColor = "red";
+	context.fillText("Lives: " + player.lives, 20, canvas.height - 20);
+	context.fillText("Health: ", 20, canvas.height - 110);
 	context.fillText("FPS: " + fps, 5, 20);
 	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
 	context.fillText("Score: " + player.score, 5, 60);
-	context.fillText("Lives: " + player.lives, 20, canvas.height - 20);
-	context.fillText("Health: ", 20, canvas.height - 110);
-	context.restore();	
-		
+	context.restore();
+
+	
 	player.update(deltaTime);
 	player.draw();
 	
