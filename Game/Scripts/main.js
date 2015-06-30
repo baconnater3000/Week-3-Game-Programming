@@ -191,7 +191,7 @@ function pauseStateUpdate(deltaTime)
 	var center = context.measureText(startText);
 	context.fillText(startText, canvas.width / 2 - center.width / 2, 190);
 	
-	var contText = "Press 'Esc' To Quit The Game";
+	var contText = "Press 'Q' To Quit The Game";
 	var center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 300);
 	
@@ -202,6 +202,10 @@ function pauseStateUpdate(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_R) == true)
 	{
 		location.reload();
+	}
+	if(keyboard.isKeyDown(keyboard.KEY_Q) == true)
+	{
+		close();
 	}
 }
 
