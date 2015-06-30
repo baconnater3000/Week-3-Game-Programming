@@ -23,6 +23,7 @@ var Keyboard = function() {
 	this.KEY_SHIFT = 16;
 	
 	this.KEY_I = 73;
+	this.KEY_R = 82;
 	this.KEY_ESCAPE = 27;
 	this.KEY_BACKSPACE = 8;
 	this.KEY_ENTER = 13;

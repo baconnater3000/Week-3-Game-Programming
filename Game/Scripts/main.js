@@ -185,11 +185,23 @@ function pauseStateUpdate(deltaTime)
 	context.font = "25px Cooper Black";
 	var startText = "Press 'Enter' To Continue Playing";
 	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 150);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 150);	
+	
+	var startText = "Press 'R' To Replay";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 190);
+	
+	var contText = "Press 'Esc' To Quit The Game";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 300);
 	
 	if(keyboard.isKeyDown(keyboard.KEY_ENTER) == true)
 	{
 		gameState = stateGame;
+	}
+	if(keyboard.isKeyDown(keyboard.KEY_R) == true)
+	{
+		location.reload();
 	}
 }
 
