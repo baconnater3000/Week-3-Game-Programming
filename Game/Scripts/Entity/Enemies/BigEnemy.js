@@ -3,15 +3,16 @@ function rand(floor, ceil)
 	return Math.floor( (Math.random()* (ceil-floor)) +floor );
 }
 
+var bigEnemies = [];
+var noOfBigEnemies = 3;
+
 var BigEnemy = function()
 {
-	var bigEnemy = {};
-	
 	this.image = document.createElement("img");
 	this.image.src = "Media/Art/BigEnemy.png";
 	
-	this.height = 20;
-	this.width = 20;
+	this.height = 31;
+	this.width = 31;
 	// to set a random position just off screen, we'll start at the centre of the
 	// screen then move in a random direction by the width of the screen
 	var x = canvas.width * Math.random();
@@ -39,9 +40,42 @@ var BigEnemy = function()
 	
 	this.velocityX = -dirX * this.speed;
 	this.velocityY = -dirY * this.speed;
-
+	
+	this.enemyOnScreen = true;
 	this.isDead = false;
-	this.onScreen = false;
+}
+
+for (var j = 0; j < noOfBigEnemies; ++j)
+{
+	var bigEnemy = new BigEnemy();
+	bigEnemies.push(bigEnemy);
+}
+
+BigEnemy.prototype.onScreen = function()
+{
+	var allEnemiesOnScreen = true;
+	
+	for (var j = 0; j < noOfBigEnemies; ++j)
+	{
+		if(bigEnemies[j].y <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(bigEnemies[j].y >= canvas.height)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(bigEnemies[j].x <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(bigEnemies[j].x >= canvas.width)
+		{
+			allEnemiesOnScreen = false;
+		}
+	}
+	
+	return allEnemiesOnScreen;
 }
 
 BigEnemy.prototype.update = function(deltaTime)
@@ -50,7 +84,7 @@ BigEnemy.prototype.update = function(deltaTime)
 	this.x += this.velocityX * deltaTime;
 	this.y += this.velocityY * deltaTime;
 	
-	if (this.onScreen)
+	if (this.enemyOnScreen)
 	{
 		if(this.y < -(this.height / 2))
 		{
