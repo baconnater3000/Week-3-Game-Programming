@@ -278,7 +278,7 @@ function pauseControlsStateUpdate(deltaTime)
 }
 
 function gameStateUpdate(deltaTime)
-{	
+{		
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
