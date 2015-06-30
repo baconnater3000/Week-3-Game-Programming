@@ -20,7 +20,7 @@ var player = function(){
 	this.position = new Vector2();
 	this.position.set(canvas.width / 2 - this.width / 2, canvas.height / 2 - this.height / 2);
 	
-	this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
+	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 	
 	this.speed = 350,
 	this.angle = 0,
@@ -74,8 +74,8 @@ player.prototype.update = function(deltaTime){
 	this.playerBorders();
 	this.playerKeys.keybinds(deltaTime);
 	
-	this.fireEmitter.update(deltaTime);
-	this.fireEmitter.draw();
+	//this.fireEmitter.update(deltaTime);
+	//this.fireEmitter.draw();
 }
 
 player.prototype.draw = function(){
