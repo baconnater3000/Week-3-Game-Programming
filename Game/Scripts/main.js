@@ -4,6 +4,8 @@ var context = canvas.getContext("2d");
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
+bgMusic.play();
+
 // This function will return the time in seconds since the function 
 // was last called
 // You should only call this function once per frame
