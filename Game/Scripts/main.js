@@ -92,7 +92,7 @@ function splashStateUpdate(deltaTime)
 	
 	context.fillStyle = "white";
 	context.font = "100px Cooper Black";
-	var startText = "Prototype";
+	var startText = "Frends Franny";
 	var center = context.measureText(startText);
 	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2);
 	

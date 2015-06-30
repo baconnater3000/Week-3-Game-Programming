@@ -29,8 +29,7 @@ var player = function(){
 	
 	this.score = 0,
 	this.health = 100,
-	this.lives = 5,
-	this.shield = 0
+	this.lives = 3
 }
 
 function playerBorders(){
