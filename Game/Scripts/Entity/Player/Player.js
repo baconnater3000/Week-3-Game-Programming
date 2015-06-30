@@ -17,7 +17,11 @@ var player = function(){
 	this.position = new Vector2();
 	this.position.set(canvas.width / 2 - this.width / 2, canvas.height / 2 - this.height / 2);
 	
-	this.speed = 200,
+	this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
+	this.fireEmitterTimer = 1,
+	this.maxFireEmitterTimer = this.fireEmitterTimer,
+	
+	this.speed = 350,
 	this.angle = 0,
 	this.rotationSpeed = 2.25,
 	
@@ -34,7 +38,7 @@ var player = function(){
 }
 
 player.prototype.playerBorders = function(){
-	/*if(this.position.y <= 0 - (this.height / 2)){
+	if(this.position.y <= 0 - (this.height / 2)){
 		this.position.y = canvas.height + (this.height / 2);
 	}else
 	if(this.position.y >= canvas.height + (this.height / 2)){
@@ -45,12 +49,18 @@ player.prototype.playerBorders = function(){
 	}else
 	if(this.position.x >= canvas.width + (this.height / 2)){
 		this.position.x = 0 - (this.height / 2);
-	}*/
+	}
 }
 
 player.prototype.update = function(deltaTime){
+	this.fireEmitterTimer -= deltaTime;
 	this.playerHealth = ["Media/PlayerHealth/HealthBar05.png", "Media/PlayerHealth/HealthBar04.png", "Media/PlayerHealth/HealthBar03.png", "Media/PlayerHealth/HealthBar02.png", "Media/PlayerHealth/HealthBar01.png"];
 	this.playerHealthImage.src = this.playerHealth[this.health];
+	
+	//if(this.fireEmitterTimer <= 0){
+		//this.fireEmitterTimer = this.maxFireEmitterTimer;
+		
+	//}
 	
 	var sine = Math.sin(this.angle);
 	var cosine = Math.cos(this.angle);
@@ -70,6 +80,9 @@ player.prototype.update = function(deltaTime){
 	
 	this.playerBorders();
 	this.playerKeys.keybinds(deltaTime);
+	
+	this.fireEmitter.update(deltaTime);
+	this.fireEmitter.draw();
 }
 
 player.prototype.draw = function(){
@@ -78,6 +91,7 @@ player.prototype.draw = function(){
 	context.rotate(this.angle);
 	
 	context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
+	this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 	
 	context.restore();
 
