@@ -3,10 +3,11 @@ function rand(floor, ceil)
 	return Math.floor( (Math.random()* (ceil-floor)) +floor );
 }
 
+var bigEnemies = [];
+var noOfEnemies = 3;
+
 var BigEnemy = function()
 {
-	var bigEnemy = {};
-	
 	this.image = document.createElement("img");
 	this.image.src = "Media/Art/BigEnemy.png";
 	
@@ -39,9 +40,42 @@ var BigEnemy = function()
 	
 	this.velocityX = -dirX * this.speed;
 	this.velocityY = -dirY * this.speed;
-
+	
+	this.enemyOnScreen = true;
 	this.isDead = false;
-	this.onScreen = false;
+}
+
+for (var j = 0; j < noOfEnemies; ++j)
+{
+	var bigEnemy = new BigEnemy();
+	bigEnemies.push(bigEnemy);
+}
+
+BigEnemy.prototype.onScreen = function()
+{
+	var allEnemiesOnScreen = true;
+	
+	for (var j = 0; j < noOfEnemies; ++j)
+	{
+		if(bigEnemies[j].y <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(bigEnemies[j].y >= canvas.height)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(bigEnemies[j].x <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(bigEnemies[j].x >= canvas.width)
+		{
+			allEnemiesOnScreen = false;
+		}
+	}
+	
+	return allEnemiesOnScreen;
 }
 
 BigEnemy.prototype.update = function(deltaTime)
@@ -50,7 +84,7 @@ BigEnemy.prototype.update = function(deltaTime)
 	this.x += this.velocityX * deltaTime;
 	this.y += this.velocityY * deltaTime;
 	
-	if (this.onScreen)
+	if (this.enemyOnScreen)
 	{
 		if(this.y < -(this.height / 2))
 		{
