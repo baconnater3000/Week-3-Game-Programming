@@ -405,7 +405,7 @@ function gameStateUpdate(deltaTime)
 			bigEnemies[j].onScreen = true;
 		}
 	}
-	
+
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		gameState = statePause;
