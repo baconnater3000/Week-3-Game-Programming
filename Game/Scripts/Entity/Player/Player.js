@@ -48,11 +48,11 @@ player.prototype.playerBorders = function(){
 	if(this.position.y >= canvas.height + (this.height / 2)){
 		this.position.y = 0 - (this.height / 2);
 	}else
-	if(this.position.x <= 0 - (this.height / 2)){
+	if(this.position.x <= 0 - (this.height / 2) + menuSize){
 		this.position.x = canvas.width + (this.height / 2);
 	}else
 	if(this.position.x >= canvas.width + (this.height / 2)){
-		this.position.x = 0 - (this.height / 2);
+		this.position.x = 0 - (this.height / 2) + menuSize;
 	}
 }
 
@@ -95,6 +95,8 @@ player.prototype.update = function(deltaTime){
 	if(this.lives <= 0){
 		this.isDead = true;
 	}
+	
+	console.log("Dead: " + this.isDead + " || ");
 }
 
 player.prototype.draw = function(){
@@ -114,7 +116,7 @@ player.prototype.draw = function(){
 		{
 			if(!gameOverBool)
 			{		
-				context.drawImage(this.playerHeartImage, 75 - ((this.playerHeartImage.width - 270) * i) - 15, canvas.height - 100, 50, 50);
+				context.drawImage(this.playerHeartImage, 75 - ((this.playerHeartImage.width - 270) * i) - 60, canvas.height - 100, 50, 50);
 			}
 		}
 	}
