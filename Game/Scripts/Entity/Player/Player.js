@@ -82,6 +82,11 @@ player.prototype.update = function(deltaTime){
 	//this.fireEmitter.update(deltaTime);
 	//this.fireEmitter.draw();
 	
+	/*if(this.randomCountdownTimer <= 0){
+		this.randomCountdownTimer = this.maxRandomCountdownTimer;
+		this.health -= 1;
+	}*/
+	
 	if(this.health == 0 && this.lives > 0 && !this.isDead){
 		this.health = 4;
 		this.lives -= 1;
@@ -93,22 +98,24 @@ player.prototype.update = function(deltaTime){
 }
 
 player.prototype.draw = function(){
-	context.save();
-	context.translate(this.position.x, this.position.y);
-	context.rotate(this.angle);
-	
-	context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
-	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
-	
-	context.restore();
+	if(!this.isDead){
+		context.save();
+		context.translate(this.position.x, this.position.y);
+		context.rotate(this.angle);
+		
+		context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
+		//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
+		
+		context.restore();
 
-	context.drawImage(this.playerHealthImage, this.position.x - this.healthWidth / 2, this.position.y + this.height / 2 + 10);
-	
-	for(var i = 0; i < this.lives; i++)
-	{
-		if(!gameOverBool)
-		{		
-			context.drawImage(this.playerHeartImage, 75 - ((this.playerHeartImage.width - 270) * i) - 15, canvas.height - 100, 50, 50);
+		context.drawImage(this.playerHealthImage, this.position.x - this.healthWidth / 2, this.position.y + this.height / 2 + 10);
+		
+		for(var i = 0; i < this.lives; i++)
+		{
+			if(!gameOverBool)
+			{		
+				context.drawImage(this.playerHeartImage, 75 - ((this.playerHeartImage.width - 270) * i) - 15, canvas.height - 100, 50, 50);
+			}
 		}
 	}
 }
