@@ -9,8 +9,8 @@ var player = function(){
 
 	this.playerKeys = new playerKeys();
 	
-	this.width = 63,
-	this.height = 123,
+	this.width = 40,
+	this.height = 60,
 	this.healthWidth = 98,
 	this.healthHeight = 12,
 	
