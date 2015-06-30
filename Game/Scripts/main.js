@@ -53,6 +53,7 @@ var sec = 0;
 var stateSplash = 0;
 var stateGame = 1;
 var stateControls = 2;
+var statePause = 3;
 var gameState = stateSplash;
 
 function run()
@@ -70,6 +71,10 @@ function run()
 		
 		case stateControls:
 		controlsStateUpdate(deltaTime);
+		break;
+		
+		case statePause:
+		pauseStateUpdate(deltaTime);
 		break;
 	}
 }
@@ -169,6 +174,20 @@ function controlsStateUpdate(deltaTime)
 	}
 }
 
+function pauseStateUpdate(deltaTime)
+{
+	context.fillStyle = "white";
+	context.font = "100px Cooper Black";
+	var startText = "Paused Game";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);
+	
+	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
+	{
+		gameState = stateGame;
+	}
+}
+
 function gameStateUpdate(deltaTime)
 {	
 	canvas.width = canvas.width;
@@ -177,7 +196,6 @@ function gameStateUpdate(deltaTime)
 	player.update(deltaTime);
 	player.draw();
 		
-	// update the frame counter 
 	fpsTime += deltaTime;
 	fpsCount++;
 	if(fpsTime >= 1)
@@ -199,8 +217,12 @@ function gameStateUpdate(deltaTime)
 	context.fillText("FPS: " + fps, 5, 20);
 	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
 	context.fillText("Score: " + player.score, 5, 60);
-	context.fillText("Health: " + player.health, 5, 80);
-	context.fillText("Shield: " + player.shield, 5, 100);
+	context.fillText("Lives: " + player.lives, 5, 80);
+	
+	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
+	{
+		gameState = statePause;
+	}
 }
 
 
