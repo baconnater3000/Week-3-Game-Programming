@@ -67,11 +67,7 @@ var SCREEN_HEIGHT = canvas.height;
 var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
-
 var timer = 0;
-var hour = 0;
-var min = 0;
-var sec = 0;
 
 var gameOverBool = false;
 
@@ -166,11 +162,10 @@ function splashStateUpdate(deltaTime)
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
-	context.fillStyle = "white";
-	context.font = "100px Cooper Black";
-	var startText = "Prototype";
-	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2);
+	var Title = document.createElement("img");
+	Title.src = "Media/Art/Name.png";
+	var center = context.measureText(Title);
+	context.drawImage(Title, canvas.width / 2 - center.width * 2, canvas.height / 2 - 75);
 	
 	context.fillStyle = "white";
 	context.font = "25px Cooper Black";
@@ -206,12 +201,12 @@ function controlsStateUpdate(deltaTime)
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
-	context.fillStyle = "white";
-	context.font = "100px Cooper Black";
-	var startText = "Controls";
-	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);
+	var Control = document.createElement("img");
+	Control.src = "Media/Art/Controls.png";
+	var center = context.measureText(Control);
+	context.drawImage(Control, canvas.width / 2 - center.width * 2, 50);
 	
+	context.fillStyle = "white";
 	context.font = "50px Cooper Black";
 	var contText = "Player 1";
 	var center = context.measureText(contText);
@@ -261,12 +256,12 @@ function pauseStateUpdate(deltaTime)
 {
 	context.drawImage(pauseBackground, canvas.width /2 - 350, 15, 700, 450);
 	
-	context.fillStyle = "white";
-	context.font = "100px Cooper Black";
-	var startText = "Paused Game";
-	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);	
+	var Pause = document.createElement("img");
+	Pause.src = "Media/Art/PauseMenu.png";
+	var center = context.measureText(Pause);
+	context.drawImage(Pause, canvas.width / 2 - center.width - 30, 25);
 	
+	context.fillStyle = "white";
 	context.font = "25px Cooper Black";
 	var startText = "Press 'Enter' To Continue Playing";
 	var center = context.measureText(startText);
@@ -306,12 +301,12 @@ function pauseControlsStateUpdate(deltaTime)
 {
 	context.drawImage(pauseBackground, canvas.width /2 - 350, 15, 700, 450);
 	
-	context.fillStyle = "white";
-	context.font = "100px Cooper Black";
-	var startText = "Controls";
-	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);
+	var Control = document.createElement("img");
+	Control.src = "Media/Art/Controls.png";
+	var center = context.measureText(Control);
+	context.drawImage(Control, canvas.width / 2 - center.width + 50, 25);
 	
+	context.fillStyle = "white";
 	context.font = "25px Cooper Black";
 	var contText = "W = Forward";
 	var center = context.measureText(contText);
@@ -352,6 +347,8 @@ function gameStateUpdate(deltaTime)
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
+	timer += deltaTime;
+	
 	player.update(deltaTime);
 	player.draw();
 	
@@ -360,7 +357,6 @@ function gameStateUpdate(deltaTime)
 	
 	var allEnemiesOnScreen = allEnemiesOnScreen;
 	
-	// update all the enemies in the enemies array
 	for (var i = 0; i < noOfEnemies; ++i)
 	{
 		enemies[i].update(deltaTime);
@@ -406,7 +402,7 @@ function gameStateUpdate(deltaTime)
 	{
 		if(!gameOverBool)
 		{		
-			context.drawImage(heart, 175 - ((heart.width - 160) * i) - 15, canvas.height - 100, 50, 50);
+			context.drawImage(heart, 75 - ((heart.width - 270) * i) - 15, canvas.height - 100, 50, 50);
 		}
 	}
 	
@@ -418,13 +414,6 @@ function gameStateUpdate(deltaTime)
 		fps = fpsCount;
 		fpsCount = 0;
 	}		
-	
-	timer += deltaTime;
-	sec+= deltaTime;
-	if(timer >= 60)
-	{
-		min++;
-	}
 	
 	context.fillStyle = "White";
 	context.font="16px Arial";
