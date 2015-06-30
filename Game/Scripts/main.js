@@ -324,12 +324,12 @@ function gameStateUpdate(deltaTime)
 	player.update(deltaTime);
 	player.draw();
 	
-	for (var j = 0; j < noOfEnemies; ++j)
+	for (var j = 0; j < noOfBigEnemies; ++j)
 	{
 		bigEnemies[j].update(deltaTime);
 	}
 	
-	for (var j = 0; j < noOfEnemies; ++j)
+	for (var j = 0; j < noOfBigEnemies; ++j)
 	{
 		bigEnemies[j].draw();
 	}
@@ -354,7 +354,7 @@ function gameStateUpdate(deltaTime)
 	
 	if(BigEnemy.onScreen())
 	{
-		for (var j = 0; j < noOfEnemies; ++j)
+		for (var j = 0; j < noOfBigEnemies; ++j)
 		{
 			bigEnemies[j].onScreen = true;
 		}
@@ -389,9 +389,9 @@ function gameStateUpdate(deltaTime)
 			}
 		}
 		
-		for(var j = 0; j < noOfEnemies; ++j)
+		for(var j = 0; j < noOfBigEnemies; ++j)
 		{
-			if ( !enemies[j].isDead )
+			if ( !bigEnemies[j].isDead )
 			{
 				var EHit = intersects(
 						player.position.x - player.width / 2, player.position.y - player.height / 2,

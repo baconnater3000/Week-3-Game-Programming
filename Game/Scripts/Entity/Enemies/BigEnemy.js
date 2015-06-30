@@ -4,7 +4,7 @@ function rand(floor, ceil)
 }
 
 var bigEnemies = [];
-var noOfEnemies = 3;
+var noOfBigEnemies = 3;
 
 var BigEnemy = function()
 {
@@ -45,7 +45,7 @@ var BigEnemy = function()
 	this.isDead = false;
 }
 
-for (var j = 0; j < noOfEnemies; ++j)
+for (var j = 0; j < noOfBigEnemies; ++j)
 {
 	var bigEnemy = new BigEnemy();
 	bigEnemies.push(bigEnemy);
@@ -55,7 +55,7 @@ BigEnemy.prototype.onScreen = function()
 {
 	var allEnemiesOnScreen = true;
 	
-	for (var j = 0; j < noOfEnemies; ++j)
+	for (var j = 0; j < noOfBigEnemies; ++j)
 	{
 		if(bigEnemies[j].y <= 0)
 		{
