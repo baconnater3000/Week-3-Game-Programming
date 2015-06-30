@@ -26,11 +26,11 @@ var player = function(){
 	this.isDead = false,
 	
 	this.score = 0,
-	this.lives = 3
+	this.lives = 5
 }
 
 function playerBorders(){
-	if(this.position.y <= 0 - (this.height / 2)){
+	/*if(this.position.y <= 0 - (this.height / 2)){
 		this.position.y = canvas.height + (this.height / 2);
 	}else
 	if(this.position.y >= canvas.height + (this.height / 2)){
@@ -41,7 +41,7 @@ function playerBorders(){
 	}else
 	if(this.position.x >= canvas.width + (this.height / 2)){
 		this.position.x = 0 - (this.height / 2);
-	}
+	}*/
 }
 
 player.prototype.update = function(deltaTime){
