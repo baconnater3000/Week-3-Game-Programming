@@ -107,5 +107,8 @@ BigEnemy.prototype.update = function(deltaTime)
 
 BigEnemy.prototype.draw = function()
 {
-	context.drawImage(this.image, this.x, this.y);
+	if(!this.isDead)
+	{
+		context.drawImage(this.image, this.x, this.y);
+	}
 }

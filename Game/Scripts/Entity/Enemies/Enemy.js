@@ -108,5 +108,8 @@ Enemy.prototype.update = function(deltaTime)
 
 Enemy.prototype.draw = function()
 {
-	context.drawImage(this.image, this.x, this.y);
+	if(!this.isDead)
+	{
+		context.drawImage(this.image, this.x, this.y);
+	}
 }
