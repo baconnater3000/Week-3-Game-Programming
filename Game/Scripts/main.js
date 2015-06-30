@@ -32,6 +32,22 @@ function getDeltaTime()
 var player = new player();
 var keyboard = new Keyboard();
 
+var enemies = [];
+var bigEnemies = [];
+var noOfEnemies = 3;
+
+for (var i = 0; i < noOfEnemies; ++i)
+{
+	var enemy = new Enemy();
+	enemies.push(enemy);
+}
+
+for (var j = 0; j < noOfEnemies; ++j)
+{
+	var bigEnemy = new BigEnemy();
+	bigEnemies.push(bigEnemy);
+}
+
 var background = document.createElement("img");
 background.src = "Media/Art/background.png";
 
@@ -64,6 +80,55 @@ var stateControls = 2;
 var statePause = 3;
 var statePauseControls = 4;
 var gameState = stateSplash;
+
+function enemiesOnScreen()
+{
+	var allEnemiesOnScreen = true;
+	
+	for (var i = 0; i < noOfEnemies; ++i)
+	{
+		if(enemies[i].y <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(enemies[i].y >= canvas.height)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(enemies[i].x <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(enemies[i].x >= canvas.width)
+		{
+			allEnemiesOnScreen = false;
+		}
+	}
+	
+	return allEnemiesOnScreen;
+	
+	for (var j = 0; j < noOfEnemies; ++j)
+	{
+		if(bigEnemies[j].y <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(bigEnemies[j].y >= canvas.height)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(bigEnemies[j].x <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(bigEnemies[j].x >= canvas.width)
+		{
+			allEnemiesOnScreen = false;
+		}
+	}
+	
+	return allEnemiesOnScreen;
+}
 
 function run()
 {
@@ -171,6 +236,10 @@ function controlsStateUpdate(deltaTime)
 	var contText = "Space = Shoot";
 	var center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 410);
+	
+	var contText = "ESC = Pause";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 450);
 	
 	var contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
 	var center = context.measureText(contText);
@@ -284,6 +353,50 @@ function gameStateUpdate(deltaTime)
 	
 	player.update(deltaTime);
 	player.draw();
+	
+	var allEnemiesOnScreen = allEnemiesOnScreen;
+	
+	// update all the enemies in the enemies array
+	for (var i = 0; i < noOfEnemies; ++i)
+	{
+		enemies[i].update(deltaTime);
+		bigEnemies[i].update(deltaTime);
+	}
+	
+	for (var j = 0; j < noOfEnemies; ++j)
+	{
+		bigEnemies[j].update(deltaTime);
+	}
+	// draw all the enemies
+	for (var i = 0; i < noOfEnemies; ++i)
+	{
+		enemies[i].draw();
+	}
+	
+	for (var j = 0; j < noOfEnemies; ++j)
+	{
+		bigEnemies[j].draw();
+	}
+	
+	
+	var allOnScreen = enemiesOnScreen();
+	
+	if(allOnScreen)
+	{
+		for (var i = 0; i < noOfEnemies; ++i)
+		{
+			enemies[i].onScreen = true;
+			bigEnemies[i].onScreen = true;
+		}
+	}
+	
+	if(allOnScreen)
+	{
+		for (var j = 0; j < noOfEnemies; ++j)
+		{
+			bigEnemies[j].onScreen = true;
+		}
+	}
 	
 	for(var i = 0; i < player.lives; i++)
 	{
