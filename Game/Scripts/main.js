@@ -206,7 +206,7 @@ function controlsStateUpdate(deltaTime)
 
 function pauseStateUpdate(deltaTime)
 {
-	context.drawImage(pauseBackground, canvas.width /2 - 350, 15, 700, 450);
+	context.clearRect(0, 0, canvas.width, canvas.height);
 	
 	var Pause = document.createElement("img");
 	Pause.src = "Media/Art/PauseMenu.png";
@@ -251,7 +251,7 @@ function pauseStateUpdate(deltaTime)
 
 function pauseControlsStateUpdate(deltaTime)
 {
-	context.drawImage(pauseBackground, canvas.width /2 - 350, 15, 700, 450);
+	context.clearRect(0, 0, canvas.width, canvas.height);
 	
 	var Control = document.createElement("img");
 	Control.src = "Media/Art/Controls.png";
@@ -317,10 +317,9 @@ function gameStateUpdate(deltaTime)
 	context.restore();
 	
 	context.font="30px Cooper Black";
-	context.fillStyle = "White";
+	context.fillStyle = "Aqua";
 	context.fillText("FPS: " + fps, 10, 30);
 	context.fillText("Score: " + player.score, 10, 60);
-	context.fillStyle = "Aqua";
 	context.fillText(Math.floor(timer) + " Seconds", 20, canvas.height - 20);
 	context.fillText("Lives: ", 20, canvas.height - 110);
 	
