@@ -385,10 +385,6 @@ function gameStateUpdate(deltaTime)
 					enemies[i].isDead = true;
 					player.health -= 1;
 				}
-				if (eHit === true && player.health <= 0)
-				{
-					player.isDead = true;
-				}
 			}
 		}
 		
@@ -406,10 +402,6 @@ function gameStateUpdate(deltaTime)
 				{
 					bigEnemies[j].isDead = true;
 					player.health -= 1;
-				}
-				if (EHit === true && player.health <= 0)
-				{
-					player.isDead = true;
 				}
 			}
 		}
