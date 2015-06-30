@@ -6,7 +6,15 @@ var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
 var keyboard = new Keyboard();
-var enemy = new Enemy();
+
+var enemies = [];
+var noOfEnemies = 3;
+
+for (var i = 0; i < noOfEnemies; ++i)
+{
+	var enemy = new Enemy();
+	enemies.push(enemy);
+}
 
 // This function will return the time in seconds since the function 
 // was last called
@@ -31,39 +39,70 @@ function getDeltaTime()
 	return deltaTime;
 }
 
-function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
-{
-	context.strokeStyle = "white";
-	context.strokeRect(x1, y1, w1, h1);
-	context.strokeRect(x2, y2, w2, h2);
-
-	if(y2 + h2 < y1 || x2 + w2 < x1 ||
-	x2 > x1 + w1 || y2 > y1 + h1)
-	{
-		return false;
-	}
-	
-	return true;
-}
-
 //-------------------- Don't modify anything above here
 
-var enemy = new Enemy();
+
+
+function enemiesOnScreen()
+{
+	var allEnemiesOnScreen = true;
+	
+	for (var i = 0; i < noOfEnemies; ++i)
+	{
+		if(enemies[i].y <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(enemies[i].y >= canvas.height)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(enemies[i].x <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(enemies[i].x >= canvas.width)
+		{
+			allEnemiesOnScreen = false;
+		}
+	}
+	
+	return allEnemiesOnScreen;
+}
+
 
 function run()
 {
+	var deltaTime = getDeltaTime();
+	
+	var allEnemiesOnScreen = allEnemiesOnScreen;
+	
 	context.fillStyle = "black";
 	context.fillRect(0, 0, canvas.width, canvas.height);
+	context.fillStyle = "white";
+	context.fillText(enemiesOnScreen(), 100, 100);
 	
-	enemy.update(deltaTime);
-	enemy.draw();
-
-	var deltaTime = getDeltaTime();
+	// update all the enemies in the enemies array
+	for (var i = 0; i < noOfEnemies; ++i)
+	{
+		enemies[i].update(deltaTime);
+	}
+	// draw all the enemies
+	for (var i = 0; i < noOfEnemies; ++i)
+	{
+		enemies[i].draw();
+	}
+	
+	var allOnScreen = enemiesOnScreen();
+	
+	if(allOnScreen)
+	{
+		for (var i = 0; i < noOfEnemies; ++i)
+		{
+			enemies[i].onScreen = true;
+		}
+	}
 }
-
-
-
-
 
 //-------------------- Don't modify anything below here
 
