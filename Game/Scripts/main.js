@@ -181,6 +181,11 @@ function pauseStateUpdate(deltaTime)
 	var startText = "Paused Game";
 	var center = context.measureText(startText);
 	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);
+	
+	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
+	{
+		gameState = stateGame;
+	}
 }
 
 function gameStateUpdate(deltaTime)
@@ -212,7 +217,7 @@ function gameStateUpdate(deltaTime)
 	context.fillText("FPS: " + fps, 5, 20);
 	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
 	context.fillText("Score: " + player.score, 5, 60);
-	context.fillText("Health: " + player.lives, 5, 80);
+	context.fillText("Lives: " + player.lives, 5, 80);
 	
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
