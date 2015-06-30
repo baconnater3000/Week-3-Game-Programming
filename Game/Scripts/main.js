@@ -45,6 +45,11 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 
+var timer = 0;
+var hour = 0;
+var min = 0;
+var sec = 0;
+
 var stateSplash = 0;
 var stateGame = 1;
 var stateControls = 2;
@@ -181,11 +186,21 @@ function gameStateUpdate(deltaTime)
 		fps = fpsCount;
 		fpsCount = 0;
 	}		
-		
-	// draw the FPS
-	context.fillStyle = "FFFFFF";
+	
+	timer += deltaTime;
+	sec+= deltaTime;
+	if(timer >= 60)
+	{
+		min++;
+	}
+	
+	context.fillStyle = "White";
 	context.font="16px Arial";
-	context.fillText("FPS: " + fps, 5, 20, 100);
+	context.fillText("FPS: " + fps, 5, 20);
+	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
+	context.fillText("Score: " + player.score, 5, 60);
+	context.fillText("Health: " + player.health, 5, 80);
+	context.fillText("Shield: " + player.shield, 5, 100);
 }
 
 
