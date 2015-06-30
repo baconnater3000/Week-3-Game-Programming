@@ -490,6 +490,7 @@ function gameStateUpdate(deltaTime)
 	context.fillText("Score: " + player.score, 5, 60);
 	context.fillText("Lives: " + player.lives, 5, 80);
 	
+	
 }
 
 
