@@ -1,6 +1,11 @@
-var player = function(){	
+var player = function(){
+	this.playerImage = document.createElement("img");
+	this.playerImage.src = 'Media/Art/ship.png';
+	
 	this.thrustImage = document.createElement("img");
 	this.thrustImage.src = 'Media/Art/thrust.png';
+
+	this.playerHealthImage = document.createElement("img");
 
 	this.playerKeys = new playerKeys();
 	
@@ -8,9 +13,6 @@ var player = function(){
 	this.height = 123,
 	this.healthWidth = 98,
 	this.healthHeight = 12,
-
-	this.playerImage = document.createElement("img");
-	this.playerImage.src = 'Media/Art/ship.png';
 	
 	this.position = new Vector2();
 	this.position.set(canvas.width / 2 - this.width / 2, canvas.height / 2 - this.height / 2);
@@ -29,8 +31,6 @@ var player = function(){
 	this.score = 0,
 	this.health = 4,
 	this.lives = 3
-	
-	this.playerHealthImage = document.createElement("img");
 }
 
 player.prototype.playerBorders = function(){

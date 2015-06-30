@@ -12,27 +12,28 @@ playerKeys.prototype.keybinds = function(deltaTime){
 		player.directionX = 0;
 		player.directionY = -1;
 		player.isMoving = true;
-	}else if (keyboard.isKeyDown(keyboard.KEY_W) == false){
+	}else if (keyboard.isKeyDown(keyboard.KEY_W) == false && keyboard.isKeyDown(keyboard.KEY_S) == false){
 		player.directionY = 0;
 		player.isMoving = false;
 	}
 
 	if(keyboard.isKeyDown(keyboard.KEY_A) == true){
 		player.angularVelocity = -player.rotationSpeed;
-	}else if(keyboard.isKeyDown(keyboard.KEY_A) == false){
+	}else if(keyboard.isKeyDown(keyboard.KEY_A) == false && keyboard.isKeyDown(keyboard.KEY_D) == false){
 		player.angularVelocity = 0;
 	}
 	
 	if(keyboard.isKeyDown(keyboard.KEY_S) == true){
 		player.directionX = 0;
 		player.directionY = 0.5;
-	}else if(keyboard.isKeyDown(keyboard.KEY_S) == false){
+	}else if(keyboard.isKeyDown(keyboard.KEY_S) == false && keyboard.isKeyDown(keyboard.KEY_W) == false){
 		player.directionY = 0;
+		player.isMoving = false;
 	}
 	
 	if(keyboard.isKeyDown(keyboard.KEY_D) == true){
 		player.angularVelocity = player.rotationSpeed;
-	}else if(keyboard.isKeyDown(keyboard.KEY_D) == false){
+	}else if(keyboard.isKeyDown(keyboard.KEY_D) == false && keyboard.isKeyDown(keyboard.KEY_A) == false){
 		player.angularVelocity = 0;
 	}
 }
