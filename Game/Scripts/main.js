@@ -69,9 +69,6 @@ background.src = "Media/Art/background.png";
 var pauseBackground = document.createElement("img");
 pauseBackground.src = "Media/Art/pause.png";
 
-var heart = document.createElement("img");
-heart.src = "Media/PlayerHealth/Heart.png";
-
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
@@ -406,14 +403,6 @@ function gameStateUpdate(deltaTime)
 		for (var j = 0; j < noOfEnemies; ++j)
 		{
 			bigEnemies[j].onScreen = true;
-		}
-	}
-	
-	for(var i = 0; i < player.lives; i++)
-	{
-		if(!gameOverBool)
-		{		
-			context.drawImage(heart, 75 - ((heart.width - 270) * i) - 15, canvas.height - 100, 50, 50);
 		}
 	}
 	
