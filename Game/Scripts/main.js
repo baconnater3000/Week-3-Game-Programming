@@ -172,6 +172,10 @@ function controlsStateUpdate(deltaTime)
 	var center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 410);
 	
+	var contText = "ESC = Pause";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 450);
+	
 	var contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
 	var center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
