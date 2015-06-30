@@ -6,6 +6,7 @@ var endFrameMillis = Date.now();
 
 var BigEnemy = new BigEnemy();
 var enemy = new Enemy();
+bgMusic.play();
 
 // This function will return the time in seconds since the function 
 // was last called
@@ -55,9 +56,6 @@ background.src = "Media/Art/background.png";
 
 var pauseBackground = document.createElement("img");
 pauseBackground.src = "Media/Art/pause.png";
-
-var heart = document.createElement("img");
-heart.src = "Media/PlayerHealth/Heart.png";
 
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
@@ -300,7 +298,29 @@ function gameStateUpdate(deltaTime)
 	context.drawImage(background, 0, 0);
 	
 	timer += deltaTime;
+
+	fpsTime += deltaTime;
+	fpsCount++;
+	if(fpsTime >= 1)
+	{
+		fpsTime -= 1;
+		fps = fpsCount;
+		fpsCount = 0;
+	}		
 	
+	context.save();
+	context.shadowBlur = 200;
+	context.shadowColor = "red";
+	
+	context.fillStyle = "White";
+	context.font="16px Arial";
+	context.fillText("FPS: " + fps, 5, 20);
+	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
+	context.fillText("Score: " + player.score, 5, 60);
+	context.fillText("Lives: " + player.lives, 20, canvas.height - 20);
+	context.fillText("Health: ", 20, canvas.height - 110);
+	context.restore();	
+		
 	player.update(deltaTime);
 	player.draw();
 	
@@ -339,38 +359,11 @@ function gameStateUpdate(deltaTime)
 			bigEnemies[j].onScreen = true;
 		}
 	}
-	
-	for(var i = 0; i < player.lives; i++)
-	{
-		if(!gameOverBool)
-		{		
-			context.drawImage(heart, 75 - ((heart.width - 270) * i) - 15, canvas.height - 100, 50, 50);
-		}
-	}
-	
-	fpsTime += deltaTime;
-	fpsCount++;
-	if(fpsTime >= 1)
-	{
-		fpsTime -= 1;
-		fps = fpsCount;
-		fpsCount = 0;
-	}		
-	
-	context.fillStyle = "White";
-	context.font="16px Arial";
-	context.fillText("FPS: " + fps, 5, 20);
-	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
-	context.fillText("Score: " + player.score, 5, 60);
-	context.fillText("Lives: " + player.lives, 5, 80);
-	
+
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		gameState = statePause;
 	}
-	
-	
-	
 	
 	if (!player.isDead)
 	{
@@ -418,9 +411,6 @@ function gameStateUpdate(deltaTime)
 			}
 		}
 	}
-	
-	
-	
 	
 }
 
