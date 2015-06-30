@@ -1,8 +1,6 @@
 var canvas = document.getElementById("gameCanvas");
 var context = canvas.getContext("2d");
 
-var playerKeys = new playerKeybinds();
-
 var thrustImage = document.createElement("img");
 thrustImage.src = 'Media/Art/thrust.png';
 
@@ -31,6 +29,21 @@ var player = function(){
 	this.lives = 3
 }
 
+function playerBorders(){
+	if(this.position.y <= 0 - (this.height / 2)){
+		this.position.y = canvas.height + (this.height / 2);
+	}else
+	if(this.position.y >= canvas.height + (this.height / 2)){
+		this.position.y = 0 - (this.height / 2);
+	}else
+	if(this.position.x <= 0 - (this.height / 2)){
+		this.position.x = canvas.width + (this.height / 2);
+	}else
+	if(this.position.x >= canvas.width + (this.height / 2)){
+		this.position.x = 0 - (this.height / 2);
+	}
+}
+
 player.prototype.update = function(deltaTime){
 	var sine = Math.sin(this.angle);
 	var cosine = Math.cos(this.angle);
@@ -45,10 +58,10 @@ player.prototype.update = function(deltaTime){
 	this.position.y += yVel * deltaTime;
 	
 	this.angle += this.angularVelocity * deltaTime * this.rotationSpeed;
-	
-	playerKeys.playerKeybinds(deltaTime);
 		
 	// console.log("X: " + this.position.x + " || Y: " + this.position.y + " || Angle: " + Math.floor(this.angle) + " || Angular Velocity: " + this.angularVelocity + " || " );
+	
+	playerBorders();
 }
 
 player.prototype.draw = function(){
