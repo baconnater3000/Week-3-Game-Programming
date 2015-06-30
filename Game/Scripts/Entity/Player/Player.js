@@ -74,8 +74,8 @@ player.prototype.update = function(deltaTime){
 	this.playerBorders();
 	this.playerKeys.keybinds(deltaTime);
 	
-	this.fireEmitter.update(deltaTime);
-	this.fireEmitter.draw();
+	//this.fireEmitter.update(deltaTime);
+	//this.fireEmitter.draw();
 }
 
 player.prototype.draw = function(){
