@@ -3,7 +3,11 @@ var context = canvas.getContext("2d");
 
 var keyboard = new Keyboard();
 
-var playerKeybinds = function(deltaTime){
+var playerKeys = function(){
+	
+}
+
+playerKeys.prototype.keybinds = function(deltaTime){
 	if(keyboard.isKeyDown(keyboard.KEY_W) == true){
 		player.directionX = 0;
 		player.directionY = -1;

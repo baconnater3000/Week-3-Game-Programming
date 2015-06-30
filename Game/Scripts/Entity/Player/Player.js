@@ -1,6 +1,8 @@
 var canvas = document.getElementById("gameCanvas");
 var context = canvas.getContext("2d");
 
+var playerKeys = new playerKeys();
+
 var thrustImage = document.createElement("img");
 thrustImage.src = 'Media/Art/thrust.png';
 
@@ -26,7 +28,9 @@ var player = function(){
 	this.isDead = false,
 	
 	this.score = 0,
-	this.lives = 5
+	this.health = 100,
+	this.lives = 5,
+	this.shield = 0
 }
 
 function playerBorders(){
@@ -62,6 +66,7 @@ player.prototype.update = function(deltaTime){
 	// console.log("X: " + this.position.x + " || Y: " + this.position.y + " || Angle: " + Math.floor(this.angle) + " || Angular Velocity: " + this.angularVelocity + " || " );
 	
 	playerBorders();
+	playerKeys.keybinds(deltaTime);
 }
 
 player.prototype.draw = function(){
