@@ -11,8 +11,8 @@ var BigEnemy = function()
 	this.image = document.createElement("img");
 	this.image.src = "Media/Art/BigEnemy.png";
 	
-	this.height = 20;
-	this.width = 20;
+	this.height = 31;
+	this.width = 31;
 	// to set a random position just off screen, we'll start at the centre of the
 	// screen then move in a random direction by the width of the screen
 	var x = canvas.width * Math.random();
