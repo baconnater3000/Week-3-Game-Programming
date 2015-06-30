@@ -28,7 +28,6 @@ function getDeltaTime()
 }
 
 //-------------------- Don't modify anything above here
-var fireEmitter = createFireEmitter("Media/Art/fire.png", (player.width/4)*2, player.height-100);
 
 var player = new player();
 var keyboard = new Keyboard();
@@ -354,9 +353,6 @@ function gameStateUpdate(deltaTime)
 	
 	player.update(deltaTime);
 	player.draw();
-	
-	fireEmitter.update(deltaTime);
-	fireEmitter.draw();
 	
 	var allEnemiesOnScreen = allEnemiesOnScreen;
 	
