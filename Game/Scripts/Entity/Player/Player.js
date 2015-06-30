@@ -1,6 +1,8 @@
 var canvas = document.getElementById("gameCanvas");
 var context = canvas.getContext("2d");
 
+var playerKeys = new playerKeys();
+
 var thrustImage = document.createElement("img");
 thrustImage.src = 'Media/Art/thrust.png';
 
@@ -62,6 +64,7 @@ player.prototype.update = function(deltaTime){
 	// console.log("X: " + this.position.x + " || Y: " + this.position.y + " || Angle: " + Math.floor(this.angle) + " || Angular Velocity: " + this.angularVelocity + " || " );
 	
 	playerBorders();
+	playerKeys.update(deltaTime);
 }
 
 player.prototype.draw = function(){
