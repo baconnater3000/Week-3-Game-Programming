@@ -35,6 +35,9 @@ var keyboard = new Keyboard();
 var background = document.createElement("img");
 background.src = "Media/Art/background.png";
 
+var pauseBackground = document.createElement("img");
+pauseBackground.src = "Media/Art/pause.png";
+
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
@@ -176,6 +179,8 @@ function controlsStateUpdate(deltaTime)
 
 function pauseStateUpdate(deltaTime)
 {
+	context.drawImage(pauseBackground, canvas.width /2 - 350, 15, 700, 300);
+	
 	context.fillStyle = "white";
 	context.font = "100px Cooper Black";
 	var startText = "Paused Game";
@@ -190,6 +195,10 @@ function pauseStateUpdate(deltaTime)
 	var startText = "Press 'R' To Replay";
 	var center = context.measureText(startText);
 	context.fillText(startText, canvas.width / 2 - center.width / 2, 190);
+	
+	var startText = "Press 'I' For Controls";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 230);
 	
 	var contText = "Press 'Q' To Quit The Game";
 	var center = context.measureText(contText);
@@ -206,6 +215,10 @@ function pauseStateUpdate(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_Q) == true)
 	{
 		close();
+	}
+	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
+	{
+		gameState = stateControls;
 	}
 }
 
