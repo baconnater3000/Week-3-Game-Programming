@@ -45,6 +45,11 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 
+var timer = 0;
+var hour = 0;
+var min = 0;
+var sec = 0;
+
 var stateSplash = 0;
 var stateGame = 1;
 var stateControls = 2;
@@ -124,29 +129,34 @@ function controlsStateUpdate(deltaTime)
 	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);
 	
 	context.font = "50px Cooper Black";
-	var contText = "W = Forward";
+	var contText = "Player 1";
 	var center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);
 	
+	context.font = "25px Cooper Black";
+	var contText = "W = Forward";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 250);
+	
 	var contText = "A = Rotate Left";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 300);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 290);
 	
 	var contText = "D = Rotate Right";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 400);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 330);
 	
 	var contText = "S = Backward";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 500);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 370);
 	
 	var contText = "Space = Shoot";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 600);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 410);
 	
 	var contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 960);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);//960
 	
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{
@@ -176,11 +186,21 @@ function gameStateUpdate(deltaTime)
 		fps = fpsCount;
 		fpsCount = 0;
 	}		
-		
-	// draw the FPS
-	context.fillStyle = "FFFFFF";
+	
+	timer += deltaTime;
+	sec+= deltaTime;
+	if(timer >= 60)
+	{
+		min++;
+	}
+	
+	context.fillStyle = "White";
 	context.font="16px Arial";
-	context.fillText("FPS: " + fps, 5, 20, 100);
+	context.fillText("FPS: " + fps, 5, 20);
+	context.fillText("Time: " + Math.floor(timer) + " Seconds", 5, 40);
+	context.fillText("Score: " + player.score, 5, 60);
+	context.fillText("Health: " + player.health, 5, 80);
+	context.fillText("Shield: " + player.shield, 5, 100);
 }
 
 
