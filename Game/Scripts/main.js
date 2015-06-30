@@ -374,7 +374,7 @@ function gameStateUpdate(deltaTime)
 				var eHit = intersects(
 						player.position.x - player.width / 2, player.position.y - player.height / 2,
 						player.width, player.height,
-						enemies[i].x - enemies[i].width / 2, enemies[i].y - enemies[i].height / 2,
+						enemies[i].x, enemies[i].y,
 						enemies[i].width, enemies[i].height);
 				
 				if (eHit)
@@ -396,7 +396,7 @@ function gameStateUpdate(deltaTime)
 				var EHit = intersects(
 						player.position.x - player.width / 2, player.position.y - player.height / 2,
 						player.width, player.height,
-						bigEnemies[j].x - bigEnemies[j].width / 2, bigEnemies[j].y - bigEnemies[j].height / 2,
+						bigEnemies[j].x, bigEnemies[j].y,
 						bigEnemies[j].width, bigEnemies[j].height);
 				
 				if (EHit)
