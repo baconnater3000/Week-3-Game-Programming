@@ -22,6 +22,9 @@ var player = function(){
 	
 	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 	
+	this.randomCountdownTimer = 2,
+	this.maxRandomCountdownTimer = this.randomCountdownTimer,
+	
 	this.speed = 350,
 	this.angle = 0,
 	this.rotationSpeed = 2.25,
@@ -57,6 +60,8 @@ player.prototype.update = function(deltaTime){
 	this.playerHealth = ["Media/PlayerHealth/HealthBar05.png", "Media/PlayerHealth/HealthBar04.png", "Media/PlayerHealth/HealthBar03.png", "Media/PlayerHealth/HealthBar02.png", "Media/PlayerHealth/HealthBar01.png"];
 	this.playerHealthImage.src = this.playerHealth[this.health];
 	
+	this.randomCountdownTimer -= deltaTime;
+	
 	var sine = Math.sin(this.angle);
 	var cosine = Math.cos(this.angle);
 	
@@ -76,6 +81,15 @@ player.prototype.update = function(deltaTime){
 	
 	//this.fireEmitter.update(deltaTime);
 	//this.fireEmitter.draw();
+	
+	if(this.health == 0 && this.lives > 0 && !this.isDead){
+		this.health = 4;
+		this.lives -= 1;
+	}
+	
+	if(this.lives <= 0){
+		this.isDead = true;
+	}
 }
 
 player.prototype.draw = function(){
