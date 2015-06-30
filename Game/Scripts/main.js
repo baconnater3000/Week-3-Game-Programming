@@ -180,11 +180,32 @@ function pauseStateUpdate(deltaTime)
 	context.font = "100px Cooper Black";
 	var startText = "Paused Game";
 	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 100);	
 	
-	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
+	context.font = "25px Cooper Black";
+	var startText = "Press 'Enter' To Continue Playing";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 150);	
+	
+	var startText = "Press 'R' To Replay";
+	var center = context.measureText(startText);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 190);
+	
+	var contText = "Press 'Q' To Quit The Game";
+	var center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 300);
+	
+	if(keyboard.isKeyDown(keyboard.KEY_ENTER) == true)
 	{
 		gameState = stateGame;
+	}
+	if(keyboard.isKeyDown(keyboard.KEY_R) == true)
+	{
+		location.reload();
+	}
+	if(keyboard.isKeyDown(keyboard.KEY_Q) == true)
+	{
+		close();
 	}
 }
 
