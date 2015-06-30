@@ -77,6 +77,8 @@ var statePause = 3;
 var statePauseControls = 4;
 var gameState = stateSplash;
 
+var menuSize = 250;
+
 function run()
 {
 	var deltaTime = getDeltaTime();
@@ -311,7 +313,7 @@ function gameStateUpdate(deltaTime)
 	context.save();
 	context.fillStyle = "aqua";
 	context.globalAlpha=0.2;
-    context.fillRect(0, canvas.height - 150, 250, 150);
+    context.fillRect(0, 0, menuSize, canvas.height);
 	context.restore();
 	
 	context.font="30px Cooper Black";
