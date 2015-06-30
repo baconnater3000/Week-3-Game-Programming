@@ -49,6 +49,21 @@ for (var j = 0; j < noOfEnemies; ++j)
 	bigEnemies.push(bigEnemy);
 }
 
+function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
+{
+	context.strokeStyle = "white";
+	context.strokeRect(x1, y1, w1, h1);
+	context.strokeRect(x2, y2, w2, h2);
+
+	if(y2 + h2 < y1 || x2 + w2 < x1 ||
+	x2 > x1 + w1 || y2 > y1 + h1)
+	{
+		return false;
+	}
+	
+	return true;
+}
+
 var background = document.createElement("img");
 background.src = "Media/Art/background.png";
 
@@ -437,6 +452,60 @@ function gameStateUpdate(deltaTime)
 	{
 		gameState = statePause;
 	}
+	
+	
+	
+	
+	if (!player.isDead)
+	{
+		for(var i = 0; i < noOfEnemies; ++i)
+		{
+			if ( !enemies[i].isDead )
+			{
+				var eHit = intersects(
+						player.position.x - player.width / 2, player.position.y - player.height / 2,
+						player.width, player.height,
+						enemies[i].x - enemies[i].width / 2, enemies[i].y - enemies[i].height / 2,
+						enemies[i].width, enemies[i].height);
+				
+				if (eHit)
+				{
+					enemies[i].isDead = true;
+					player.health -= 1;
+				}
+				if (eHit === true && player.health <= 0)
+				{
+					player.isDead = true;
+				}
+			}
+		}
+		
+		for(var j = 0; j < noOfEnemies; ++j)
+		{
+			if ( !enemies[j].isDead )
+			{
+				var EHit = intersects(
+						player.position.x - player.width / 2, player.position.y - player.height / 2,
+						player.width, player.height,
+						bigEnemies[j].x - bigEnemies[j].width / 2, bigEnemies[j].y - bigEnemies[j].height / 2,
+						bigEnemies[j].width, bigEnemies[j].height);
+				
+				if (EHit)
+				{
+					bigEnemies[j].isDead = true;
+					player.health -= 1;
+				}
+				if (EHit === true && player.health <= 0)
+				{
+					player.isDead = true;
+				}
+			}
+		}
+	}
+	
+	
+	
+	
 }
 
 
