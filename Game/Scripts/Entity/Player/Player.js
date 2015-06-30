@@ -22,6 +22,9 @@ var player = function(){
 	
 	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 	
+	this.randomCountdownTimer = 2,
+	this.maxRandomCountdownTimer = this.randomCountdownTimer,
+	
 	this.speed = 350,
 	this.angle = 0,
 	this.rotationSpeed = 2.25,
@@ -57,6 +60,8 @@ player.prototype.update = function(deltaTime){
 	this.playerHealth = ["Media/PlayerHealth/HealthBar05.png", "Media/PlayerHealth/HealthBar04.png", "Media/PlayerHealth/HealthBar03.png", "Media/PlayerHealth/HealthBar02.png", "Media/PlayerHealth/HealthBar01.png"];
 	this.playerHealthImage.src = this.playerHealth[this.health];
 	
+	this.randomCountdownTimer -= deltaTime;
+	
 	var sine = Math.sin(this.angle);
 	var cosine = Math.cos(this.angle);
 	
@@ -76,25 +81,41 @@ player.prototype.update = function(deltaTime){
 	
 	//this.fireEmitter.update(deltaTime);
 	//this.fireEmitter.draw();
+	
+	/*if(this.randomCountdownTimer <= 0){
+		this.randomCountdownTimer = this.maxRandomCountdownTimer;
+		this.health -= 1;
+	}*/
+	
+	if(this.health == 0 && this.lives > 0 && !this.isDead){
+		this.health = 4;
+		this.lives -= 1;
+	}
+	
+	if(this.lives <= 0){
+		this.isDead = true;
+	}
 }
 
 player.prototype.draw = function(){
-	context.save();
-	context.translate(this.position.x, this.position.y);
-	context.rotate(this.angle);
-	
-	context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
-	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
-	
-	context.restore();
+	if(!this.isDead){
+		context.save();
+		context.translate(this.position.x, this.position.y);
+		context.rotate(this.angle);
+		
+		context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
+		//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
+		
+		context.restore();
 
-	context.drawImage(this.playerHealthImage, this.position.x - this.healthWidth / 2, this.position.y + this.height / 2 + 10);
-	
-	for(var i = 0; i < this.lives; i++)
-	{
-		if(!gameOverBool)
-		{		
-			context.drawImage(this.playerHeartImage, 75 - ((this.playerHeartImage.width - 270) * i) - 15, canvas.height - 100, 50, 50);
+		context.drawImage(this.playerHealthImage, this.position.x - this.healthWidth / 2, this.position.y + this.height / 2 + 10);
+		
+		for(var i = 0; i < this.lives; i++)
+		{
+			if(!gameOverBool)
+			{		
+				context.drawImage(this.playerHeartImage, 75 - ((this.playerHeartImage.width - 270) * i) - 15, canvas.height - 100, 50, 50);
+			}
 		}
 	}
 }
