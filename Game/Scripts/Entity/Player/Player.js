@@ -1,18 +1,17 @@
-var canvas = document.getElementById("gameCanvas");
-var context = canvas.getContext("2d");
+var player = function(){	
+	this.thrustImage = document.createElement("img");
+	this.thrustImage.src = 'Media/Art/thrust.png';
 
-var playerKeys = new playerKeys();
-
-var thrustImage = document.createElement("img");
-thrustImage.src = 'Media/Art/thrust.png';
-
-var playerImage = document.createElement("img");
-playerImage.src = 'Media/Art/ship.png';
-
-var player = function(){
+	this.playerKeys = new playerKeys();
+	
 	this.width = 63,
 	this.height = 123,
+	this.healthWidth = 98,
+	this.healthHeight = 12,
 
+	this.playerImage = document.createElement("img");
+	this.playerImage.src = 'Media/Art/ship.png';
+	
 	this.position = new Vector2();
 	this.position.set(canvas.width / 2 - this.width / 2, canvas.height / 2 - this.height / 2);
 	
@@ -28,11 +27,13 @@ var player = function(){
 	this.isDead = false,
 	
 	this.score = 0,
-	this.health = 100,
+	this.health = 4,
 	this.lives = 3
+	
+	this.playerHealthImage = document.createElement("img");
 }
 
-function playerBorders(){
+player.prototype.playerBorders = function(){
 	/*if(this.position.y <= 0 - (this.height / 2)){
 		this.position.y = canvas.height + (this.height / 2);
 	}else
@@ -48,6 +49,9 @@ function playerBorders(){
 }
 
 player.prototype.update = function(deltaTime){
+	this.playerHealth = ["Media/PlayerHealth/HealthBar05.png", "Media/PlayerHealth/HealthBar04.png", "Media/PlayerHealth/HealthBar03.png", "Media/PlayerHealth/HealthBar02.png", "Media/PlayerHealth/HealthBar01.png"];
+	this.playerHealthImage.src = this.playerHealth[this.health];
+	
 	var sine = Math.sin(this.angle);
 	var cosine = Math.cos(this.angle);
 	
@@ -64,17 +68,18 @@ player.prototype.update = function(deltaTime){
 		
 	// console.log("X: " + this.position.x + " || Y: " + this.position.y + " || Angle: " + Math.floor(this.angle) + " || Angular Velocity: " + this.angularVelocity + " || " );
 	
-	playerBorders();
-	playerKeys.keybinds(deltaTime);
+	this.playerBorders();
+	this.playerKeys.keybinds(deltaTime);
 }
 
 player.prototype.draw = function(){
-	
 	context.save();
 	context.translate(this.position.x, this.position.y);
 	context.rotate(this.angle);
 	
-	context.drawImage(playerImage, -this.width / 2, -this.height / 2);
+	context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
 	
 	context.restore();
+
+	context.drawImage(this.playerHealthImage, this.position.x - this.healthWidth / 2, this.position.y + this.height / 2 + 10);
 }
