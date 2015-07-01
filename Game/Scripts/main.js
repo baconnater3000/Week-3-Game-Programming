@@ -14,7 +14,6 @@ var enemy = new Enemy();
 var enemyManager = new enemyManager();
 bgMusic.play();
 
-
 function getDeltaTime()
 {
 	endFrameMillis = startFrameMillis;
@@ -56,7 +55,6 @@ background.src = "Media/Art/background.png";
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
-
 var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
@@ -77,20 +75,6 @@ function run()
 	
 	stateManager.update(deltaTime);
 	stateManager.draw();
-}
-
-
-function getPosition(evt)
-{
-	var x = evt.x;
-	var y = evt.y;
-	
-	x -= canvas.offsetLeft;
-	y -= canvas.offsetTop;
-	
-	mousePos.x = x;
-	mousePos.y = y;
-	mouseClicked = true;
 }
 
 //-------------------- Don't modify anything below here
