@@ -90,7 +90,7 @@ BigEnemy.prototype.update = function(deltaTime)
 		{
 			this.velocityY = -this.velocityY;
 		}
-		if(this.y > canvas.height + (this.height / this.height))
+		if(this.y + this.height> canvas.height + (this.height / this.height))
 		{
 			this.velocityY = -this.velocityY;
 		}
@@ -98,7 +98,7 @@ BigEnemy.prototype.update = function(deltaTime)
 		{
 			this.velocityX = -this.velocityX;
 		}
-		if(this.x >= canvas.width - (this.height / this.height))
+		if(this.x + this.width >= canvas.width - (this.height / this.height))
 		{
 			this.velocityX = -this.velocityX;
 		}
