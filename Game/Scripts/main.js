@@ -1,12 +1,11 @@
 var canvas = document.getElementById("gameCanvas");
 var context = canvas.getContext("2d");
 
-canvas.addEventListener("mousedown", getPosition, false);
-
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
 var player = new player();
+var shop = new shop();
 var keyboard = new Keyboard();
 
 var BigEnemy = new BigEnemy();
@@ -79,8 +78,6 @@ var statePauseControls = 4;
 var gameState = stateSplash;
 
 var menuSize = 250;
-var mousePos = new Vector2();
-var mouseClicked = false;
 
 function run()
 {
@@ -301,23 +298,13 @@ function pauseControlsStateUpdate(deltaTime)
 	}
 }
 
-function getPosition(evt)
-{
-	var x = evt.x;
-	var y = evt.y;
-	
-	x -= canvas.offsetLeft;
-	y -= canvas.offsetTop;
-	
-	mousePos.x = x;
-	mousePos.y = y;
-	mouseClicked = true;
-}
-
 function gameStateUpdate(deltaTime)
 {	
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
+	
+	shop.update(deltaTime);
+	shop.draw();
 	
 	player.update(deltaTime);
 	player.draw();
@@ -332,34 +319,6 @@ function gameStateUpdate(deltaTime)
 		fps = fpsCount;
 		fpsCount = 0;
 	}		
-	
-	context.save();
-	context.fillStyle = "aqua";
-	context.globalAlpha=0.2;
-    context.fillRect(0, 0, menuSize, canvas.height);
-	context.restore();
-	
-	context.font="30px Cooper Black";
-	context.fillStyle = "Aqua";
-	context.fillText("FPS: " + fps, 10, 30);
-	context.fillText("Score: " + player.score, 10, 60);
-	context.fillText(Math.floor(timer) + " Seconds", 20, canvas.height - 20, menuSize - 40);
-	context.fillText("Lives: ", 20, canvas.height - 110);
-	
-	if (mouseClicked)
-	{
-		if(mousePos.x >= 0 && mousePos.x <= menuSize){
-				if(mousePos.y >= 125 && mousePos.y <= 155){
-					player.score += 100;
-				}
-			mouseClicked = false;
-		}
-	}	
-	
-	context.fillText("RANDOM TEST: ", 10, 150);
-	context.strokeRect(0, 125, menuSize, 30);
-	
-	//context.strokeRect(startX, startY, width, height);
 	
 	enemyManager.update(deltaTime);
 	enemyManager.draw();
