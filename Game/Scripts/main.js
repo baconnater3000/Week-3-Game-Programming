@@ -62,12 +62,8 @@ var timer = 0;
 
 var gameOverBool = false;
 
-<<<<<<< HEAD
-
-=======
 var stateManager = new StateManager();
 stateManager.pushState(new SplashState());
->>>>>>> 2cfbe4270e0f517bf28c4ad5b70bd70f792dc023
 
 var menuSize = 250;
 
@@ -75,11 +71,8 @@ function run()
 {
 	var deltaTime = getDeltaTime();
 	
-<<<<<<< HEAD
-=======
 	stateManager.update(deltaTime);
 	stateManager.draw();
->>>>>>> 2cfbe4270e0f517bf28c4ad5b70bd70f792dc023
 }
 
 //-------------------- Don't modify anything below here
