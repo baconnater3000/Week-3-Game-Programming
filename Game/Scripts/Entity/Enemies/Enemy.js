@@ -4,7 +4,7 @@ function rand(floor, ceil)
 }
 
 var enemies = [];
-var noOfEnemies = 3;
+var noOfEnemies = 15;
 
 var Enemy = function()
 {
