@@ -177,15 +177,7 @@ player.prototype.draw = function(){
 		//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 		
 		context.restore();
-
-		context.drawImage(this.playerHealthImage, this.position.x - this.healthWidth / 2, this.position.y + this.height / 2 + 10);
 		
-		for(var i = 0; i < this.lives; i++)
-		{
-			if(!gameOverBool)
-			{		
-				context.drawImage(this.playerHeartImage, 75 - ((this.playerHeartImage.width - 270) * i) - 60, canvas.height - 100, 50, 50);
-			}
-		}
+		context.drawImage(player.playerHealthImage, player.position.x - player.healthWidth / 2, player.position.y + player.height / 2 + 10);
 	}
 }
