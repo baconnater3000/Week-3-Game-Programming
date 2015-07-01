@@ -15,20 +15,23 @@ var tinyEnemy = new TinyEnemy(new Vector2());
 var enemyManager = new enemyManager();
 bgMusic.play();
 
+var fps = 0;
+var fpsCount = 0;
+var fpsTime = 0;
+var timer = 0;
+
+var gameOverBool = false;
+
+var background = document.createElement("img");
+background.src = "Media/Art/background.png";
+
 function getDeltaTime()
 {
 	endFrameMillis = startFrameMillis;
 	startFrameMillis = Date.now();
 
-		// Find the delta time (dt) - the change in time since the last drawFrame
-		// We need to modify the delta time to something we can use.
-		// We want 1 to represent 1 second, so if the delta is in milliseconds
-		// we divide it by 1000 (or multiply by 0.001). This will make our 
-		// animations appear at the right speed, though we may need to use
-		// some large values to get objects movement and rotation correct
 	var deltaTime = (startFrameMillis - endFrameMillis) * 0.001;
 	
-		// validate that the delta is within range
 	if(deltaTime > 1)
 		deltaTime = 1;
 		
@@ -52,18 +55,8 @@ function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
 	return true;
 }
 
-var background = document.createElement("img");
-background.src = "Media/Art/background.png";
-
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
-
-var fps = 0;
-var fpsCount = 0;
-var fpsTime = 0;
-var timer = 0;
-
-var gameOverBool = false;
 
 var stateManager = new StateManager();
 stateManager.pushState(new SplashState());
@@ -75,8 +68,6 @@ function run()
 	stateManager.update(deltaTime);
 	stateManager.draw();
 }
-
-//-------------------- Don't modify anything below here
 
 (function() {
   var onEachFrame;
