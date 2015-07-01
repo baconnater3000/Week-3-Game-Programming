@@ -1,12 +1,11 @@
 var canvas = document.getElementById("gameCanvas");
 var context = canvas.getContext("2d");
 
-canvas.addEventListener("mousedown", getPosition, false);
-
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
 var player = new player();
+var shop = new shop();
 var keyboard = new Keyboard();
 
 var BigEnemy = new BigEnemy();
@@ -66,8 +65,6 @@ var stateManager = new StateManager();
 stateManager.pushState(new SplashState());
 
 var menuSize = 250;
-var mousePos = new Vector2();
-var mouseClicked = false;
 
 function run()
 {
