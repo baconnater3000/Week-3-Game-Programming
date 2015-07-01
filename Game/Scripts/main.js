@@ -1,8 +1,6 @@
 var canvas = document.getElementById("gameCanvas");
 var context = canvas.getContext("2d");
 
-canvas.addEventListener("mousedown", getXPosition, false);
-canvas.addEventListener("mousedown", getYPosition, false);
 canvas.addEventListener("mousedown", getPosition, false);
 
 var startFrameMillis = Date.now();
