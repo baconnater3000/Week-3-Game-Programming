@@ -3,25 +3,20 @@ function rand(floor, ceil)
 	return Math.floor( (Math.random()* (ceil-floor)) +floor );
 }
 
-var bigEnemies = [];
-var noOfBigEnemies = 3;
-
 var BigEnemy = function()
 {
 	this.image = document.createElement("img");
 	this.image.src = "Media/Art/BigEnemy.png";
 	
-	this.height = 31;
-	this.width = 31;
-	// to set a random position just off screen, we'll start at the centre of the
-	// screen then move in a random direction by the width of the screen
+	this.height = 28;
+	this.width = 28;
+
 	var x = canvas.width * Math.random();
 	var y = canvas.height * Math.random();
 	
 	var dirX = Math.random();
 	var dirY = Math.random();
-	// 'normalize' the direction (the hypotenuse of the triangle formed
-	// by x,y will equal 1)
+
 	var magnitude = (dirX * dirX) + (dirY * dirY);
 	if(magnitude != 0)
 	{
@@ -33,7 +28,7 @@ var BigEnemy = function()
 	var movX = dirX * canvas.width;
 	var movY = dirY * canvas.height;
 	
-	this.x = x + movX;
+	this.x = x + movX + 250;
 	this.y = y + movY;
 	
 	this.speed = rand(60, 80);
@@ -45,42 +40,8 @@ var BigEnemy = function()
 	this.isDead = false;
 }
 
-for (var b = 0; b < noOfBigEnemies; ++b)
-{
-	var bigEnemy = new BigEnemy();
-	bigEnemies.push(bigEnemy);
-}
-
-BigEnemy.prototype.onScreen = function()
-{
-	var allEnemiesOnScreen = true;
-	
-	for (var b = 0; b < noOfBigEnemies; ++b)
-	{
-		if(bigEnemies[b].y <= 0)
-		{
-			allEnemiesOnScreen = false;
-		}
-		if(bigEnemies[b].y >= canvas.height)
-		{
-			allEnemiesOnScreen = false;
-		}
-		if(bigEnemies[b].x <= menuSize)
-		{
-			allEnemiesOnScreen = false;
-		}
-		if(bigEnemies[b].x >= canvas.width)
-		{
-			allEnemiesOnScreen = false;
-		}
-	}
-	
-	return allEnemiesOnScreen;
-}
-
 BigEnemy.prototype.update = function(deltaTime)
 {
-	// update the enemies position according to its current velocity.
 	this.x += this.velocityX * deltaTime;
 	this.y += this.velocityY * deltaTime;
 	

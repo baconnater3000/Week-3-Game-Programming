@@ -1,85 +1,155 @@
 var enemyManager = function ()
 {
+	this.tinyEnemies = [];
+	this.bigEnemies = [];
+	this.enemies = [];
 	
+	this.createEnemies(10);
+	this.createBigEnemies(5);
 }
 
-enemyManager.prototype.createTinyEnemies = function(startPosition)
+enemyManager.prototype.createTinyEnemies = function(number, startPosition)
 {
-	for (var t = 0; t < noTinyEnemies; ++t)
+	for (var t = 0; t < number; ++t)
 	{
 		var tempTiny = new TinyEnemy(startPosition);
-		tinyEnemies.push(tempTiny);
+		this.tinyEnemies.push(tempTiny);
 	}
+}
+
+enemyManager.prototype.createEnemies = function(numOfEnemies)
+{
+	for (var b = 0; b < numOfEnemies; ++b)
+	{
+		var enemy = new Enemy();
+		this.enemies.push(enemy);
+	}
+};
+
+enemyManager.prototype.createBigEnemies = function(numOfEnemies)
+{
+	for (var b = 0; b < numOfEnemies; ++b)
+	{
+		var bigEnemy = new BigEnemy();
+		this.bigEnemies.push(bigEnemy);
+	}
+};
+
+enemyManager.prototype.enemiesOnScreen = function()
+{
+	var allEnemiesOnScreen = true;
+	
+	for (var i = 0; i < this.enemies.length; ++i)
+	{
+		if(this.enemies[i].y <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(this.enemies[i].y >= canvas.height)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(this.enemies[i].x <= menuSize)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(this.enemies[i].x >= canvas.width)
+		{
+			allEnemiesOnScreen = false;
+		}
+	}
+	
+	for (var b = 0; b < this.bigEnemies.length; ++b)
+	{
+		if(this.bigEnemies[b].y <= 0)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(this.bigEnemies[b].y >= canvas.height)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(this.bigEnemies[b].x <= menuSize)
+		{
+			allEnemiesOnScreen = false;
+		}
+		if(this.bigEnemies[b].x >= canvas.width)
+		{
+			allEnemiesOnScreen = false;
+		}
+	}
+	
+	return allEnemiesOnScreen;
 }
 
 enemyManager.prototype.update = function(deltaTime)
 {
-	for (var b = 0; b < noOfBigEnemies; ++b)
+	for (var b = 0; b < this.bigEnemies.length; ++b)
 	{
-		bigEnemies[b].update(deltaTime);
+		this.bigEnemies[b].update(deltaTime);
 	}
 	
-	for (var i = 0; i < noOfEnemies; ++i)
+	for (var i = 0; i < this.enemies.length; ++i)
 	{
-		enemies[i].update(deltaTime);
+		this.enemies[i].update(deltaTime);
 	}
 	
-	for (var t = 0; t < noTinyEnemies; ++t)
+	for (var t = 0; t < this.tinyEnemies.length; ++t)
 	{
-		tinyEnemies[t].update(deltaTime);
+		this.tinyEnemies[t].update(deltaTime);
 	}
 	
 	if (!player.isDead)
 	{
-		for(var i = 0; i < noOfEnemies; ++i)
+		for(var i = 0; i < this.enemies.length; ++i)
 		{
-			if ( !enemies[i].isDead )
+			if ( !this.enemies[i].isDead )
 			{
 				var eHit = intersects(
 						player.position.x - player.width / 2, player.position.y - player.height / 2,
 						player.width, player.height,
-						enemies[i].x, enemies[i].y,
-						enemies[i].width, enemies[i].height);
+						this.enemies[i].x, this.enemies[i].y,
+						this.enemies[i].width, this.enemies[i].height);
 				
 				if (eHit)
 				{
-					enemies[i].isDead = true;
+					this.enemies[i].isDead = true;
 					player.health -= 1;
 				}
 			}
 		}
 		
-		for(var b = 0; b < noOfBigEnemies; ++b)
+		for(var b = 0; b < this.bigEnemies.length; ++b)
 		{
-			if ( !bigEnemies[b].isDead )
+			if ( !this.bigEnemies[b].isDead )
 			{
 				var EHit = intersects(
 						player.position.x - player.width / 2, player.position.y - player.height / 2,
 						player.width, player.height,
-						bigEnemies[b].x, bigEnemies[b].y,
-						bigEnemies[b].width, bigEnemies[b].height);
+						this.bigEnemies[b].x, this.bigEnemies[b].y,
+						this.bigEnemies[b].width, this.bigEnemies[b].height);
 				
 				if (EHit)
 				{
-					bigEnemies[b].isDead = true;
+					this.bigEnemies[b].isDead = true;
 					player.health -= 1;
 				}
 			}
 		}
 		
-		for(var t = 0; t < noTinyEnemies; ++t)
+		for(var t = 0; t < this.tinyEnemies.length; ++t)
 		{
-			if (!tinyEnemies[t].isDead )
+			if (!this.tinyEnemies[t].isDead )
 			{
 				var tHit = intersects(
 						player.position.x - player.width / 2, player.position.y - player.height / 2,
 						player.width, player.height,
-						tinyEnemies[t].x, tinyEnemies[t].y,
-						tinyEnemies[t].width, tinyEnemies[t].height);
+						this.tinyEnemies[t].x, this.tinyEnemies[t].y,
+						this.tinyEnemies[t].width, this.tinyEnemies[t].height);
 				
 				if (tHit)
 				{
-					tinyEnemies[t].isDead = true;
+					this.tinyEnemies[t].isDead = true;
 					player.health -= 1;
 				}
 			}
@@ -95,62 +165,62 @@ enemyManager.prototype.update = function(deltaTime)
 			context.drawImage(player.bullets[j].image, player.bullets[j].xPos - player.bullets[j].width / 2,
 										player.bullets[j].yPos - player.bullets[j].height / 2);
 			
-			for(var i = 0; i < noOfEnemies; i++)
+			for(var i = 0; i < this.enemies.length; i++)
 			{
-				if (!enemies[i].isDead)
+				if (!this.enemies[i].isDead)
 				{
 					var bHit = intersects(
 						player.bullets[j].xPos - player.bullets[j].width / 2, player.bullets[j].yPos - player.bullets[j].height / 2,
 						player.bullets[j].width, player.bullets[j].height,
-						enemies[i].x, enemies[i].y,
-						enemies[i].width, enemies[i].height);
+						this.enemies[i].x, this.enemies[i].y,
+						this.enemies[i].width, this.enemies[i].height);
 				
 					if (bHit)
 					{
 						player.bullets[j].isDead = true;
-						enemies[i].isDead = true;
+						this.enemies[i].isDead = true;
 						player.score += 100;
 					}
 				}
 			}
 			
-			for(var t = 0; t < noTinyEnemies; ++t)
+			for(var t = 0; t < this.tinyEnemies.length; ++t)
 			{
-				if (!tinyEnemies[t].isDead)
+				if (!this.tinyEnemies[t].isDead)
 				{
 					var tHit = intersects(
 							player.bullets[j].xPos - player.bullets[j].width / 2, player.bullets[j].yPos - player.bullets[j].height / 2,
 							player.bullets[j].width, player.bullets[j].height,
-							tinyEnemies[t].x, tinyEnemies[t].y,
-							tinyEnemies[t].width, tinyEnemies[t].height);
+							this.tinyEnemies[t].x, this.tinyEnemies[t].y,
+							this.tinyEnemies[t].width, this.tinyEnemies[t].height);
 					
 					if (tHit)
 					{
 						player.bullets[j].isDead = true;
-						tinyEnemies[t].isDead = true;
-						player.score += 100;
+						this.tinyEnemies[t].isDead = true;
+						player.score += 120;
 					}
 				}
 			}
 			
-			for(var b = 0; b < noOfBigEnemies; ++b)
+			for(var b = 0; b < this.bigEnemies.length; ++b)
 			{
-				if (!bigEnemies[b].isDead)
+				if (!this.bigEnemies[b].isDead)
 				{
 					var EHit = intersects(
 							player.bullets[j].xPos - player.bullets[j].width / 2, player.bullets[j].yPos - player.bullets[j].height / 2,
 							player.bullets[j].width, player.bullets[j].height,
-							bigEnemies[b].x, bigEnemies[b].y,
-							bigEnemies[b].width, bigEnemies[b].height);
+							this.bigEnemies[b].x, this.bigEnemies[b].y,
+							this.bigEnemies[b].width, this.bigEnemies[b].height);
 					
 					if (EHit)
 					{
 						player.bullets[j].isDead = true;
-						bigEnemies[b].isDead = true;
-						player.score += 100;
+						this.bigEnemies[b].isDead = true;
+						player.score += 150;
 						var tempVector = new Vector2();
-						tempVector.set(bigEnemies[b].x, bigEnemies[b].y);
-						this.createTinyEnemies(tempVector);
+						tempVector.set(this.bigEnemies[b].x, this.bigEnemies[b].y);
+						this.createTinyEnemies(4, tempVector);
 					}
 				}
 			}
@@ -164,45 +234,21 @@ enemyManager.prototype.update = function(deltaTime)
 
 enemyManager.prototype.draw = function()
 {
-	for (var b = 0; b < noOfBigEnemies; ++b)
+	for (var i = 0; i < this.enemies.length; ++i)
 	{
-		bigEnemies[b].draw();
+		this.enemies[i].draw();
 	}
 	
-	for (var i = 0; i < noOfEnemies; ++i)
+	for (var b = 0; b < this.bigEnemies.length; ++b)
 	{
-		enemies[i].draw();
+		this.bigEnemies[b].draw();
 	}
-	
-	for (var t = 0; t < tinyEnemies.length; ++t)
-	{
-		tinyEnemies[t].draw();
-	}
-}
 
-enemyManager.prototype.onScreen = function()
-{
-	if(enemy.onScreen())
+	for (var t = 0; t < this.tinyEnemies.length; ++t)
 	{
-		for (var i = 0; i < noOfEnemies; ++i)
+		if(!this.tinyEnemies[t].isDead)
 		{
-			enemies[i].onScreen = true;
-		}
-	}
-	
-	if(BigEnemy.onScreen())
-	{
-		for (var b = 0; b < noOfBigEnemies; ++b)
-		{
-			bigEnemies[b].onScreen = true;
-		}
-	}
-	
-	if(tinyEnemy.onScreen())
-	{
-		for (var t = 0; t < noTinyEnemies; ++t)
-		{
-			tinyEnemies[t].onScreen = true;
+			this.tinyEnemies[t].draw();
 		}
 	}
 }
