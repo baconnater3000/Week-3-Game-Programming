@@ -35,9 +35,9 @@ WinState.prototype.draw = function()
 	context.drawImage(background, 0, 0);
 	
 	var Title = document.createElement("img");
-	Title.src = "Media/Art/GameOver.png";
+	Title.src = "Media/Art/WinText.png";
 	var center = context.measureText(Title);
-	context.drawImage(Title, canvas.width / 2 - center.width * 2 - 20, canvas.height / 2 - 75);
+	context.drawImage(Title, canvas.width / 2 - center.width * 3 - 65, canvas.height / 2 - 75);
 	
 	context.fillStyle = "white";
 	context.font = "25px Cooper Black";
