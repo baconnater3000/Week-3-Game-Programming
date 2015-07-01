@@ -12,9 +12,11 @@ playerKeys.prototype.keybinds = function(deltaTime){
 		player.directionX = 0;
 		player.directionY = -1;
 		player.isMoving = true;
+		thrustSfx.play('thrust');
 	}else if (keyboard.isKeyDown(keyboard.KEY_W) == false && keyboard.isKeyDown(keyboard.KEY_S) == false){
 		player.directionY = 0;
 		player.isMoving = false;
+		thrustSfx.stop('thrust');
 	}
 
 	if(keyboard.isKeyDown(keyboard.KEY_A) == true){
@@ -39,9 +41,9 @@ playerKeys.prototype.keybinds = function(deltaTime){
 	
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true && !player.isDead){
 		player.isShooting = true;
+		bulletSfx.play('fire');
 	}else{
 		player.isShooting = false;
+		bulletSfx.stop('fire');
 	}
 }
-
-//bulletSfx.play();	<-- For player shooting, add when adding KEY_SPACE.

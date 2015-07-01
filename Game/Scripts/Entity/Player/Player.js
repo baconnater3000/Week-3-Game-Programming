@@ -24,6 +24,9 @@ var player = function(){
 	this.position = new Vector2();
 	this.position.set(canvas.width / 2 - this.width / 2, canvas.height / 2 - this.height / 2);
 	
+	this.mousePos = new Vector2();
+	this.mouseClicked = false,
+	
 	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 	
 	this.randomCountdownTimer = 2,
@@ -53,8 +56,8 @@ player.prototype.playerShoot = function(){
 		xPos : this.position.x,
 		yPos : this.position.y,
 		
-		width : 164,
-		height : 304,
+		width : 12,
+		height : 20,
 		
 		velocityX : 0,
 		velocityY : 0,
@@ -130,6 +133,7 @@ player.prototype.update = function(deltaTime){
 	this.playerBorders();
 	this.playerKeys.keybinds(deltaTime);
 	
+	/** Bullets **/
 	if(this.isShooting){
 		this.playerShoot();
 	}
@@ -152,6 +156,7 @@ player.prototype.update = function(deltaTime){
 		this.health -= 1;
 	}*/
 	
+	/** Handles Player Lives and Health **/
 	if(this.health == 0 && this.lives > 0 && !this.isDead){
 		this.health = 4;
 		this.lives -= 1;
@@ -160,8 +165,6 @@ player.prototype.update = function(deltaTime){
 	if(this.lives <= 0){
 		this.isDead = true;
 	}
-	
-	console.log("isShooting: " + this.isShooting);
 }
 
 player.prototype.draw = function(){
