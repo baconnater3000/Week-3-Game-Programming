@@ -147,7 +147,6 @@ player.prototype.update = function(deltaTime){
 	this.playerKeys.keybinds(deltaTime);
 	
 	/** Bullets **/
-	
 	if(this.isShooting && this.shootTimer <= 0)
 	{
 		this.shootTimer = this.maxShootTimer;
@@ -156,11 +155,6 @@ player.prototype.update = function(deltaTime){
 	
 	//this.fireEmitter.update(deltaTime);
 	//this.fireEmitter.draw();
-	
-	/*if(this.randomCountdownTimer <= 0){
-		this.randomCountdownTimer = this.maxRandomCountdownTimer;
-		this.health -= 1;
-	}*/
 	
 	/** Handles Player Lives and Health **/
 	if(this.health == 0 && this.lives > 0 && !this.isDead)
