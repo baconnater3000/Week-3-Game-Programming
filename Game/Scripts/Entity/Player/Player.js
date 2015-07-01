@@ -167,6 +167,7 @@ player.prototype.update = function(deltaTime){
 	{
 		this.health = 4;
 		this.lives -= 1;
+		explosionSfx.play();
 	}
 	
 	if(this.lives <= 0)
