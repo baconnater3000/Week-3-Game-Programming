@@ -70,6 +70,9 @@ var timer = 0;
 
 var gameOverBool = false;
 
+var stateManager = new StateManager();
+stateManager.pushState(new SplashState());
+
 var stateSplash = 0;
 var stateGame = 1;
 var stateControls = 2;
@@ -84,6 +87,10 @@ var mouseClicked = false;
 function run()
 {
 	var deltaTime = getDeltaTime();
+	
+	stateManager.update(deltaTime);
+	stateManager.draw();
+	
 	switch(gameState)
 	{
 		case stateSplash:
