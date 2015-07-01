@@ -41,7 +41,22 @@ shop.prototype.update = function(deltaTime){
 				
 			//THIRD BUTTON
 				if(player.mousePos.y >= 150 + (48 * 2) && player.mousePos.y <= 150 + (48 * 2) + 35){
-					player.score -= 2000;
+					
+				}
+				
+			//FOURTH BUTTON
+				if(player.mousePos.y >= 150 + (48 * 3) + 1 && player.mousePos.y <= 150 + (48 * 3) + 35){
+					
+				}
+				
+			//FIFTH BUTTON
+				if(player.mousePos.y >= 150 + (48 * 4) + 2 && player.mousePos.y <= 150 + (48 * 4) + 35){
+					
+				}
+				
+			//SIXTH BUTTON
+				if(player.mousePos.y >= 150 + (48 * 5) + 3 && player.mousePos.y <= 150 + (48 * 5) + 35){
+					
 				}
 				
 			//GIVE SCORE
