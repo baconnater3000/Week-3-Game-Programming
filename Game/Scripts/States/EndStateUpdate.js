@@ -1,37 +1,37 @@
-var SplashState = function()
+var EndState = function()
 {
 	this.prototype = BaseState;
 }
 
-SplashState.prototype.load = function()
+EndState.prototype.load = function()
 {
 	
 }
 
-SplashState.prototype.unload = function()
+EndState.prototype.unload = function()
 {
 	
 }
 
-SplashState.prototype.update = function(deltaTime)
+EndState.prototype.update = function(deltaTime)
 {
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
+	if(keyboard.isKeyDown(keyboard.KEY_R) == true)
 	{
-		stateManager.switchState(new GameState());
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
-	{
-		stateManager.switchState(new ControlsState());
+		location.reload();
 	}
 	
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		close(); 
 	}
+	
+	if(player.isDead == true)
+	{
+		stateManager.switchState(new EndState());
+	}
 }
 
-SplashState.prototype.draw = function()
+EndState.prototype.draw = function()
 {
 	context.canvas.width = window.innerWidth - 20;
 	context.canvas.height = window.innerHeight - 20;
@@ -40,17 +40,17 @@ SplashState.prototype.draw = function()
 	context.drawImage(background, 0, 0);
 	
 	var Title = document.createElement("img");
-	Title.src = "Media/Art/Name.png";
+	Title.src = "Media/Art/GameOver.png";
 	var center = context.measureText(Title);
-	context.drawImage(Title, canvas.width / 2 - center.width * 2, canvas.height / 2 - 75);
+	context.drawImage(Title, canvas.width / 2 - center.width * 2 - 20, canvas.height / 2 - 75);
 	
 	context.fillStyle = "white";
 	context.font = "25px Cooper Black";
-	var startText = "Press 'Space' To Play";
+	var contText = "Press 'R' To Play Again";
 	center = context.measureText(startText);
 	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
 
-	contText = "Press 'I' For Controls";
+	contText = "Your Score was: " + player.score;
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 80);
 	

@@ -39,35 +39,35 @@ ControlsState.prototype.draw = function()
 	context.fillStyle = "white";
 	context.font = "50px Cooper Black";
 	var contText = "Player 1";
-	var center = context.measureText(contText);
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);
 	
 	context.font = "25px Cooper Black";
-	var contText = "W = Forward";
-	var center = context.measureText(contText);
+	contText = "W = Forward";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 250);
 	
-	var contText = "A = Rotate Left";
-	var center = context.measureText(contText);
+	contText = "A = Rotate Left";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 290);
 	
-	var contText = "D = Rotate Right";
-	var center = context.measureText(contText);
+	contText = "D = Rotate Right";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 330);
 	
-	var contText = "S = Backward";
-	var center = context.measureText(contText);
+	contText = "S = Backward";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 370);
 	
-	var contText = "Space = Shoot";
-	var center = context.measureText(contText);
+	contText = "Space = Shoot";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 410);
 	
-	var contText = "ESC = Pause";
-	var center = context.measureText(contText);
+	contText = "ESC = Pause";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 450);
 	
-	var contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
-	var center = context.measureText(contText);
+	contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
 }

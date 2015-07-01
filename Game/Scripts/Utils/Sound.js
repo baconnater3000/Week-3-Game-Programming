@@ -3,7 +3,7 @@ var bgMusic = new Howl(
 	urls:["Media/Sounds/ThemeMusic.mp3"],
 	loop:true,
 	buffer:true,
-	volume: 0.2,
+	volume: 1,
 } );
 
 var bulletSfx = new Howl(
