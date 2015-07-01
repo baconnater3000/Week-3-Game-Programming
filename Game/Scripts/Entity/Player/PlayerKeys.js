@@ -39,9 +39,9 @@ playerKeys.prototype.keybinds = function(deltaTime){
 	
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true && !player.isDead){
 		player.isShooting = true;
+		bulletSfx.play();
 	}else{
 		player.isShooting = false;
+		bulletSfx.stop();
 	}
 }
-
-//bulletSfx.play();	<-- For player shooting, add when adding KEY_SPACE.

@@ -130,6 +130,7 @@ player.prototype.update = function(deltaTime){
 	this.playerBorders();
 	this.playerKeys.keybinds(deltaTime);
 	
+	/** Bullets **/
 	if(this.isShooting){
 		this.playerShoot();
 	}
@@ -152,6 +153,7 @@ player.prototype.update = function(deltaTime){
 		this.health -= 1;
 	}*/
 	
+	/** Handles Player Lives and Health **/
 	if(this.health == 0 && this.lives > 0 && !this.isDead){
 		this.health = 4;
 		this.lives -= 1;
@@ -160,8 +162,6 @@ player.prototype.update = function(deltaTime){
 	if(this.lives <= 0){
 		this.isDead = true;
 	}
-	
-	console.log("isShooting: " + this.isShooting);
 }
 
 player.prototype.draw = function(){

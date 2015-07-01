@@ -1,6 +1,10 @@
 var canvas = document.getElementById("gameCanvas");
 var context = canvas.getContext("2d");
 
+canvas.addEventListener("mousedown", getXPosition, false);
+canvas.addEventListener("mousedown", getYPosition, false);
+canvas.addEventListener("mousedown", getPosition, false);
+
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
@@ -79,6 +83,8 @@ var statePauseControls = 4;
 var gameState = stateSplash;
 
 var menuSize = 250;
+var mousePos = new Vector2();
+var mouseClicked = false;
 
 function run()
 {
@@ -299,6 +305,19 @@ function pauseControlsStateUpdate(deltaTime)
 	}
 }
 
+function getPosition(evt)
+{
+	var x = evt.x;
+	var y = evt.y;
+	
+	x -= canvas.offsetLeft;
+	y -= canvas.offsetTop;
+	
+	mousePos.x = x;
+	mousePos.y = y;
+	mouseClicked = true;
+}
+
 function gameStateUpdate(deltaTime)
 {	
 	canvas.width = canvas.width;
@@ -330,6 +349,16 @@ function gameStateUpdate(deltaTime)
 	context.fillText("Score: " + player.score, 10, 60);
 	context.fillText(Math.floor(timer) + " Seconds", 20, canvas.height - 20, menuSize - 40);
 	context.fillText("Lives: ", 20, canvas.height - 110);
+	
+	if (mouseClicked)
+	{
+		if(mousePos.x >= 0 && mousePos.x <= menuSize){
+				if(mousePos.y >= 125 && mousePos.y <= 155){
+					player.score += 100;
+				}
+			mouseClicked = false;
+		}
+	}	
 	
 	context.fillText("RANDOM TEST: ", 10, 150);
 	context.strokeRect(0, 125, menuSize, 30);
