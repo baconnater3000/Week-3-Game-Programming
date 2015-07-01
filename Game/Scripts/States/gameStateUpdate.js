@@ -37,7 +37,7 @@ GameState.prototype.update = function(deltaTime)
 	
 	enemyManager.update(deltaTime);
 	enemyManager.draw();
-	enemyManager.onScreen();
+	enemyManager.enemiesOnScreen();
 	
 	if(player.isDead == true)
 	{

@@ -9,9 +9,8 @@ var shop = new shop();
 var keyboard = new Keyboard();
 var menuSize = 250;
 
-var BigEnemy = new BigEnemy();
-var enemy = new Enemy();
-var tinyEnemy = new TinyEnemy(new Vector2());
+
+
 var enemyManager = new enemyManager();
 bgMusic.play();
 
