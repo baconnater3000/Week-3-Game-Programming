@@ -45,7 +45,7 @@ var BigEnemy = function()
 	this.isDead = false;
 }
 
-for (var j = 0; j < noOfBigEnemies; ++j)
+for (var b = 0; b < noOfBigEnemies; ++b)
 {
 	var bigEnemy = new BigEnemy();
 	bigEnemies.push(bigEnemy);
@@ -55,21 +55,21 @@ BigEnemy.prototype.onScreen = function()
 {
 	var allEnemiesOnScreen = true;
 	
-	for (var j = 0; j < noOfBigEnemies; ++j)
+	for (var b = 0; b < noOfBigEnemies; ++b)
 	{
-		if(bigEnemies[j].y <= 0)
+		if(bigEnemies[b].y <= 0)
 		{
 			allEnemiesOnScreen = false;
 		}
-		if(bigEnemies[j].y >= canvas.height)
+		if(bigEnemies[b].y >= canvas.height)
 		{
 			allEnemiesOnScreen = false;
 		}
-		if(bigEnemies[j].x <= menuSize)
+		if(bigEnemies[b].x <= menuSize)
 		{
 			allEnemiesOnScreen = false;
 		}
-		if(bigEnemies[j].x >= canvas.width)
+		if(bigEnemies[b].x >= canvas.width)
 		{
 			allEnemiesOnScreen = false;
 		}

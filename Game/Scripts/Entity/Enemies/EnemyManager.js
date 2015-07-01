@@ -5,9 +5,9 @@ var enemyManager = function ()
 
 enemyManager.prototype.update = function(deltaTime)
 {
-	for (var j = 0; j < noOfBigEnemies; ++j)
+	for (var b = 0; b < noOfBigEnemies; ++b)
 	{
-		bigEnemies[j].update(deltaTime);
+		bigEnemies[b].update(deltaTime);
 	}
 	
 	for (var i = 0; i < noOfEnemies; ++i)
@@ -40,19 +40,19 @@ enemyManager.prototype.update = function(deltaTime)
 			}
 		}
 		
-		for(var j = 0; j < noOfBigEnemies; ++j)
+		for(var b = 0; b < noOfBigEnemies; ++b)
 		{
-			if ( !bigEnemies[j].isDead )
+			if ( !bigEnemies[b].isDead )
 			{
 				var EHit = intersects(
 						player.position.x - player.width / 2, player.position.y - player.height / 2,
 						player.width, player.height,
-						bigEnemies[j].x, bigEnemies[j].y,
-						bigEnemies[j].width, bigEnemies[j].height);
+						bigEnemies[b].x, bigEnemies[b].y,
+						bigEnemies[b].width, bigEnemies[b].height);
 				
 				if (EHit)
 				{
-					bigEnemies[j].isDead = true;
+					bigEnemies[b].isDead = true;
 					player.health -= 1;
 				}
 			}
@@ -60,15 +60,15 @@ enemyManager.prototype.update = function(deltaTime)
 		
 		for(var t = 0; t < noTinyEnemies; ++t)
 		{
-			if ( !tinyEnemies[t].isDead )
+			if (!tinyEnemies[t].isDead )
 			{
-				var EHit = intersects(
+				var tHit = intersects(
 						player.position.x - player.width / 2, player.position.y - player.height / 2,
 						player.width, player.height,
 						tinyEnemies[t].x, tinyEnemies[t].y,
 						tinyEnemies[t].width, tinyEnemies[t].height);
 				
-				if (EHit)
+				if (tHit)
 				{
 					tinyEnemies[t].isDead = true;
 					player.health -= 1;
@@ -80,9 +80,9 @@ enemyManager.prototype.update = function(deltaTime)
 
 enemyManager.prototype.draw = function()
 {
-	for (var j = 0; j < noOfBigEnemies; ++j)
+	for (var b = 0; b < noOfBigEnemies; ++b)
 	{
-		bigEnemies[j].draw();
+		bigEnemies[b].draw();
 	}
 	
 	for (var i = 0; i < noOfEnemies; ++i)
@@ -113,9 +113,9 @@ enemyManager.prototype.onScreen = function()
 	
 	if(BigEnemy.onScreen())
 	{
-		for (var j = 0; j < noOfBigEnemies; ++j)
+		for (var b = 0; b < noOfBigEnemies; ++b)
 		{
-			bigEnemies[j].onScreen = true;
+			bigEnemies[b].onScreen = true;
 		}
 	}
 	
