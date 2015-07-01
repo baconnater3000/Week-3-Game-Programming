@@ -25,8 +25,8 @@ var Keyboard = function() {
 	this.KEY_ESCAPE = 27;
 	this.KEY_BACKSPACE = 8;
 	this.KEY_I = 73;
-	this.KEY_R = 81;
-	this.KEY_Q = 82;
+	this.KEY_R = 82;
+	this.KEY_Q = 81;
 };
 
 Keyboard.prototype.onKeyDown = function(evt){
