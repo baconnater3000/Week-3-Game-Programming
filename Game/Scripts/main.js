@@ -39,8 +39,6 @@ function getDeltaTime()
 	return deltaTime;
 }
 
-//-------------------- Don't modify anything above here
-
 function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
 {
 	context.strokeStyle = "white";
