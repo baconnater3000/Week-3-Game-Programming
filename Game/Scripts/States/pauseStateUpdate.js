@@ -19,14 +19,17 @@ PauseState.prototype.update = function(deltaTime)
 	{
 		stateManager.switchState(new GameState());
 	}
+	
 	if(keyboard.isKeyDown(keyboard.KEY_R) == true)
 	{
 		location.reload();
 	}
+	
 	if(keyboard.isKeyDown(keyboard.KEY_Q) == true)
 	{
 		close();
 	}
+	
 	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
 	{
 		stateManager.switchState(new PauseControlsState());
