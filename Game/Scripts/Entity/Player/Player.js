@@ -12,7 +12,7 @@ var player = function(){
 	
 	this.bullets = [];
 	this.bulletImage = document.createElement("img");
-	this.bulletImage.src = 'Media/Art/justBullet.png';
+	this.bulletImage.src = 'Media/Art/Bullet.png';
 
 	this.playerKeys = new playerKeys();
 	
@@ -49,8 +49,10 @@ var player = function(){
 	this.lives = 3
 }
 
-player.prototype.playerShoot = function(){
-	var bullet = {
+player.prototype.playerShoot = function()
+{
+	var bullet = 
+	{
 		image : this.bulletImage,
 		
 		xPos : this.position.x,
@@ -87,23 +89,31 @@ player.prototype.playerShoot = function(){
 	this.bullets.push(bullet);
 }
 
-player.prototype.playerBorders = function(){
-	if(this.position.y <= 0 - (this.height / 2)){
+player.prototype.playerBorders = function()
+{
+	if(this.position.y <= 0 - (this.height / 2))
+	{
 		this.position.y = canvas.height + (this.height / 2);
 	}else
-	if(this.position.y >= canvas.height + (this.height / 2)){
+	if(this.position.y >= canvas.height + (this.height / 2))
+	{
 		this.position.y = 0 - (this.height / 2);
 	}else
-	if(this.position.x <= 0 - (this.height / 2) + menuSize){
+	if(this.position.x <= 0 - (this.height / 2) + menuSize)
+	{
 		this.position.x = canvas.width + (this.height / 2);
 	}else
-	if(this.position.x >= canvas.width + (this.height / 2)){
+	if(this.position.x >= canvas.width + (this.height / 2))
+	{
 		this.position.x = 0 - (this.height / 2) + menuSize;
 	}
 	
-	for(var j = 0; j < this.bullets.length; j++){
-		if(this.bullets[j].isDead == false){
-			if(this.bullets[j].xPos < 0 + menuSize || this.bullets[j].xPos > canvas.width || this.bullets[j].yPos < 0 || this.bullets[j].yPos > canvas.height){
+	for(var j = 0; j < this.bullets.length; j++)
+	{
+		if(this.bullets[j].isDead == false)
+		{
+			if(this.bullets[j].xPos < 0 + menuSize || this.bullets[j].xPos > canvas.width || this.bullets[j].yPos < 0 || this.bullets[j].yPos > canvas.height)
+			{
 				this.bullets[j].isDead = true;
 			}
 		}
@@ -134,16 +144,79 @@ player.prototype.update = function(deltaTime){
 	this.playerKeys.keybinds(deltaTime);
 	
 	/** Bullets **/
-	if(this.isShooting){
+	if(this.isShooting)
+	{
 		this.playerShoot();
 	}
 	
-	for(var j = 0; j < this.bullets.length; j++){
-		if(this.bullets[j].isDead == false){
+	for (var j = 0; j < this.bullets.length; ++j)
+	{
+		if(!this.bullets[j].isDead)
+		{
 			this.bullets[j].xPos += this.bullets[j].velocityX * deltaTime;
 			this.bullets[j].yPos += this.bullets[j].velocityY * deltaTime;
-			context.drawImage(this.bullets[j].image, this.bullets[j].xPos - this.bullets[j].width / 2, this.bullets[j].yPos - this.bullets[j].height / 2);
-		}else{
+			context.drawImage(this.bullets[j].image, this.bullets[j].xPos - this.bullets[j].width / 2,
+										this.bullets[j].yPos - this.bullets[j].height / 2);
+			
+			for(var i = 0; i < noOfEnemies; i++)
+			{
+				if (!enemies[i].isDead)
+				{
+					var bHit = intersects(
+						this.bullets[j].xPos - this.bullets[j].width / 2, this.bullets[j].yPos - this.bullets[j].height / 2,
+						this.bullets[j].width, this.bullets[j].height,
+						enemies[i].x, enemies[i].y,
+						enemies[i].width, enemies[i].height);
+				
+					if (bHit)
+					{
+						this.bullets[j].isDead = true;
+						enemies[i].isDead = true;
+						this.score += 100;
+					}
+				}
+			}
+			
+			for(var b = 0; b < noOfBigEnemies; ++b)
+			{
+				if (!bigEnemies[b].isDead)
+				{
+					var EHit = intersects(
+							this.bullets[j].xPos - this.bullets[j].width / 2, this.bullets[j].yPos - this.bullets[j].height / 2,
+							this.bullets[j].width, this.bullets[j].height,
+							bigEnemies[b].x, bigEnemies[b].y,
+							bigEnemies[b].width, bigEnemies[b].height);
+					
+					if (EHit)
+					{
+						this.bullets[j].isDead = true;
+						bigEnemies[b].isDead = true;
+						this.score += 100;
+					}
+				}
+			}
+			
+			for(var t = 0; t < noTinyEnemies; ++t)
+		{
+			if (!tinyEnemies[t].isDead)
+			{
+				var tHit = intersects(
+						this.bullets[j].xPos - this.bullets[j].width / 2, this.bullets[j].yPos - this.bullets[j].height / 2,
+						this.bullets[j].width, this.bullets[j].height,
+						tinyEnemies[t].x, tinyEnemies[t].y,
+						tinyEnemies[t].width, tinyEnemies[t].height);
+				
+				if (tHit)
+				{
+					this.bullets[j].isDead = true;
+					tinyEnemies[t].isDead = true;
+					this.score += 100;
+				}
+			}
+		}
+		}
+		else
+		{
 			this.bullets.splice(j, 1);
 		}
 	}
@@ -157,18 +230,22 @@ player.prototype.update = function(deltaTime){
 	}*/
 	
 	/** Handles Player Lives and Health **/
-	if(this.health == 0 && this.lives > 0 && !this.isDead){
+	if(this.health == 0 && this.lives > 0 && !this.isDead)
+	{
 		this.health = 4;
 		this.lives -= 1;
 	}
 	
-	if(this.lives <= 0){
+	if(this.lives <= 0)
+	{
 		this.isDead = true;
 	}
 }
 
-player.prototype.draw = function(){
-	if(!this.isDead){
+player.prototype.draw = function()
+{
+	if(!this.isDead)
+	{
 		context.save();
 		context.translate(this.position.x, this.position.y);
 		context.rotate(this.angle);
