@@ -51,6 +51,17 @@ for (var i = 0; i < noOfEnemies; ++i)
 	enemies.push(enemy);
 }
 
+/*
+create enemy function (num of enemies, pos to be spawned at)
+	loop (num of enemies) times
+		create new enemy
+		set pos to be (pos to be spawned at)
+		set width and height
+		add to array
+	end loop
+end function
+*/
+
 Enemy.prototype.onScreen = function()
 {
 	var allEnemiesOnScreen = true;
