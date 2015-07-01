@@ -15,6 +15,11 @@ enemyManager.prototype.update = function(deltaTime)
 		enemies[i].update(deltaTime);
 	}
 	
+	for (var t = 0; t < noTinyEnemies; ++t)
+	{
+		tinyEnemies[t].update(deltaTime);
+	}
+	
 	if (!player.isDead)
 	{
 		for(var i = 0; i < noOfEnemies; ++i)
@@ -52,6 +57,24 @@ enemyManager.prototype.update = function(deltaTime)
 				}
 			}
 		}
+		
+		for(var t = 0; t < noTinyEnemies; ++t)
+		{
+			if ( !tinyEnemies[t].isDead )
+			{
+				var EHit = intersects(
+						player.position.x - player.width / 2, player.position.y - player.height / 2,
+						player.width, player.height,
+						tinyEnemies[t].x, tinyEnemies[t].y,
+						tinyEnemies[t].width, tinyEnemies[t].height);
+				
+				if (EHit)
+				{
+					tinyEnemies[t].isDead = true;
+					player.health -= 1;
+				}
+			}
+		}
 	}
 }
 
@@ -65,6 +88,16 @@ enemyManager.prototype.draw = function()
 	for (var i = 0; i < noOfEnemies; ++i)
 	{
 		enemies[i].draw();
+	}
+	
+	if(BigEnemy.isDead)
+	{
+		TinyEnemy.isDead = false;
+		
+		for (var t = 0; t < noTinyEnemies; ++t)
+		{
+			tinyEnemies[t].draw();
+		}
 	}
 }
 
@@ -83,6 +116,14 @@ enemyManager.prototype.onScreen = function()
 		for (var j = 0; j < noOfBigEnemies; ++j)
 		{
 			bigEnemies[j].onScreen = true;
+		}
+	}
+	
+	if(tinyEnemy.onScreen())
+	{
+		for (var t = 0; t < noTinyEnemies; ++t)
+		{
+			tinyEnemies[t].onScreen = true;
 		}
 	}
 }

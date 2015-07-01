@@ -10,6 +10,7 @@ var keyboard = new Keyboard();
 
 var BigEnemy = new BigEnemy();
 var enemy = new Enemy();
+var tinyEnemy = new TinyEnemy();
 var enemyManager = new enemyManager();
 bgMusic.play();
 
