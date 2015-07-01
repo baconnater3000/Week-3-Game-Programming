@@ -15,7 +15,7 @@ PauseState.prototype.unload = function()
 
 PauseState.prototype.update = function(deltaTime)
 {
-	if(keyboard.isKeyDown(keyboard.KEY_ENTER) == true)
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{
 		stateManager.switchState(new GameState());
 	}
@@ -47,7 +47,7 @@ PauseState.prototype.draw = function()
 	
 	context.fillStyle = "white";
 	context.font = "25px Cooper Black";
-	var contText = "Press 'Enter' To Continue Playing";
+	var contText = "Press 'Space' To Continue Playing";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);	
 	
