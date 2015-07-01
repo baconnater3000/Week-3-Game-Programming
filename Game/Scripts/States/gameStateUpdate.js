@@ -18,11 +18,11 @@ GameState.prototype.update = function(deltaTime)
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
-	shop.update(deltaTime);
-	shop.draw();
-	
 	player.update(deltaTime);
 	player.draw();
+	
+	shop.update(deltaTime);
+	shop.draw();
 	
 	timer += deltaTime;
 

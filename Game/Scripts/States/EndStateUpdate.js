@@ -46,16 +46,16 @@ EndState.prototype.draw = function()
 	
 	context.fillStyle = "white";
 	context.font = "25px Cooper Black";
-	var startText = "Press 'R' To Play Again";
-	var center = context.measureText(startText);
+	var contText = "Press 'R' To Play Again";
+	center = context.measureText(startText);
 	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
 
-	var contText = "Your Score was: " + player.score;
-	var center = context.measureText(contText);
+	contText = "Your Score was: " + player.score;
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 80);
 	
-	var contText = "Press 'Esc' To Quit The Game";
-	var center = context.measureText(contText);
+	contText = "Press 'Esc' To Quit The Game";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 110);
 
 	

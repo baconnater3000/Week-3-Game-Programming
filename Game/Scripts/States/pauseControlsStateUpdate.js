@@ -33,28 +33,32 @@ PauseControlsState.prototype.draw = function()
 	context.fillStyle = "white";
 	context.font = "25px Cooper Black";
 	var contText = "W = Forward";
-	var center = context.measureText(contText);
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);
 	
-	var contText = "A = Rotate Left";
-	var center = context.measureText(contText);
+	contText = "A = Rotate Left";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 240);
 	
-	var contText = "D = Rotate Right";
-	var center = context.measureText(contText);
+	contText = "D = Rotate Right";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 280);
 	
-	var contText = "S = Backward";
-	var center = context.measureText(contText);
+	contText = "S = Backward";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 320);
 	
-	var contText = "Space = Shoot";
-	var center = context.measureText(contText);
+	contText = "Space = Shoot";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 360);
 	
-	var contText = "ESC = Pause";
-	var center = context.measureText(contText);
+	contText = "ESC = Pause";
+	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 400);
+	
+	contText = "Left Click To Buy Upgrades";
+	center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 440);
 	
 	var contText = "Press 'ESC' To Go Back";
 	var center = context.measureText(contText);
