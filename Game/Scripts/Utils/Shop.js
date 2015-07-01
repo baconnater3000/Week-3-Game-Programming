@@ -49,13 +49,14 @@ shop.prototype.draw = function(){
 	context.save();
 	context.font="30px Cooper Black";
 	context.fillStyle = "Aqua";
-	context.fillText("FPS: " + fps, 10, 30);
-	context.fillText("Score: " + player.score, 10, 60);
+	context.fillText("Score: " + player.score, 10, 30);
 	context.fillText(Math.floor(timer) + " Seconds", 20, canvas.height - 20, menuSize - 40);
 	context.fillText("Lives: ", 20, canvas.height - 110);
 	context.restore();
 	
 	context.fillText("RANDOM TEST: ", 10, 150);
+	context.fillText("RANDOM TEST:", 10, 185);
+	context.fillText("RANDOM TEST: ", 10, 220);
 	
 	context.strokeRect(0, 125, menuSize, 30);
 	context.strokeRect(0, 160, menuSize, 30);
