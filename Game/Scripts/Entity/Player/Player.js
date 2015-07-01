@@ -24,6 +24,9 @@ var player = function(){
 	this.position = new Vector2();
 	this.position.set(canvas.width / 2 - this.width / 2, canvas.height / 2 - this.height / 2);
 	
+	this.mousePos = new Vector2();
+	this.mouseClicked = false,
+	
 	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 	
 	this.randomCountdownTimer = 2,
