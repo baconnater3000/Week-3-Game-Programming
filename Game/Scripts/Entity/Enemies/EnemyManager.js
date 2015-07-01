@@ -3,9 +3,9 @@ var enemyManager = function ()
 	
 }
 
-enemyManager.prototype.createTinyEnemies = function(startPosition)
+enemyManager.prototype.createTinyEnemies = function(number, startPosition)
 {
-	for (var t = 0; t < noTinyEnemies; ++t)
+	for (var t = 0; t < number; ++t)
 	{
 		var tempTiny = new TinyEnemy(startPosition);
 		tinyEnemies.push(tempTiny);
@@ -24,7 +24,7 @@ enemyManager.prototype.update = function(deltaTime)
 		enemies[i].update(deltaTime);
 	}
 	
-	for (var t = 0; t < noTinyEnemies; ++t)
+	for (var t = 0; t < tinyEnemies.length; ++t)
 	{
 		tinyEnemies[t].update(deltaTime);
 	}
@@ -67,7 +67,7 @@ enemyManager.prototype.update = function(deltaTime)
 			}
 		}
 		
-		for(var t = 0; t < noTinyEnemies; ++t)
+		for(var t = 0; t < tinyEnemies.length; ++t)
 		{
 			if (!tinyEnemies[t].isDead )
 			{
@@ -114,7 +114,7 @@ enemyManager.prototype.update = function(deltaTime)
 				}
 			}
 			
-			for(var t = 0; t < noTinyEnemies; ++t)
+			for(var t = 0; t < tinyEnemies.length; ++t)
 			{
 				if (!tinyEnemies[t].isDead)
 				{
@@ -150,7 +150,7 @@ enemyManager.prototype.update = function(deltaTime)
 						player.score += 100;
 						var tempVector = new Vector2();
 						tempVector.set(bigEnemies[b].x, bigEnemies[b].y);
-						this.createTinyEnemies(tempVector);
+						this.createTinyEnemies(4, tempVector);
 					}
 				}
 			}
@@ -173,36 +173,26 @@ enemyManager.prototype.draw = function()
 	{
 		enemies[i].draw();
 	}
-	
+
 	for (var t = 0; t < tinyEnemies.length; ++t)
 	{
-		tinyEnemies[t].draw();
+		if(!tinyEnemies[t].isDead)
+		{
+			tinyEnemies[t].draw();
+		}
 	}
 }
 
 enemyManager.prototype.onScreen = function()
 {
-	if(enemy.onScreen())
+
+	for (var i = 0; i < noOfEnemies; ++i)
 	{
-		for (var i = 0; i < noOfEnemies; ++i)
-		{
-			enemies[i].onScreen = true;
-		}
+		enemies[i].onScreen = true;
 	}
-	
-	if(BigEnemy.onScreen())
+
+	for (var b = 0; b < noOfBigEnemies; ++b)
 	{
-		for (var b = 0; b < noOfBigEnemies; ++b)
-		{
-			bigEnemies[b].onScreen = true;
-		}
-	}
-	
-	if(tinyEnemy.onScreen())
-	{
-		for (var t = 0; t < noTinyEnemies; ++t)
-		{
-			tinyEnemies[t].onScreen = true;
-		}
+		bigEnemies[b].onScreen = true;
 	}
 }

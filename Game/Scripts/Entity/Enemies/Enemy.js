@@ -33,13 +33,13 @@ var Enemy = function()
 	var movX = dirX * canvas.width;
 	var movY = dirY * canvas.height;
 	
-	this.x = x + movX;
+	this.x = x + movX + 250;
 	this.y = y + movY;
 	
 	this.speed = rand(100, 160);
 	
-	this.velocityX = -dirX * this.speed;
-	this.velocityY = -dirY * this.speed;
+	this.velocityX = dirX * this.speed;
+	this.velocityY = dirY * this.speed;
 	
 	this.enemyOnScreen = true;
 	this.isDead = false;
