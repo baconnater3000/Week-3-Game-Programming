@@ -43,3 +43,5 @@ playerKeys.prototype.keybinds = function(deltaTime){
 		player.isShooting = false;
 	}
 }
+
+//bulletSfx.play();	<-- For player shooting, add when adding KEY_SPACE.
