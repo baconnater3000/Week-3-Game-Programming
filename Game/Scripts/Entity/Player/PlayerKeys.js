@@ -13,7 +13,7 @@ playerKeys.prototype.keybinds = function(deltaTime){
 		player.directionY = -1;
 		player.isMoving = true;
 		thrustSfx.play('thrust');
-	}else if (keyboard.isKeyDown(keyboard.KEY_W) == false && keyboard.isKeyDown(keyboard.KEY_S) == false){
+	}else if (keyboard.isKeyDown(keyboard.KEY_W) == false || keyboard.isKeyDown(keyboard.KEY_S) == false){
 		player.directionY = 0;
 		player.isMoving = false;
 		thrustSfx.stop('thrust');
@@ -21,7 +21,7 @@ playerKeys.prototype.keybinds = function(deltaTime){
 
 	if(keyboard.isKeyDown(keyboard.KEY_A) == true){
 		player.angularVelocity = -player.rotationSpeed;
-	}else if(keyboard.isKeyDown(keyboard.KEY_A) == false && keyboard.isKeyDown(keyboard.KEY_D) == false){
+	}else if(keyboard.isKeyDown(keyboard.KEY_A) == false || keyboard.isKeyDown(keyboard.KEY_D) == false){
 		player.angularVelocity = 0;
 	}
 	
