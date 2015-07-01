@@ -54,9 +54,6 @@ function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
 var background = document.createElement("img");
 background.src = "Media/Art/background.png";
 
-var pauseBackground = document.createElement("img");
-pauseBackground.src = "Media/Art/pause.png";
-
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
