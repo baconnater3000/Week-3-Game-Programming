@@ -151,6 +151,7 @@ player.prototype.update = function(deltaTime){
 	{
 		this.shootTimer = this.maxShootTimer;
 		this.playerShoot();
+		bulletSfx.play();
 	}
 	
 	//this.fireEmitter.update(deltaTime);
