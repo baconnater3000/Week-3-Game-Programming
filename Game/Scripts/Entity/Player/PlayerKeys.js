@@ -25,7 +25,7 @@ playerKeys.prototype.keybinds = function(deltaTime){
 	
 	if(keyboard.isKeyDown(keyboard.KEY_S) == true){
 		player.directionX = 0;
-		player.directionY = 0.5;
+		player.directionY = 0.75;
 	}else if(keyboard.isKeyDown(keyboard.KEY_S) == false && keyboard.isKeyDown(keyboard.KEY_W) == false){
 		player.directionY = 0;
 		player.isMoving = false;
@@ -36,4 +36,12 @@ playerKeys.prototype.keybinds = function(deltaTime){
 	}else if(keyboard.isKeyDown(keyboard.KEY_D) == false && keyboard.isKeyDown(keyboard.KEY_A) == false){
 		player.angularVelocity = 0;
 	}
+	
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true && !player.isDead){
+		player.isShooting = true;
+	}else{
+		player.isShooting = false;
+	}
 }
+
+//bulletSfx.play();	<-- For player shooting, add when adding KEY_SPACE.

@@ -218,19 +218,19 @@ function pauseStateUpdate(deltaTime)
 	context.font = "25px Cooper Black";
 	var startText = "Press 'Enter' To Continue Playing";
 	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 150);	
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 200);	
 	
 	var startText = "Press 'R' To Replay";
 	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 190);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 240);
 	
 	var startText = "Press 'I' For Controls";
 	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 230);
+	context.fillText(startText, canvas.width / 2 - center.width / 2, 280);
 	
 	var contText = "Press 'Q' To Quit The Game";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 435);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
 	
 	if(keyboard.isKeyDown(keyboard.KEY_ENTER) == true)
 	{
@@ -263,31 +263,31 @@ function pauseControlsStateUpdate(deltaTime)
 	context.font = "25px Cooper Black";
 	var contText = "W = Forward";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 150);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);
 	
 	var contText = "A = Rotate Left";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 190);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 240);
 	
 	var contText = "D = Rotate Right";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 230);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 280);
 	
 	var contText = "S = Backward";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 270);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 320);
 	
 	var contText = "Space = Shoot";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 310);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 360);
 	
 	var contText = "ESC = Pause";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 350);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 400);
 	
 	var contText = "Press 'ESC' To Go Back";
 	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 435);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
 	
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
@@ -296,9 +296,12 @@ function pauseControlsStateUpdate(deltaTime)
 }
 
 function gameStateUpdate(deltaTime)
-{		
+{	
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
+	
+	player.update(deltaTime);
+	player.draw();
 	
 	timer += deltaTime;
 
@@ -321,11 +324,13 @@ function gameStateUpdate(deltaTime)
 	context.fillStyle = "Aqua";
 	context.fillText("FPS: " + fps, 10, 30);
 	context.fillText("Score: " + player.score, 10, 60);
-	context.fillText(Math.floor(timer) + " Seconds", 20, canvas.height - 20);
+	context.fillText(Math.floor(timer) + " Seconds", 20, canvas.height - 20, menuSize - 40);
 	context.fillText("Lives: ", 20, canvas.height - 110);
 	
-	player.update(deltaTime);
-	player.draw();
+	context.fillText("RANDOM TEST: ", 10, 150);
+	context.strokeRect(0, 125, menuSize, 30);
+	
+	//context.strokeRect(startX, startY, width, height);
 	
 	enemyManager.update(deltaTime);
 	enemyManager.draw();

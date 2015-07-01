@@ -9,6 +9,10 @@ var player = function(){
 	this.thrustImage.src = 'Media/Art/thrust.png';
 
 	this.playerHealthImage = document.createElement("img");
+	
+	this.bullets = [];
+	this.bulletImage = document.createElement("img");
+	this.bulletImage.src = 'Media/Art/justBullet.png';
 
 	this.playerKeys = new playerKeys();
 	
@@ -35,10 +39,49 @@ var player = function(){
 	
 	this.isMoving = false,
 	this.isDead = false,
+	this.isShooting = false;
 	
 	this.score = 0,
 	this.health = 4,
 	this.lives = 3
+}
+
+player.prototype.playerShoot = function(){
+	var bullet = {
+		image : this.bulletImage,
+		
+		xPos : this.position.x,
+		yPos : this.position.y,
+		
+		width : 164,
+		height : 304,
+		
+		velocityX : 0,
+		velocityY : 0,
+		
+		isDead : false,
+		
+		speed : 900,
+	}
+	
+	var velX = 0;
+	var velY = 1;
+	
+	var s = Math.sin(this.angle + Math.PI);
+	var c = Math.cos(this.angle + Math.PI);
+	
+	var xVel = (velX * c) - (velY * s);
+	var yVel = (velX * s) + (velY * c);
+	
+	bullet.velocityX = xVel * bullet.speed;
+	bullet.velocityY = yVel * bullet.speed;
+
+	bullet.xPos = this.position.x;
+	bullet.yPos = this.position.y;
+	
+	bullet.isDead = false;	
+	
+	this.bullets.push(bullet);
 }
 
 player.prototype.playerBorders = function(){
@@ -53,6 +96,14 @@ player.prototype.playerBorders = function(){
 	}else
 	if(this.position.x >= canvas.width + (this.height / 2)){
 		this.position.x = 0 - (this.height / 2) + menuSize;
+	}
+	
+	for(var j = 0; j < this.bullets.length; j++){
+		if(this.bullets[j].isDead == false){
+			if(this.bullets[j].xPos < 0 + menuSize || this.bullets[j].xPos > canvas.width || this.bullets[j].yPos < 0 || this.bullets[j].yPos > canvas.height){
+				this.bullets[j].isDead = true;
+			}
+		}
 	}
 }
 
@@ -79,6 +130,20 @@ player.prototype.update = function(deltaTime){
 	this.playerBorders();
 	this.playerKeys.keybinds(deltaTime);
 	
+	if(this.isShooting){
+		this.playerShoot();
+	}
+	
+	for(var j = 0; j < this.bullets.length; j++){
+		if(this.bullets[j].isDead == false){
+			this.bullets[j].xPos += this.bullets[j].velocityX * deltaTime;
+			this.bullets[j].yPos += this.bullets[j].velocityY * deltaTime;
+			context.drawImage(this.bullets[j].image, this.bullets[j].xPos - this.bullets[j].width / 2, this.bullets[j].yPos - this.bullets[j].height / 2);
+		}else{
+			this.bullets.splice(j, 1);
+		}
+	}
+	
 	//this.fireEmitter.update(deltaTime);
 	//this.fireEmitter.draw();
 	
@@ -96,7 +161,7 @@ player.prototype.update = function(deltaTime){
 		this.isDead = true;
 	}
 	
-	console.log("Dead: " + this.isDead + " || ");
+	console.log("isShooting: " + this.isShooting);
 }
 
 player.prototype.draw = function(){
