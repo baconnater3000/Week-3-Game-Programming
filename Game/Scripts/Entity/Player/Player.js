@@ -46,7 +46,10 @@ var player = function(){
 	
 	this.score = 0,
 	this.health = 4,
-	this.lives = 3
+	this.lives = 3,
+	
+	this.shootTimer = 0.35,
+	this.maxShootTimer = this.shootTimer
 }
 
 player.prototype.playerShoot = function()
@@ -121,10 +124,10 @@ player.prototype.playerBorders = function()
 }
 
 player.prototype.update = function(deltaTime){
+	this.shootTimer -= deltaTime;
+	
 	this.playerHealth = ["Media/PlayerHealth/HealthBar05.png", "Media/PlayerHealth/HealthBar04.png", "Media/PlayerHealth/HealthBar03.png", "Media/PlayerHealth/HealthBar02.png", "Media/PlayerHealth/HealthBar01.png"];
 	this.playerHealthImage.src = this.playerHealth[this.health];
-	
-	this.randomCountdownTimer -= deltaTime;
 	
 	var sine = Math.sin(this.angle);
 	var cosine = Math.cos(this.angle);
@@ -144,8 +147,10 @@ player.prototype.update = function(deltaTime){
 	this.playerKeys.keybinds(deltaTime);
 	
 	/** Bullets **/
-	if(this.isShooting)
+	
+	if(this.isShooting && this.shootTimer <= 0)
 	{
+		this.shootTimer = this.maxShootTimer;
 		this.playerShoot();
 	}
 	

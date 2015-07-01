@@ -40,8 +40,13 @@ shop.prototype.update = function(deltaTime){
 				}
 				
 			//THIRD BUTTON
-			if(player.mousePos.y >= 150 + (48 * 2) && player.mousePos.y <= 150 + (48 * 2) + 35){
-					player.score += 300;
+				if(player.mousePos.y >= 150 + (48 * 2) && player.mousePos.y <= 150 + (48 * 2) + 35){
+					player.score -= 2000;
+				}
+				
+			//GIVE SCORE
+				if(player.mousePos.y >= 0 && player.mousePos.y <= 35){
+					player.score += 10000;
 				}
 			player.mouseClicked = false;
 		}
@@ -67,13 +72,13 @@ shop.prototype.draw = function(){
 	context.save();
 	context.font="30px ONYX";
 	context.fillStyle = "White";
-	context.fillText("Score: " + player.score, 10, 30);
+	context.fillText("Score: " + player.score + " || CLICK ME", 10, 30);
 	context.fillText(Math.floor(timer) + " Seconds", 20, canvas.height - 20, menuSize - 40);
 	context.fillText("Lives: ", 20, canvas.height - 110);
 	context.restore();
 	
 	context.strokeStyle = "White";
-	//context.strokeRect(0, 150, menuSize, 35);
+	//context.strokeRect(0, 0, menuSize, 35);
 	//context.strokeRect(0, 150 + (48 * 1), menuSize, 35);
 	//context.strokeRect(0, 150 + (48 * 2), menuSize, 35);
 	//context.strokeRect(0, 150 + (48 * 3) + 1, menuSize, 35);
