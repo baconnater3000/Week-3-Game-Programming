@@ -14,9 +14,7 @@ var enemy = new Enemy();
 var enemyManager = new enemyManager();
 bgMusic.play();
 
-// This function will return the time in seconds since the function 
-// was last called
-// You should only call this function once per frame
+
 function getDeltaTime()
 {
 	endFrameMillis = startFrameMillis;
@@ -58,9 +56,7 @@ background.src = "Media/Art/background.png";
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
-// some variables to calculate the Frames Per Second (FPS - this tells use
-// how fast our game is running, and allows us to make the game run at a 
-// constant speed)
+
 var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
@@ -99,9 +95,6 @@ function getPosition(evt)
 
 //-------------------- Don't modify anything below here
 
-
-// This code will set up the framework so that the 'run' function is called 60 times per second.
-// We have a some options to fall back on in case the browser doesn't support our preferred method.
 (function() {
   var onEachFrame;
   if (window.requestAnimationFrame) {
