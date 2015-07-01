@@ -13,7 +13,7 @@ PauseState.prototype.unload = function()
 	
 }
 
-PauseState.prototype.update = function()
+PauseState.prototype.update = function(deltaTime)
 {
 	if(keyboard.isKeyDown(keyboard.KEY_ENTER) == true)
 	{

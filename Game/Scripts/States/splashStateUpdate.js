@@ -13,7 +13,7 @@ SplashState.prototype.unload = function()
 	
 }
 
-SplashState.prototype.update = function(dt)
+SplashState.prototype.update = function(deltaTime)
 {
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{

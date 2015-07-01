@@ -13,7 +13,7 @@ ControlsState.prototype.unload = function()
 	
 }
 
-ControlsState.prototype.update = function()
+ControlsState.prototype.update = function(deltaTime)
 {
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{

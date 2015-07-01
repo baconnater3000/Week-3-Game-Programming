@@ -13,7 +13,7 @@ GameState.prototype.unload = function()
 	
 }
 
-GameState.prototype.update = function()
+GameState.prototype.update = function(deltaTime)
 {
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
@@ -31,8 +31,6 @@ GameState.prototype.update = function()
 		fps = fpsCount;
 		fpsCount = 0;
 	}		
-	
-	
 	
 	enemyManager.update(deltaTime);
 	enemyManager.draw();
