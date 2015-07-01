@@ -13,11 +13,11 @@ PauseControlsState.prototype.unload = function()
 	
 }
 
-PauseControlsState.prototype.update = function()
+PauseControlsState.prototype.update = function(deltaTime)
 {
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
-		gameState = statePause;
+		stateManager.switchState(new PauseState());
 	}
 }
 

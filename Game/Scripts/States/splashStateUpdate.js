@@ -13,16 +13,16 @@ SplashState.prototype.unload = function()
 	
 }
 
-SplashState.prototype.update = function(dt)
+SplashState.prototype.update = function(deltaTime)
 {
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{
-		gameState = stateGame; 
+		stateManager.switchState(new GameState());
 	}
 	
 	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
 	{
-		gameState = stateControls; 
+		stateManager.switchState(new ControlsState());
 	}
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{

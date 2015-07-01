@@ -13,9 +13,6 @@ var enemy = new Enemy();
 var enemyManager = new enemyManager();
 bgMusic.play();
 
-// This function will return the time in seconds since the function 
-// was last called
-// You should only call this function once per frame
 function getDeltaTime()
 {
 	endFrameMillis = startFrameMillis;
@@ -57,9 +54,6 @@ background.src = "Media/Art/background.png";
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
-// some variables to calculate the Frames Per Second (FPS - this tells use
-// how fast our game is running, and allows us to make the game run at a 
-// constant speed)
 var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
@@ -70,13 +64,6 @@ var gameOverBool = false;
 var stateManager = new StateManager();
 stateManager.pushState(new SplashState());
 
-var stateSplash = 0;
-var stateGame = 1;
-var stateControls = 2;
-var statePause = 3;
-var statePauseControls = 4;
-var gameState = stateSplash;
-
 var menuSize = 250;
 
 function run()
@@ -85,257 +72,10 @@ function run()
 	
 	stateManager.update(deltaTime);
 	stateManager.draw();
-	
-	switch(gameState)
-	{
-		case stateSplash:
-		splashStateUpdate(deltaTime);
-		break;
-		
-		case stateGame:
-		gameStateUpdate(deltaTime);
-		break;
-		
-		case stateControls:
-		controlsStateUpdate(deltaTime);
-		break;
-		
-		case statePause:
-		pauseStateUpdate(deltaTime);
-		break;
-		
-		case statePauseControls:
-		pauseControlsStateUpdate(deltaTime);
-		break;
-	}
 }
-
-function splashStateUpdate(deltaTime)
-{
-	context.canvas.width = window.innerWidth - 20;
-	context.canvas.height = window.innerHeight - 20;
-	
-	canvas.width = canvas.width;
-	context.drawImage(background, 0, 0);
-	
-	var Title = document.createElement("img");
-	Title.src = "Media/Art/Name.png";
-	var center = context.measureText(Title);
-	context.drawImage(Title, canvas.width / 2 - center.width * 2, canvas.height / 2 - 75);
-	
-	context.fillStyle = "white";
-	context.font = "25px Cooper Black";
-	var startText = "Press 'Space' To Play";
-	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
-
-	var contText = "Press 'I' For Controls";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 80);
-	
-	var contText = "Press 'Esc' To Quit The Game";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 110);
-
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
-	{
-		gameState = stateGame; 
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
-	{
-		gameState = stateControls; 
-	}
-	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
-	{
-		close(); 
-	}
-}
-
-function controlsStateUpdate(deltaTime)
-{
-	canvas.width = canvas.width;
-	context.drawImage(background, 0, 0);
-	
-	var Control = document.createElement("img");
-	Control.src = "Media/Art/Controls.png";
-	var center = context.measureText(Control);
-	context.drawImage(Control, canvas.width / 2 - center.width * 2, 50);
-	
-	context.fillStyle = "white";
-	context.font = "50px Cooper Black";
-	var contText = "Player 1";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);
-	
-	context.font = "25px Cooper Black";
-	var contText = "W = Forward";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 250);
-	
-	var contText = "A = Rotate Left";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 290);
-	
-	var contText = "D = Rotate Right";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 330);
-	
-	var contText = "S = Backward";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 370);
-	
-	var contText = "Space = Shoot";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 410);
-	
-	var contText = "ESC = Pause";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 450);
-	
-	var contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
-	
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
-	{
-		gameState = stateGame; 
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_BACKSPACE) == true)
-	{
-		gameState = stateSplash; 
-	}
-}
-
-function pauseStateUpdate(deltaTime)
-{
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	
-	var Pause = document.createElement("img");
-	Pause.src = "Media/Art/PauseMenu.png";
-	var center = context.measureText(Pause);
-	context.drawImage(Pause, canvas.width / 2 - center.width - 30, 25);
-	
-	context.fillStyle = "white";
-	context.font = "25px Cooper Black";
-	var startText = "Press 'Enter' To Continue Playing";
-	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 200);	
-	
-	var startText = "Press 'R' To Replay";
-	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 240);
-	
-	var startText = "Press 'I' For Controls";
-	var center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, 280);
-	
-	var contText = "Press 'Q' To Quit The Game";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
-	
-	if(keyboard.isKeyDown(keyboard.KEY_ENTER) == true)
-	{
-		gameState = stateGame;
-	}
-	if(keyboard.isKeyDown(keyboard.KEY_R) == true)
-	{
-		location.reload();
-	}
-	if(keyboard.isKeyDown(keyboard.KEY_Q) == true)
-	{
-		close();
-	}
-	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
-	{
-		gameState = statePauseControls;
-	}
-}
-
-function pauseControlsStateUpdate(deltaTime)
-{
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	
-	var Control = document.createElement("img");
-	Control.src = "Media/Art/Controls.png";
-	var center = context.measureText(Control);
-	context.drawImage(Control, canvas.width / 2 - center.width + 50, 25);
-	
-	context.fillStyle = "white";
-	context.font = "25px Cooper Black";
-	var contText = "W = Forward";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);
-	
-	var contText = "A = Rotate Left";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 240);
-	
-	var contText = "D = Rotate Right";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 280);
-	
-	var contText = "S = Backward";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 320);
-	
-	var contText = "Space = Shoot";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 360);
-	
-	var contText = "ESC = Pause";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 400);
-	
-	var contText = "Press 'ESC' To Go Back";
-	var center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
-	
-	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
-	{
-		gameState = statePause;
-	}
-}
-
-function gameStateUpdate(deltaTime)
-{	
-	canvas.width = canvas.width;
-	context.drawImage(background, 0, 0);
-	
-	shop.update(deltaTime);
-	shop.draw();
-	
-	player.update(deltaTime);
-	player.draw();
-	
-	timer += deltaTime;
-
-	fpsTime += deltaTime;
-	fpsCount++;
-	if(fpsTime >= 1)
-	{
-		fpsTime -= 1;
-		fps = fpsCount;
-		fpsCount = 0;
-	}		
-	
-	enemyManager.update(deltaTime);
-	enemyManager.draw();
-	enemyManager.onScreen();
-
-	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
-	{
-		gameState = statePause;
-	}
-}
-
 
 //-------------------- Don't modify anything below here
 
-
-// This code will set up the framework so that the 'run' function is called 60 times per second.
-// We have a some options to fall back on in case the browser doesn't support our preferred method.
 (function() {
   var onEachFrame;
   if (window.requestAnimationFrame) {
