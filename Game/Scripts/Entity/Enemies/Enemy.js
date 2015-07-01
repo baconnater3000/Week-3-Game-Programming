@@ -101,7 +101,7 @@ Enemy.prototype.update = function(deltaTime)
 		{
 			this.velocityY = -this.velocityY;
 		}
-		if(this.y > canvas.height + (this.height / this.height))
+		if(this.y >= canvas.height + (this.height / this.height))
 		{
 			this.velocityY = -this.velocityY;
 		}
