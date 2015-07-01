@@ -12,7 +12,7 @@ var player = function(){
 	
 	this.bullets = [];
 	this.bulletImage = document.createElement("img");
-	this.bulletImage.src = 'Media/Art/justBullet.png';
+	this.bulletImage.src = 'Media/Art/Bullet.png';
 
 	this.playerKeys = new playerKeys();
 	
