@@ -69,10 +69,10 @@ var timer = 0;
 var gameOverBool = false;
 
 var stateManager = new StateManager();
-stateManager.pushState(new GameState());
+/*stateManager.pushState(new GameState());
 stateManager.pushState(new PauseControlsState());
 stateManager.pushState(new PauseState());
-stateManager.pushState(new ControlsState());
+stateManager.pushState(new ControlsState());*/
 stateManager.pushState(new SplashState());
 
 var menuSize = 250;
