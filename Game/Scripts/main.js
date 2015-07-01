@@ -8,8 +8,12 @@ canvas.addEventListener("mousedown", getPosition, false);
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
+var player = new player();
+var keyboard = new Keyboard();
+
 var BigEnemy = new BigEnemy();
 var enemy = new Enemy();
+var enemyManager = new enemyManager();
 bgMusic.play();
 
 // This function will return the time in seconds since the function 
@@ -37,9 +41,6 @@ function getDeltaTime()
 
 //-------------------- Don't modify anything above here
 
-var player = new player();
-var keyboard = new Keyboard();
-
 function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
 {
 	context.strokeStyle = "white";
@@ -57,9 +58,6 @@ function intersects(x1, y1, w1, h1, x2, y2, w2, h2)
 
 var background = document.createElement("img");
 background.src = "Media/Art/background.png";
-
-var pauseBackground = document.createElement("img");
-pauseBackground.src = "Media/Art/pause.png";
 
 var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
@@ -360,86 +358,14 @@ function gameStateUpdate(deltaTime)
 	
 	//context.strokeRect(startX, startY, width, height);
 	
-	for (var j = 0; j < noOfBigEnemies; ++j)
-	{
-		bigEnemies[j].update(deltaTime);
-	}
-	
-	for (var j = 0; j < noOfBigEnemies; ++j)
-	{
-		bigEnemies[j].draw();
-	}
-	
-	for (var i = 0; i < noOfEnemies; ++i)
-	{
-		enemies[i].update(deltaTime);
-	}
-	
-	for (var i = 0; i < noOfEnemies; ++i)
-	{
-		enemies[i].draw();
-	}
-	
-	if(enemy.onScreen())
-	{
-		for (var i = 0; i < noOfEnemies; ++i)
-		{
-			enemies[i].onScreen = true;
-		}
-	}
-	
-	if(BigEnemy.onScreen())
-	{
-		for (var j = 0; j < noOfBigEnemies; ++j)
-		{
-			bigEnemies[j].onScreen = true;
-		}
-	}
+	enemyManager.update(deltaTime);
+	enemyManager.draw();
+	enemyManager.onScreen();
 
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		gameState = statePause;
 	}
-	
-	if (!player.isDead)
-	{
-		for(var i = 0; i < noOfEnemies; ++i)
-		{
-			if ( !enemies[i].isDead )
-			{
-				var eHit = intersects(
-						player.position.x - player.width / 2, player.position.y - player.height / 2,
-						player.width, player.height,
-						enemies[i].x, enemies[i].y,
-						enemies[i].width, enemies[i].height);
-				
-				if (eHit)
-				{
-					enemies[i].isDead = true;
-					player.health -= 1;
-				}
-			}
-		}
-		
-		for(var j = 0; j < noOfBigEnemies; ++j)
-		{
-			if ( !bigEnemies[j].isDead )
-			{
-				var EHit = intersects(
-						player.position.x - player.width / 2, player.position.y - player.height / 2,
-						player.width, player.height,
-						bigEnemies[j].x, bigEnemies[j].y,
-						bigEnemies[j].width, bigEnemies[j].height);
-				
-				if (EHit)
-				{
-					bigEnemies[j].isDead = true;
-					player.health -= 1;
-				}
-			}
-		}
-	}
-	
 }
 
 
