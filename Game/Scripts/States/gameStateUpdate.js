@@ -38,7 +38,17 @@ GameState.prototype.update = function(deltaTime)
 	enemyManager.update(deltaTime);
 	enemyManager.draw();
 	enemyManager.onScreen();
-
+	
+	if(player.isDead == true)
+	{
+		stateManager.switchState(new LoseState());
+	}
+	
+	if(player.isDead == false && player.score == 50000)
+	{
+		stateManager.switchState(new WinState());
+	}
+	
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		stateManager.switchState(new PauseState());

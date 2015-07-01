@@ -1,19 +1,19 @@
-var EndState = function()
+var LoseState = function()
 {
 	this.prototype = BaseState;
 }
 
-EndState.prototype.load = function()
+LoseState.prototype.load = function()
 {
 	
 }
 
-EndState.prototype.unload = function()
+LoseState.prototype.unload = function()
 {
 	
 }
 
-EndState.prototype.update = function(deltaTime)
+LoseState.prototype.update = function(deltaTime)
 {
 	if(keyboard.isKeyDown(keyboard.KEY_R) == true)
 	{
@@ -24,14 +24,9 @@ EndState.prototype.update = function(deltaTime)
 	{
 		close(); 
 	}
-	
-	if(player.isDead == true)
-	{
-		stateManager.switchState(new EndState());
-	}
 }
 
-EndState.prototype.draw = function()
+LoseState.prototype.draw = function()
 {
 	context.canvas.width = window.innerWidth - 20;
 	context.canvas.height = window.innerHeight - 20;
@@ -47,8 +42,8 @@ EndState.prototype.draw = function()
 	context.fillStyle = "white";
 	context.font = "25px Cooper Black";
 	var contText = "Press 'R' To Play Again";
-	center = context.measureText(startText);
-	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
+	center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
 
 	contText = "Your Score was: " + player.score;
 	center = context.measureText(contText);
