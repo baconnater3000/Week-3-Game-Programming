@@ -56,8 +56,8 @@ player.prototype.playerShoot = function(){
 		xPos : this.position.x,
 		yPos : this.position.y,
 		
-		width : 12,
-		height : 20,
+		width : 10,
+		height : 10,
 		
 		velocityX : 0,
 		velocityY : 0,
