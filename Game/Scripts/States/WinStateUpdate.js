@@ -3,7 +3,7 @@ var WinState = function()
 	this.prototype = BaseState;
 }
 
-WinState.prototype.load = function()
+WinState.prototype.load = function() 
 {
 	
 }
@@ -41,7 +41,7 @@ WinState.prototype.draw = function()
 	
 	context.fillStyle = "white";
 	context.font = "25px Cooper Black";
-	var contText = "You Win";
+	var contText = "You Win With " + player.score + " (1000 Point Bonus) Points";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
 

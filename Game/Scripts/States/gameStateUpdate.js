@@ -46,6 +46,7 @@ GameState.prototype.update = function(deltaTime)
 	
 	if(player.isDead == false && player.score == 50000)
 	{
+		player.score += 1000;
 		stateManager.switchState(new WinState());
 	}
 	

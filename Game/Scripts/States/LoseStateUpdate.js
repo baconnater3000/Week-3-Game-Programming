@@ -41,11 +41,11 @@ LoseState.prototype.draw = function()
 	
 	context.fillStyle = "white";
 	context.font = "25px Cooper Black";
-	var contText = "Press 'R' To Play Again";
+	var contText = "You Lose With " + player.score + " Points";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
-
-	contText = "Your Score was: " + player.score;
+	
+	contText = "Press 'R' To Play Again";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 80);
 	
