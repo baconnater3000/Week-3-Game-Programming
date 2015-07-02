@@ -19,20 +19,26 @@ ModeState.prototype.update = function(deltaTime)
 	{
 		if(player.mousePos.x >= canvas.width / 2 - 100 && player.mousePos.x <= canvas.width / 2 + 100)
 		{
-			//GM1 BUTTON
+			//Wave Button
 			if(player.mousePos.y >= 180 && player.mousePos.y <= 180 + 25)
 			{
 				stateManager.switchState(new WaveState());
 			}
 			
-			//GM2 BUTTON
+			//Survival Button
 			if(player.mousePos.y >= 220 && player.mousePos.y <= 220 + 25)
 			{
 				stateManager.switchState(new SurvivalState());
 			}
 			
-			//BACK BUTTON
+			//Multiplayer Button
 			if(player.mousePos.y >= 260 && player.mousePos.y <= 260 + 25)
+			{
+				stateManager.switchState(new GameState());
+			}
+			
+			//Back Button
+			if(player.mousePos.y >= 300 && player.mousePos.y <= 300 + 25)
 			{
 				stateManager.switchState(new SplashState());
 			}
@@ -54,6 +60,7 @@ ModeState.prototype.draw = function()
 	context.strokeRect(canvas.width / 2 - 100, 180, 200, 25);
 	context.strokeRect(canvas.width / 2 - 100, 220, 200, 25);
 	context.strokeRect(canvas.width / 2 - 100, 260, 200, 25);
+	context.strokeRect(canvas.width / 2 - 100, 300, 200, 25);
 	*/
 	
 	var Title = document.createElement("img");
@@ -71,7 +78,11 @@ ModeState.prototype.draw = function()
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 240);
 	
-	contText = "Go Back";
+	contText = "Multiplayer Mode";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 280);
+	
+	contText = "Go Back";
+	center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 320);
 }
