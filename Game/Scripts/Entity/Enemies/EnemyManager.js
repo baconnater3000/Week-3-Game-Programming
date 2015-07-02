@@ -79,6 +79,7 @@ enemyManager.prototype.update = function(deltaTime)
 				if (eHit)
 				{
 					this.enemies[i].isDead = true;
+					this.enemies.splice(i, 1);
 					player.health -= 1;
 				}
 			}
@@ -97,6 +98,7 @@ enemyManager.prototype.update = function(deltaTime)
 				if (EHit)
 				{
 					this.bigEnemies[b].isDead = true;
+					this.bigEnemies.splice(b, 1);
 					player.health -= 1;
 				}
 			}
@@ -115,6 +117,7 @@ enemyManager.prototype.update = function(deltaTime)
 				if (tHit)
 				{
 					this.tinyEnemies[t].isDead = true;
+					this.tinyEnemies.splice(t, 1);
 					player.health -= 1;
 				}
 			}
@@ -137,6 +140,7 @@ enemyManager.prototype.update = function(deltaTime)
 				}else
 				if (MHit && this.massiveEnemies[m].health <= 0);
 				{
+					this.massiveEnemies.splice(m, 1);
 					this.massiveEnemies[m].isDead = true;
 				}
 			}
