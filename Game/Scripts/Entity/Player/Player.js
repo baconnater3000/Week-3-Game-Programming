@@ -134,8 +134,6 @@ player.prototype.update = function(deltaTime){
 		this.maxShootTimer += 0.3;
 	}
 	
-	console.log("fireRateIncrease:" + this.fireRateIncrease + " || hasDecreasedFireRate:" + this.hasDecreasedFireRate + " || resetShootTimer:" + Math.floor(this.resetShootTimer));
-	
 	this.playerHealth = ["Media/PlayerHealth/HealthBar05.png", "Media/PlayerHealth/HealthBar04.png", "Media/PlayerHealth/HealthBar03.png", "Media/PlayerHealth/HealthBar02.png", "Media/PlayerHealth/HealthBar01.png"];
 	this.playerHealthImage.src = this.playerHealth[this.health];
 	
