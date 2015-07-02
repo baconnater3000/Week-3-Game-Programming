@@ -127,11 +127,13 @@ player.prototype.update = function(deltaTime){
 		this.maxShootTimer -= 0.30;
 		this.shootTimer = this.maxShootTimer;
 		this.hasDecreasedFireRate = true;
+		this.cooldownTimer = 0.30;
 	}
 	
 	if(!this.fireRateIncrease && this.hasDecreasedFireRate){
 		this.hasDecreasedFireRate = false;
 		this.maxShootTimer += 0.3;
+		this.cooldownTimer = 0.5;
 	}
 	
 	this.playerHealth = ["Media/PlayerHealth/HealthBar05.png", "Media/PlayerHealth/HealthBar04.png", "Media/PlayerHealth/HealthBar03.png", "Media/PlayerHealth/HealthBar02.png", "Media/PlayerHealth/HealthBar01.png"];
@@ -158,6 +160,7 @@ player.prototype.update = function(deltaTime){
 	if(this.isShooting && this.shootTimer > this.maxShootTimer){
 		this.shootTimer = 0;
 		this.playerShoot();
+		bulletSfx.play('fire');
 	}
 	
 	//this.fireEmitter.update(deltaTime);
