@@ -33,16 +33,6 @@ WinState.prototype.update = function(deltaTime)
 		}
 		player.mouseClicked = false;
 	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
-	{
-		stateManager.switchState(new GameState());
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
-	{
-		close(); 
-	}
 }
 
 WinState.prototype.draw = function()
