@@ -3,6 +3,7 @@ var enemyManager = function ()
 	this.tinyEnemies = [];
 	this.bigEnemies = [];
 	this.enemies = [];
+	this.massiveEnemies = [];
 }
 
 enemyManager.prototype.createTinyEnemies = function(number, startPosition)
@@ -32,58 +33,20 @@ enemyManager.prototype.createBigEnemies = function(numOfEnemies)
 	}
 };
 
-enemyManager.prototype.enemiesOnScreen = function()
+enemyManager.prototype.createMassiveEnemies = function(numOfEnemies)
 {
-	var allEnemiesOnScreen = true;
-	
-	for (var i = 0; i < this.enemies.length; ++i)
+	for (var m = 0; m < numOfEnemies; ++m)
 	{
-		if(this.enemies[i].y <= 0)
-		{
-			allEnemiesOnScreen = false;
-		}
-		if(this.enemies[i].y >= canvas.height)
-		{
-			allEnemiesOnScreen = false;
-		}
-		if(this.enemies[i].x <= menuSize)
-		{
-			allEnemiesOnScreen = false;
-		}
-		if(this.enemies[i].x >= canvas.width)
-		{
-			allEnemiesOnScreen = false;
-		}
+		var massiveEnemy = new MassiveEnemy();
+		this.massiveEnemies.push(massiveEnemy);
 	}
-	
-	for (var b = 0; b < this.bigEnemies.length; ++b)
-	{
-		if(this.bigEnemies[b].y <= 0)
-		{
-			allEnemiesOnScreen = false;
-		}
-		if(this.bigEnemies[b].y >= canvas.height)
-		{
-			allEnemiesOnScreen = false;
-		}
-		if(this.bigEnemies[b].x <= menuSize)
-		{
-			allEnemiesOnScreen = false;
-		}
-		if(this.bigEnemies[b].x >= canvas.width)
-		{
-			allEnemiesOnScreen = false;
-		}
-	}
-	
-	return allEnemiesOnScreen;
-}
+};
 
 enemyManager.prototype.update = function(deltaTime)
 {
-	for (var b = 0; b < this.bigEnemies.length; ++b)
+	for (var t = 0; t < this.tinyEnemies.length; ++t)
 	{
-		this.bigEnemies[b].update(deltaTime);
+		this.tinyEnemies[t].update(deltaTime);
 	}
 	
 	for (var i = 0; i < this.enemies.length; ++i)
@@ -91,9 +54,14 @@ enemyManager.prototype.update = function(deltaTime)
 		this.enemies[i].update(deltaTime);
 	}
 	
-	for (var t = 0; t < this.tinyEnemies.length; ++t)
+	for (var b = 0; b < this.bigEnemies.length; ++b)
 	{
-		this.tinyEnemies[t].update(deltaTime);
+		this.bigEnemies[b].update(deltaTime);
+	}
+	
+	for (var m = 0; m < this.massiveEnemies.length; ++m)
+	{
+		this.massiveEnemies[m].update(deltaTime);
 	}
 	
 	if (!player.isDead)
@@ -111,6 +79,7 @@ enemyManager.prototype.update = function(deltaTime)
 				if (eHit)
 				{
 					this.enemies[i].isDead = true;
+					this.enemies.splice(i, 1);
 					player.health -= 1;
 				}
 			}
@@ -129,6 +98,7 @@ enemyManager.prototype.update = function(deltaTime)
 				if (EHit)
 				{
 					this.bigEnemies[b].isDead = true;
+					this.bigEnemies.splice(b, 1);
 					player.health -= 1;
 				}
 			}
@@ -147,13 +117,37 @@ enemyManager.prototype.update = function(deltaTime)
 				if (tHit)
 				{
 					this.tinyEnemies[t].isDead = true;
+					this.tinyEnemies.splice(t, 1);
 					player.health -= 1;
+				}
+			}
+		}
+		
+		for(var m = 0; m < this.massiveEnemies.length; ++m)
+		{
+			if (!this.massiveEnemies[m].isDead )
+			{
+				var MHit = intersects(
+						player.position.x - player.width / 2, player.position.y - player.height / 2,
+						player.width, player.height,
+						this.massiveEnemies[m].x, this.massiveEnemies[m].y,
+						this.massiveEnemies[m].width, this.massiveEnemies[m].height);
+				
+				if (MHit)
+				{
+					this.massiveEnemies[m].health -= 1;
+					player.health -= 1;
+				}else
+				if (MHit && this.massiveEnemies[m].health <= 0)
+				{
+					this.massiveEnemies.splice(m, 1);
+					this.massiveEnemies[m].isDead = true;
 				}
 			}
 		}
 	}
 	
-		for (var j = 0; j < player.bullets.length; ++j)
+	for (var j = 0; j < player.bullets.length; ++j)
 	{
 		if(!player.bullets[j].isDead)
 		{
@@ -177,25 +171,7 @@ enemyManager.prototype.update = function(deltaTime)
 						player.bullets[j].isDead = true;
 						this.enemies[i].isDead = true;
 						player.score += 100;
-					}
-				}
-			}
-			
-			for(var t = 0; t < this.tinyEnemies.length; ++t)
-			{
-				if (!this.tinyEnemies[t].isDead)
-				{
-					var tHit = intersects(
-							player.bullets[j].xPos - player.bullets[j].width / 2, player.bullets[j].yPos - player.bullets[j].height / 2,
-							player.bullets[j].width, player.bullets[j].height,
-							this.tinyEnemies[t].x, this.tinyEnemies[t].y,
-							this.tinyEnemies[t].width, this.tinyEnemies[t].height);
-					
-					if (tHit)
-					{
-						player.bullets[j].isDead = true;
-						this.tinyEnemies[t].isDead = true;
-						player.score += 120;
+						this.enemies.splice(i, 1);
 					}
 				}
 			}
@@ -218,6 +194,55 @@ enemyManager.prototype.update = function(deltaTime)
 						var tempVector = new Vector2();
 						tempVector.set(this.bigEnemies[b].x, this.bigEnemies[b].y);
 						this.createTinyEnemies(4, tempVector);
+						this.bigEnemies.splice(b, 1);
+					}
+				}
+			}
+			
+			for(var t = 0; t < this.tinyEnemies.length; ++t)
+			{
+				if (!this.tinyEnemies[t].isDead)
+				{
+					var tHit = intersects(
+							player.bullets[j].xPos - player.bullets[j].width / 2, player.bullets[j].yPos - player.bullets[j].height / 2,
+							player.bullets[j].width, player.bullets[j].height,
+							this.tinyEnemies[t].x, this.tinyEnemies[t].y,
+							this.tinyEnemies[t].width, this.tinyEnemies[t].height);
+					
+					if (tHit)
+					{
+						player.bullets[j].isDead = true;
+						this.tinyEnemies[t].isDead = true;
+						player.score += 120;
+						this.tinyEnemies.splice(t, 1);
+					}
+				}
+			}
+			
+			for(var m = 0; m < this.massiveEnemies.length; ++m)
+			{
+				if (!this.massiveEnemies[m].isDead)
+				{
+					var mHit = intersects(
+							player.bullets[j].xPos - player.bullets[j].width / 2, player.bullets[j].yPos - player.bullets[j].height / 2,
+							player.bullets[j].width, player.bullets[j].height,
+							this.massiveEnemies[m].x, this.massiveEnemies[m].y,
+							this.massiveEnemies[m].width, this.massiveEnemies[m].height);
+					
+					if (mHit)
+					{
+						player.bullets[j].isDead = true;
+						this.massiveEnemies[m].health -= 1;
+						player.score += 20;
+					}else
+					if (mHit && this.massiveEnemies[m].health <= 0)
+					{
+						player.bullets[j].isDead = true;
+						this.massiveEnemies[m].isDead = true;
+						player.score += 300;
+						var tempVector = new Vector2();
+						tempVector.set(this.massiveEnemies[m].x, this.massiveEnemies[m].y);
+						this.createTinyEnemies(8, tempVector);
 					}
 				}
 			}
@@ -231,6 +256,14 @@ enemyManager.prototype.update = function(deltaTime)
 
 enemyManager.prototype.draw = function()
 {
+	for (var t = 0; t < this.tinyEnemies.length; ++t)
+	{
+		if(!this.tinyEnemies[t].isDead)
+		{
+			this.tinyEnemies[t].draw();
+		}
+	}
+	
 	for (var i = 0; i < this.enemies.length; ++i)
 	{
 		this.enemies[i].draw();
@@ -240,12 +273,9 @@ enemyManager.prototype.draw = function()
 	{
 		this.bigEnemies[b].draw();
 	}
-
-	for (var t = 0; t < this.tinyEnemies.length; ++t)
+	
+	for (var m = 0; m < this.massiveEnemies.length; ++m)
 	{
-		if(!this.tinyEnemies[t].isDead)
-		{
-			this.tinyEnemies[t].draw();
-		}
+		this.massiveEnemies[m].draw();
 	}
 }
