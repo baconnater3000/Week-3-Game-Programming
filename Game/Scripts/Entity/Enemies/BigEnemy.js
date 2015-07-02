@@ -6,7 +6,7 @@ function rand(floor, ceil)
 var BigEnemy = function()
 {
 	this.image = document.createElement("img");
-	this.image.src = "Media/Art/BigEnemy.png";
+	this.image.src = "Media/Art/Enemies/BigEnemy.png";
 	
 	this.height = 28;
 	this.width = 28;
@@ -37,7 +37,7 @@ var BigEnemy = function()
 	
 	this.enemyOnScreen = true;
 	this.isDead = false;
-}
+};
 
 BigEnemy.prototype.update = function(deltaTime)
 {
@@ -69,7 +69,7 @@ BigEnemy.prototype.update = function(deltaTime)
 			this.velocityX = -this.velocityX;
 		}
 	}
-}
+};
 
 BigEnemy.prototype.draw = function()
 {
@@ -81,8 +81,8 @@ BigEnemy.prototype.draw = function()
 		
 		context.drawImage(this.image, this.x / this.x, this.y / this.y, (this.dimensionsTimer / this.fullSize) * this.width,
 						(this.dimensionsTimer / this.fullSize) * this.height);
-		//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
+
 		
 		context.restore();
 	}
-}
+};

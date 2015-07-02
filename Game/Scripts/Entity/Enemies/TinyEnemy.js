@@ -1,7 +1,7 @@
 var TinyEnemy = function(position)
 {
 	this.image = document.createElement("img");
-	this.image.src = "Media/Art/TinyEnemy.png";
+	this.image.src = "Media/Art/Enemies/TinyEnemy.png";
 	
 	this.width = 12;
 	this.height = 12;

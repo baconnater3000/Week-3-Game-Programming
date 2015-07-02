@@ -1,15 +1,14 @@
 function rand(floor, ceil)
 {
 	return Math.floor( (Math.random()* (ceil-floor)) +floor );
-};
+}
 
-var Enemy = function()
+var MassiveEnemy = function()
 {
-	this.image = document.createElement("img");
-	this.image.src = "Media/Art/Enemies/Enemy.png";
+	this.massiveHealthImage = document.createElement("img");
 	
-	this.height = 20;
-	this.width = 20;
+	this.height = 56;
+	this.width = 56;
 	
 	this.dimensionsTimer = 0;
 	this.fullSize = 0.5;
@@ -27,16 +26,29 @@ var Enemy = function()
 	
 	this.speed = rand(-200, 200);
 	
-	this.velocityX = dirX * this.speed;
-	this.velocityY = dirY * this.speed;
+	this.velocityX = -dirX * this.speed;
+	this.velocityY = -dirY * this.speed;
 	
 	this.x = rand(250, canvas.width - this.width);
 	this.y = rand(this.height, canvas.height - this.height);
-
+	
+	this.angle = 0;
+	
+	this.enemyOnScreen = true;
 	this.isDead = false;
+	
+	this.health = 5;
+	
+	this.massiveHealth = ["Media/Art/Enemies/MassiveHealth/MassiveHealth00.png",
+								"Media/Art/Enemies/MassiveHealth/MassiveHealth01.png",
+								"Media/Art/Enemies/MassiveHealth/MassiveHealth02.png",
+								"Media/Art/Enemies/MassiveHealth/MassiveHealth03.png",
+								"Media/Art/Enemies/MassiveHealth/MassiveHealth04.png",
+								"Media/Art/Enemies/MassiveHealth/MassiveHealth05.png"];
+
 };
 
-Enemy.prototype.update = function(deltaTime)
+MassiveEnemy.prototype.update = function(deltaTime)
 {
 	this.x += this.velocityX * deltaTime;
 	this.y += this.velocityY * deltaTime;
@@ -51,7 +63,7 @@ Enemy.prototype.update = function(deltaTime)
 	{
 		this.velocityY = -this.velocityY;
 	}
-	if(this.y + this.height >= canvas.height + (this.height / this.height))
+	if(this.y + this.height> canvas.height + (this.height / this.height))
 	{
 		this.velocityY = -this.velocityY;
 	}
@@ -65,8 +77,7 @@ Enemy.prototype.update = function(deltaTime)
 	}
 };
 
-
-Enemy.prototype.draw = function()
+MassiveEnemy.prototype.draw = function()
 {
 	if(!this.isDead)
 	{
@@ -74,7 +85,11 @@ Enemy.prototype.draw = function()
 		context.translate(this.x, this.y);
 		context.rotate(this.angle);
 		
-		context.drawImage(this.image, this.x / this.x, this.y / this.y, (this.dimensionsTimer / this.fullSize) * this.width,
+		for (var m = 0; m < enemyManager.massiveEnemies.length; ++m)
+		{
+			this.massiveHealthImage.src = this.massiveHealth[this.health];
+		}
+		context.drawImage(this.massiveHealthImage, this.x / this.x, this.y / this.y, (this.dimensionsTimer / this.fullSize) * this.width,
 						(this.dimensionsTimer / this.fullSize) * this.height);
 		
 		context.restore();
