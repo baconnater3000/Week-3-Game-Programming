@@ -88,7 +88,6 @@ shop.prototype.draw = function(){
 	context.font="30px ONYX";
 	context.fillStyle = "White";
 	context.fillText("Score: " + player.score + " || CLICK ME", 10, 30);
-	context.fillText("Wave: " /*+ wave.number*/, 10, 60);
 	context.fillText(Math.floor(timer) + " Seconds", 20, canvas.height - 20, menuSize - 40);
 	context.fillText("Lives: ", 20, canvas.height - 110);
 	context.restore();
@@ -100,6 +99,4 @@ shop.prototype.draw = function(){
 	//context.strokeRect(0, 150 + (48 * 3) + 1, menuSize, 35);
 	//context.strokeRect(0, 150 + (48 * 4) + 2, menuSize, 35);
 	//context.strokeRect(0, 150 + (48 * 5) + 3, menuSize, 35);
-	
-	
 }

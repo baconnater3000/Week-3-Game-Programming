@@ -1,6 +1,7 @@
 var WaveState = function()
 {
 	this.prototype = BaseState;
+	this.waveNumber = 1;
 }
 
 WaveState.prototype.load = function()
@@ -9,6 +10,11 @@ WaveState.prototype.load = function()
 }
 
 WaveState.prototype.unload = function()
+{
+	
+}
+
+WaveState.prototype.number = function()
 {
 	
 }
@@ -67,5 +73,5 @@ WaveState.prototype.update = function(deltaTime)
 
 WaveState.prototype.draw = function()
 {
-	
+	context.fillText("The Current Wave is: " + this.waveNumber, 100, 100);
 }

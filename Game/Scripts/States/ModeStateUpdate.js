@@ -35,7 +35,7 @@ DiffState.prototype.update = function(deltaTime)
 		if(player.mousePos.x >= canvas.width / 2 - 200 && player.mousePos.x <= canvas.width / 2 + 200){
 			//GM1 BUTTON
 			if(player.mousePos.y >= 180 && player.mousePos.y <= 180 + 25){
-				stateManager.switchState(new GameState());
+				stateManager.switchState(new WaveState());
 			}
 			
 			//GM2 BUTTON
