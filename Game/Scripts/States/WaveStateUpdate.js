@@ -6,7 +6,7 @@ var WaveState = function()
 	this.nextWave = false;
 	
 	this.displayCountdownTimer = false;
-	this.waveCountdownTimer = 10;
+	this.waveCountdownTimer = 5;
 	this.maxwaveCountdownTimer = this.waveCountdownTimer;
 }
 
@@ -38,7 +38,7 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 1 && !this.hasSpawned){
-		enemyManager.createEnemies(5);
+		enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(1);
 		
 		this.hasSpawned = true
@@ -46,7 +46,7 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 2 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		enemyManager.createEnemies(8);
+		//enemyManager.createEnemies(8);
 		//enemyManager.createBigEnemies(1);
 		
 		this.displayCountdownTimer = false;
@@ -55,7 +55,7 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 3 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		enemyManager.createEnemies(1);
+		//enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
 		
 		this.displayCountdownTimer = false;
@@ -64,7 +64,7 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 4 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		enemyManager.createEnemies(1);
+		//enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
 		//enemyManager.createNewEnemies(5);
 		
@@ -74,7 +74,7 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 5 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		enemyManager.createEnemies(1);
+		//enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
 		//enemyManager.createNewEnemies(5);
 		
@@ -84,7 +84,7 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 6 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		enemyManager.createEnemies(1);
+		//enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
 		//enemyManager.createNewEnemies(5);
 		
@@ -94,7 +94,7 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 7 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		enemyManager.createEnemies(1);
+		//enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
 		//enemyManager.createNewEnemies(5);
 		
@@ -124,12 +124,13 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 10 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		enemyManager.createEnemies(10);
-		enemyManager.createBigEnemies(2);
+		enemyManager.createEnemies(1);
+		//enemyManager.createBigEnemies(2);
 		//enemyManager.createNewEnemies(5);
 		
 		this.displayCountdownTimer = false;
 		this.hasSpawned = true;
+		this.nextWave = true;
 	}
 	
 	if(enemyManager.tinyEnemies.length <= 0 && enemyManager.enemies.length <= 0 && enemyManager.bigEnemies.length <= 0 /* && enemyManager.massiveEnemies.length <= 0*/ && this.nextWave){
