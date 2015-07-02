@@ -168,7 +168,6 @@ enemyManager.prototype.update = function(deltaTime)
 				
 					if (bHit)
 					{
-						player.bullets[j].isDead = true;
 						this.enemies[i].isDead = true;
 						player.score += 100;
 						this.enemies.splice(i, 1);
@@ -188,14 +187,12 @@ enemyManager.prototype.update = function(deltaTime)
 					
 					if (EHit)
 					{
-						this.bigEnemies[b].isDead = true;
 						player.score += 150;
 						var tempVector = new Vector2();
 						tempVector.set(this.bigEnemies[b].x, this.bigEnemies[b].y);
 						this.createTinyEnemies(4, tempVector);
-						player.bullets[j].isDead = true;
+						this.bigEnemies[b].isDead = true;
 						this.bigEnemies.splice(b, 1);
-						player.bullets.splice(j, 1);
 					}
 				}
 			}
