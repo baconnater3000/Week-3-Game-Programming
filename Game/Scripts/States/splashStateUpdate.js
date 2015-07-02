@@ -53,6 +53,7 @@ SplashState.prototype.update = function(deltaTime)
 				close();
 			}
 		}
+		player.mouseClicked = false;
 	}
 }
 
@@ -70,6 +71,7 @@ SplashState.prototype.draw = function()
 	context.strokeRect(canvas.width / 2 - 50, canvas.height / 2 + 60, 100, 25);
 	context.strokeRect(canvas.width / 2 - 50, canvas.height / 2 + 90, 100, 25);
 	*/
+	
 	
 	var Title = document.createElement("img");
 	Title.src = "Media/Art/Name.png";

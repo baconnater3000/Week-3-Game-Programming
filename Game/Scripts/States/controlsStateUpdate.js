@@ -1,6 +1,8 @@
 var ControlsState = function()
 {
 	this.prototype = BaseState;
+	
+	canvas.addEventListener("mousedown", this.getPosition, false);
 }
 
 ControlsState.prototype.load = function()
@@ -13,6 +15,20 @@ ControlsState.prototype.unload = function()
 	
 }
 
+ControlsState.prototype.getPosition = function(evt){
+	var x = evt.x;
+	var y = evt.y;
+	
+	x -= canvas.offsetLeft;
+	y -= canvas.offsetTop;
+	
+	//console.log("Mouse clicked! at: X - " + x + " Y - " + y);
+	
+	player.mousePos.set(x, y);
+	
+	player.mouseClicked = true;
+}
+
 ControlsState.prototype.update = function(deltaTime)
 {
 	if(player.mouseClicked)
@@ -20,11 +36,12 @@ ControlsState.prototype.update = function(deltaTime)
 		if(player.mousePos.x >= canvas.width / 2 - 50 && player.mousePos.x <= canvas.width / 2 + 50)
 		{
 			//Back Button
-			if(player.mousePos.y >= canvas.height / 2 + 30 && player.mousePos.y <= canvas.height / 2 + 60)
+			if(player.mousePos.y >= canvas.height - 40 && player.mousePos.y <= canvas.height - 70)
 			{
 				stateManager.switchState(new SplashState());
 			}
 		}
+		player.mouseClicked = false;
 	}
 	
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
