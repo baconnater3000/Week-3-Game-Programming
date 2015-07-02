@@ -33,7 +33,7 @@ SplashState.prototype.update = function(deltaTime)
 {
 	if(player.mouseClicked)
 	{
-		if(player.mousePos.x >= canvas.width / 2 - 30 && player.mousePos.x <= canvas.width / 2 + 30)
+		if(player.mousePos.x >= canvas.width / 2 - 50 && player.mousePos.x <= canvas.width / 2 + 50)
 		{
 			//Play Button
 			if(player.mousePos.y >= canvas.height / 2 + 30 && player.mousePos.y <= canvas.height / 2 + 60)
@@ -41,35 +41,18 @@ SplashState.prototype.update = function(deltaTime)
 				stateManager.switchState(new ModeState());
 			}
 			
-			//Quit Button
-			if(player.mousePos.y >= canvas.height / 2 + 90 && player.mousePos.y <= canvas.height / 2 + 120)
-			{
-				close();
-			}
-		} else 
-		if(player.mousePos.x >= canvas.width / 2 - 50 && player.mousePos.x <= canvas.width / 2 + 50)
-		{	
 			//Controls Button
 			if(player.mousePos.y >= canvas.height / 2 + 60 && player.mousePos.y <= canvas.height / 2 + 90)
 			{
 				stateManager.switchState(new ControlsState());
 			}
+			
+			//Quit Button
+			if(player.mousePos.y >= canvas.height / 2 + 90 && player.mousePos.y <= canvas.height / 2 + 120)
+			{
+				close();
+			}
 		}
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
-	{
-		stateManager.switchState(new ModeState());
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
-	{
-		stateManager.switchState(new ControlsState());
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
-	{
-		close(); 
 	}
 }
 
@@ -81,10 +64,12 @@ SplashState.prototype.draw = function()
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
+	/*
 	context.strokeStyle = "White";
-	//context.strokeRect(canvas.width / 2 - 30, canvas.height / 2 + 30, 60, 25);
+	context.strokeRect(canvas.width / 2 - 50, canvas.height / 2 + 30, 100, 25);
 	context.strokeRect(canvas.width / 2 - 50, canvas.height / 2 + 60, 100, 25);
-	//context.strokeRect(canvas.width / 2 - 30, canvas.height / 2 + 90, 60, 25);
+	context.strokeRect(canvas.width / 2 - 50, canvas.height / 2 + 90, 100, 25);
+	*/
 	
 	var Title = document.createElement("img");
 	Title.src = "Media/Art/Name.png";

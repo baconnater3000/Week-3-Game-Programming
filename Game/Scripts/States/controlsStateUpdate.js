@@ -15,6 +15,18 @@ ControlsState.prototype.unload = function()
 
 ControlsState.prototype.update = function(deltaTime)
 {
+	if(player.mouseClicked)
+	{
+		if(player.mousePos.x >= canvas.width / 2 - 50 && player.mousePos.x <= canvas.width / 2 + 50)
+		{
+			//Back Button
+			if(player.mousePos.y >= canvas.height / 2 + 30 && player.mousePos.y <= canvas.height / 2 + 60)
+			{
+				stateManager.switchState(new SplashState());
+			}
+		}
+	}
+	
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{
 		stateManager.switchState(new GameState());
@@ -30,6 +42,9 @@ ControlsState.prototype.draw = function()
 {
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
+	
+	context.strokeStyle = "White";
+	context.strokeRect(canvas.width / 2 - 50, canvas.height - 40, 100, 25);
 	
 	var Control = document.createElement("img");
 	Control.src = "Media/Art/Controls.png";
@@ -67,7 +82,7 @@ ControlsState.prototype.draw = function()
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 450);
 	
-	contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
+	contText = "Back";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
 }
