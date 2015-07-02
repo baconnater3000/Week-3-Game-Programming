@@ -3,6 +3,7 @@ var WaveState = function()
 	this.prototype = BaseState;
 	this.waveNumber = 1;
 	this.hasSpawned = false;
+	this.nextWave = false;
 	
 	this.displayCountdownTimer = false;
 	this.waveCountdownTimer = 10;
@@ -38,83 +39,109 @@ WaveState.prototype.update = function(deltaTime)
 	
 	if (this.waveNumber == 1 && !this.hasSpawned){
 		enemyManager.createEnemies(5);
-		enemyManager.createBigEnemies(1);
+		//enemyManager.createBigEnemies(1);
 		
 		this.hasSpawned = true
+		this.nextWave = true;
 	}
 	
 	if (this.waveNumber == 2 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		enemyManager.createEnemies(8);
-		enemyManager.createBigEnemies(1);
+		//enemyManager.createBigEnemies(1);
 		
-		this.displayeWaveCountdownTimer = false;
+		this.displayCountdownTimer = false;
+		this.nextWave = true;
 		this.hasSpawned = true;
 	}
 	
 	if (this.waveNumber == 3 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		enemyManager.createEnemies(10);
-		enemyManager.createBigEnemies(2);
+		enemyManager.createEnemies(1);
+		//enemyManager.createBigEnemies(2);
 		
-		this.displayWaveCountdownTimer = false;
+		this.displayCountdownTimer = false;
+		this.nextWave = true;
 		this.hasSpawned = true;
 	}
 	
-	if (this.waveNumber == 4 && this.waveCountdownTimer <= 0){
+	if (this.waveNumber == 4 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
+		enemyManager.createEnemies(1);
+		//enemyManager.createBigEnemies(2);
+		//enemyManager.createNewEnemies(5);
+		
+		this.displayCountdownTimer = false;
+		this.nextWave = true;
+		this.hasSpawned = true;
+	}
+	
+	if (this.waveNumber == 5 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
+		enemyManager.createEnemies(1);
+		//enemyManager.createBigEnemies(2);
+		//enemyManager.createNewEnemies(5);
+		
+		this.displayCountdownTimer = false;
+		this.nextWave = true;
+		this.hasSpawned = true;
+	}
+	
+	if (this.waveNumber == 6 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
+		enemyManager.createEnemies(1);
+		//enemyManager.createBigEnemies(2);
+		//enemyManager.createNewEnemies(5);
+		
+		this.displayCountdownTimer = false;
+		this.nextWave = true;
+		this.hasSpawned = true;
+	}
+	
+	if (this.waveNumber == 7 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
+		enemyManager.createEnemies(1);
+		//enemyManager.createBigEnemies(2);
+		//enemyManager.createNewEnemies(5);
+		
+		this.displayCountdownTimer = false;
+		this.nextWave = true;
+		this.hasSpawned = true;
+	}
+	
+	if (this.waveNumber == 8 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
+		//enemyManager.createEnemies(1);
+		//enemyManager.createBigEnemies(2);
+		//enemyManager.createNewEnemies(5);
+		
+		this.displayCountdownTimer = false;
+		this.nextWave = true;
+		this.hasSpawned = true;
+	}
+	
+	if (this.waveNumber == 9 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
+		//enemyManager.createEnemies(1);
+		//enemyManager.createBigEnemies(2);
+		//enemyManager.createNewEnemies(5);
+		
+		this.displayCountdownTimer = false;
+		this.nextWave = true;
+		this.hasSpawned = true;
+	}
+	
+	if (this.waveNumber == 10 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		enemyManager.createEnemies(10);
 		enemyManager.createBigEnemies(2);
 		//enemyManager.createNewEnemies(5);
+		
+		this.displayCountdownTimer = false;
+		this.hasSpawned = true;
 	}
 	
-	if (this.waveNumber == 5 && this.waveCountdownTimer <= 0){
-		enemyManager.createEnemies(10);
-		enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
-	}
-	
-	if (this.waveNumber == 6 && this.waveCountdownTimer <= 0){
-		enemyManager.createEnemies(10);
-		enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
-	}
-	
-	if (this.waveNumber == 7 && this.waveCountdownTimer <= 0){
-		enemyManager.createEnemies(10);
-		enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
-	}
-	
-	if (this.waveNumber == 8 && this.waveCountdownTimer <= 0){
-		enemyManager.createEnemies(10);
-		enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
-	}
-	
-	if (this.waveNumber == 9 && this.waveCountdownTimer <= 0){
-		enemyManager.createEnemies(10);
-		enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
-	}
-	
-	if (this.waveNumber == 10 && this.waveCountdownTimer <= 0){
-		enemyManager.createEnemies(10);
-		enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
-	}
-	
-	if(enemyManager.tinyEnemies.length <= 0 && enemyManager.enemies.length <= 0 && enemyManager.bigEnemies.length <= 0 /* && enemyManager.massiveEnemies.length <= 0*/){
+	if(enemyManager.tinyEnemies.length <= 0 && enemyManager.enemies.length <= 0 && enemyManager.bigEnemies.length <= 0 /* && enemyManager.massiveEnemies.length <= 0*/ && this.nextWave){
 		this.hasSpawned = false;
-		this.waveCountdownTimer = maxWaveCountdownTimer;
+		this.nextWave = false;
+		this.waveCountdownTimer = this.maxWaveCountdownTimer;
 		this.displayCountdownTimer = true;
 		this.waveNumber += 1;
 	}
 	
-	console.log("hasSpawned:" + this.hasSpawned + " || waveNumber:" + this.waveNumber + " || waveCountdownTimer:" + Math.floor(this.waveCountdownTimer) +
-		" || tinyEnemies:" + enemyManager.tinyEnemies.length + " || enemies:" + enemyManager.enemies.length + " || bigEnemies:" + enemyManager.bigEnemies.length +
-		" || bullets:" + player.bullets.length); 
-	
 	enemyManager.update(deltaTime);
 	enemyManager.draw();
-	enemyManager.enemiesOnScreen();
 	
 	if(player.isDead == true)
 	{
@@ -138,12 +165,12 @@ WaveState.prototype.draw = function()
 	context.fillStyle = "White";
 	context.font = "25px Onyx";
 	
-	context.fillText("The Current Wave is: " + this.waveNumber, canvas.width / 2, canvas.height / 2);
+	context.fillText("The Current Wave is: " + this.waveNumber + "/10", canvas.width / 2, canvas.height / 2);
 	
 	context.font = "50px Onyx";
 	
 	if(this.displayCountdownTimer){
-		context.fillText("Next wave in :" + Math.floor(this.waveCountdownTimer) + " seconds!", canvas.width / 2, canvas.height / 2 + 100);
+		context.fillText("Next wave in: " + Math.floor(this.waveCountdownTimer) + " seconds!", canvas.width / 2, canvas.height / 2 + 100);
 	}
 	
 	context.restore();
