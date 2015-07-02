@@ -15,6 +15,19 @@ PauseState.prototype.unload = function()
 
 PauseState.prototype.update = function(deltaTime)
 {
+	if(player.mouseClicked)
+	{
+		if(player.mousePos.x >= canvas.width / 2 - 50 && player.mousePos.x <= canvas.width / 2 + 50)
+		{
+			//Back Button
+			if(player.mousePos.y >= canvas.height - 40 && player.mousePos.y <= canvas.height - 15)
+			{
+				close();
+			}
+		}
+		player.mouseClicked = false;
+	}
+	
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{
 		stateManager.switchState(new GameState());
@@ -40,6 +53,9 @@ PauseState.prototype.draw = function()
 {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	
+	context.strokeStyle = "White";
+	context.strokeRect(canvas.width / 2 - 50, canvas.height - 40, 100, 25);
+	
 	var Pause = document.createElement("img");
 	Pause.src = "Media/Art/PauseMenu.png";
 	var center = context.measureText(Pause);
@@ -47,19 +63,19 @@ PauseState.prototype.draw = function()
 	
 	context.fillStyle = "white";
 	context.font = "25px Onyx";
-	var contText = "Press 'Space' To Continue Playing";
+	var contText = "Continue";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);	
 	
-	var contText = "Press 'R' To Replay";
+	var contText = "Replay";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 240);
 	
-	var contText = "Press 'I' For Controls";
+	var contText = "Controls";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 280);
 	
-	var contText = "Press 'Q' To Quit The Game";
+	var contText = "Quit";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
 }

@@ -15,9 +15,17 @@ PauseControlsState.prototype.unload = function()
 
 PauseControlsState.prototype.update = function(deltaTime)
 {
-	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
+	if(player.mouseClicked)
 	{
-		stateManager.switchState(new PauseState());
+		if(player.mousePos.x >= canvas.width / 2 - 50 && player.mousePos.x <= canvas.width / 2 + 50)
+		{
+			//Back Button
+			if(player.mousePos.y >= canvas.height - 40 && player.mousePos.y <= canvas.height - 15)
+			{
+				stateManager.switchState(new PauseState());
+			}
+		}
+		player.mouseClicked = false;
 	}
 }
 
@@ -60,7 +68,7 @@ PauseControlsState.prototype.draw = function()
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 440);
 	
-	var contText = "Press 'ESC' To Go Back";
+	var contText = "Back";
 	var center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
 }
