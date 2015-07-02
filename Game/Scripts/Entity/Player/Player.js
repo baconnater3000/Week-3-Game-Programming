@@ -85,9 +85,6 @@ player.prototype.playerShoot = function()
 	
 	bullet.velocityX = xVel * bullet.speed;
 	bullet.velocityY = yVel * bullet.speed;
-
-	bullet.xPos = this.position.x;
-	bullet.yPos = this.position.y;
 	
 	bullet.isDead = false;	
 	
