@@ -164,9 +164,6 @@ player.prototype.update = function(deltaTime){
 		bulletSfx.play('fire');
 	}
 	
-	//this.fireEmitter.update(deltaTime);
-	//this.fireEmitter.draw();
-	
 	/** Handles Player Lives and Health **/
 	if(this.health == 0 && this.lives > 0 && !this.isDead){
 		this.health = 4;
@@ -186,7 +183,12 @@ player.prototype.draw = function(){
 		context.rotate(this.angle);
 		
 		context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
-		//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
+		
+		if(this.isMoving){
+			//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
+			//this.fireEmitter.update(deltaTime);
+			//this.fireEmitter.draw();
+		}
 		
 		context.restore();
 		
