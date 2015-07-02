@@ -36,12 +36,12 @@ SurvivalState.prototype.update = function(deltaTime)
 		fpsCount = 0;
 	}		
 	
-	if (enemyTimer >= 2)
+	if (enemyTimer >= 20)
 	{
 		enemyTimer = 0;
 		
-		enemyManager.createEnemies(10);
-		enemyManager.createBigEnemies(2);
+		enemyManager.createEnemies(0);
+		enemyManager.createBigEnemies(0);
 		enemyManager.createMassiveEnemies(1);
 	}	
 	

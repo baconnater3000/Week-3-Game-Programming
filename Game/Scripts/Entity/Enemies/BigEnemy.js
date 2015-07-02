@@ -34,8 +34,7 @@ var BigEnemy = function()
 	this.y = rand(this.height, canvas.height - this.height);
 	
 	this.angle = 0;
-	
-	this.enemyOnScreen = true;
+
 	this.isDead = false;
 };
 
@@ -49,25 +48,22 @@ BigEnemy.prototype.update = function(deltaTime)
 	{
 		this.dimensionsTimer = this.fullSize;
 	}
-	
-	if (this.enemyOnScreen)
+
+	if(this.y < - (this.height / this.height))
 	{
-		if(this.y < - (this.height / this.height))
-		{
-			this.velocityY = -this.velocityY;
-		}
-		if(this.y + this.height> canvas.height + (this.height / this.height))
-		{
-			this.velocityY = -this.velocityY;
-		}
-		if(this.x < - (this.height / this.height) + menuSize)
-		{
-			this.velocityX = -this.velocityX;
-		}
-		if(this.x + this.width >= canvas.width - (this.height / this.height))
-		{
-			this.velocityX = -this.velocityX;
-		}
+		this.velocityY = -this.velocityY;
+	}
+	if(this.y + this.height> canvas.height + (this.height / this.height))
+	{
+		this.velocityY = -this.velocityY;
+	}
+	if(this.x < - (this.height / this.height) + menuSize)
+	{
+		this.velocityX = -this.velocityX;
+	}
+	if(this.x + this.width >= canvas.width - (this.height / this.height))
+	{
+		this.velocityX = -this.velocityX;
 	}
 };
 

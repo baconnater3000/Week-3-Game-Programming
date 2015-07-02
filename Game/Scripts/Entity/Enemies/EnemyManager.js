@@ -190,6 +190,7 @@ enemyManager.prototype.update = function(deltaTime)
 					{
 						player.bullets[j].isDead = true;
 						this.bigEnemies[b].isDead = true;
+						player.bullets.splice(j, 1);
 						player.score += 150;
 						var tempVector = new Vector2();
 						tempVector.set(this.bigEnemies[b].x, this.bigEnemies[b].y);
@@ -229,7 +230,7 @@ enemyManager.prototype.update = function(deltaTime)
 							this.massiveEnemies[m].x, this.massiveEnemies[m].y,
 							this.massiveEnemies[m].width, this.massiveEnemies[m].height);
 					
-					if (mHit)
+					if (mHit && this.massiveEnemies[m].health > 0)
 					{
 						player.bullets[j].isDead = true;
 						this.massiveEnemies[m].health -= 1;
@@ -243,6 +244,7 @@ enemyManager.prototype.update = function(deltaTime)
 						var tempVector = new Vector2();
 						tempVector.set(this.massiveEnemies[m].x, this.massiveEnemies[m].y);
 						this.createTinyEnemies(8, tempVector);
+						this.massiveEnemies.splice(m, 1);
 					}
 				}
 			}
