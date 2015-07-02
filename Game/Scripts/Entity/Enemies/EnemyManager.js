@@ -16,8 +16,11 @@ enemyManager.prototype.createTinyEnemies = function(number, startPosition)
 	for (var t = 0; t < number; ++t)
 	{
 		var tempTiny = new TinyEnemy(startPosition);
+		console.log("CREATED ENEMY AT: " + startPosition.x + " " + startPosition.y);
 		this.tinyEnemies.push(tempTiny);
 	}
+	
+	console.log("CREATED: " + number + " ENEMIES");
 }
 
 enemyManager.prototype.createEnemies = function(numOfEnemies)
@@ -104,7 +107,7 @@ enemyManager.prototype.update = function(deltaTime)
 				{
 					this.bigEnemies[b].isDead = true;
 					this.bigEnemies.splice(b, 1);
-					player.health -= 1;
+					player.health -= 2;
 				}
 			}
 		}
@@ -141,7 +144,7 @@ enemyManager.prototype.update = function(deltaTime)
 				if (MHit)
 				{
 					this.massiveEnemies[m].health -= 1;
-					player.health -= 1;
+					player.health -= 0.5;
 				}else
 				if (MHit && this.massiveEnemies[m].health <= 0)
 				{
@@ -194,7 +197,7 @@ enemyManager.prototype.update = function(deltaTime)
 					{
 						player.score += 150;
 						var tempVector = new Vector2();
-						tempVector.set(this.bigEnemies[b].x, this.bigEnemies[b].y);
+						tempVector.set(this.bigEnemies[b].x + b * 10, this.bigEnemies[b].y - b * 10);
 						this.createTinyEnemies(rand(2, 4), tempVector);
 						this.bigEnemies[b].isDead = true;
 						this.bigEnemies.splice(b, 1);
