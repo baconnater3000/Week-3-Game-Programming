@@ -33,7 +33,17 @@ GameState.prototype.update = function(deltaTime)
 		fpsTime -= 1;
 		fps = fpsCount;
 		fpsCount = 0;
-	}		
+	}	
+
+		console.log(timer);
+	
+	if (timer >= 10)
+	{
+		timer = 0;
+		
+		enemyManager.createEnemies(10);
+		enemyManager.createBigEnemies(2);
+	}
 	
 	enemyManager.update(deltaTime);
 	enemyManager.draw();
@@ -54,9 +64,10 @@ GameState.prototype.update = function(deltaTime)
 	{
 		stateManager.switchState(new PauseState());
 	}
+	
+	console.log(enemyManager.enemies.length + enemyManager.bigEnemies.length + enemyManager.tinyEnemies.length);
 }
 
 GameState.prototype.draw = function()
 {
-	
 }

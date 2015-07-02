@@ -10,9 +10,9 @@ var Enemy = function()
 	
 	this.height = 20;
 	this.width = 20;
-
-	var x = canvas.width * Math.random();
-	var y = canvas.height * Math.random();
+	
+	this.dimensionsTimer = 0;
+	this.fullSize = 0.5;
 	
 	var dirX = Math.random();
 	var dirY = Math.random();
@@ -25,16 +25,13 @@ var Enemy = function()
 		dirY *= oneOverMag;
 	}
 	
-	var movX = dirX * canvas.width;
-	var movY = dirY * canvas.height;
-	
-	this.x = x + movX + 250;
-	this.y = y + movY;
-	
-	this.speed = rand(100, 160);
+	this.speed = rand(-200, 200);
 	
 	this.velocityX = dirX * this.speed;
 	this.velocityY = dirY * this.speed;
+	
+	this.x = rand(250, canvas.width - this.width);
+	this.y = rand(this.height, canvas.height - this.height);
 	
 	this.enemyOnScreen = true;
 	this.isDead = false;
@@ -44,6 +41,12 @@ Enemy.prototype.update = function(deltaTime)
 {
 	this.x += this.velocityX * deltaTime;
 	this.y += this.velocityY * deltaTime;
+	
+	this.dimensionsTimer += deltaTime;
+	if (this.dimensionsTimer >= this.fullSize)
+	{
+		this.dimensionsTimer = this.fullSize;
+	}
 	
 	if (this.enemyOnScreen)
 	{
@@ -71,6 +74,7 @@ Enemy.prototype.draw = function()
 {
 	if(!this.isDead)
 	{
-		context.drawImage(this.image, this.x, this.y);
+		context.drawImage(this.image, this.x, this.y, (this.dimensionsTimer / this.fullSize) * this.width,
+						(this.dimensionsTimer / this.fullSize) * this.height);
 	}
 }

@@ -35,6 +35,14 @@ survivalState.prototype.update = function(deltaTime)
 		fpsCount = 0;
 	}		
 	
+	if (timer >= 10)
+	{
+		timer = 0;
+		
+		enemyManager.createEnemies(10);
+		enemyManager.createBigEnemies(2);
+	}	
+	
 	enemyManager.update(deltaTime);
 	enemyManager.draw();
 	enemyManager.enemiesOnScreen();
