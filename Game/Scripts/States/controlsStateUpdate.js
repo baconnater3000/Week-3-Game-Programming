@@ -1,8 +1,6 @@
 var ControlsState = function()
 {
 	this.prototype = BaseState;
-	
-	canvas.addEventListener("mousedown", this.getPosition, false);
 }
 
 ControlsState.prototype.load = function()
@@ -15,20 +13,6 @@ ControlsState.prototype.unload = function()
 	
 }
 
-ControlsState.prototype.getPosition = function(evt){
-	var x = evt.x;
-	var y = evt.y;
-	
-	x -= canvas.offsetLeft;
-	y -= canvas.offsetTop;
-	
-	//console.log("Mouse clicked! at: X - " + x + " Y - " + y);
-	
-	player.mousePos.set(x, y);
-	
-	player.mouseClicked = true;
-}
-
 ControlsState.prototype.update = function(deltaTime)
 {
 	if(player.mouseClicked)
@@ -36,24 +20,12 @@ ControlsState.prototype.update = function(deltaTime)
 		if(player.mousePos.x >= canvas.width / 2 - 50 && player.mousePos.x <= canvas.width / 2 + 50)
 		{
 			//Back Button
-			console.log("X HIT!");
-			if(player.mousePos.y >= canvas.height - 40 && player.mousePos.y <= canvas.height - 65)
+			if(player.mousePos.y >= canvas.height - 40 && player.mousePos.y <= canvas.height - 15)
 			{
 				stateManager.switchState(new SplashState());
-				console.log("Y HIT!");
 			}
 		}
 		player.mouseClicked = false;
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
-	{
-		stateManager.switchState(new GameState());
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_BACKSPACE) == true)
-	{
-		stateManager.switchState(new SplashState());
 	}
 }
 
@@ -62,8 +34,10 @@ ControlsState.prototype.draw = function()
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
+	/*
 	context.strokeStyle = "White";
 	context.strokeRect(canvas.width / 2 - 50, canvas.height - 40, 100, 25);
+	*/
 	
 	var Control = document.createElement("img");
 	Control.src = "Media/Art/Controls.png";
