@@ -9,6 +9,7 @@ var Keyboard = function() {
 	
 	// Key constants. Go here for a list of key codes:
 	// https://developer.mozilla.org/en-US/docs/DOM/KeyboardEvent
+	//http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
 	
 	this.KEY_SPACE = 32;
 	this.KEY_LEFT = 37;
@@ -27,6 +28,8 @@ var Keyboard = function() {
 	this.KEY_I = 73;
 	this.KEY_R = 82;
 	this.KEY_Q = 81;
+	this.KEY_1 = 49;
+	this.KEY_2 = 50;
 };
 
 Keyboard.prototype.onKeyDown = function(evt){

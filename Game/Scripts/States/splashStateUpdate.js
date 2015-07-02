@@ -17,7 +17,7 @@ SplashState.prototype.update = function(deltaTime)
 {
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
 	{
-		stateManager.switchState(new GameState());
+		stateManager.switchState(new DiffState());
 	}
 	
 	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
