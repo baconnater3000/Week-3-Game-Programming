@@ -31,7 +31,7 @@ PauseControlsState.prototype.draw = function()
 	context.drawImage(Control, canvas.width / 2 - center.width + 50, 25);
 	
 	context.fillStyle = "white";
-	context.font = "25px Cooper Black";
+	context.font = "25px Onyx";
 	var contText = "W = Forward";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);

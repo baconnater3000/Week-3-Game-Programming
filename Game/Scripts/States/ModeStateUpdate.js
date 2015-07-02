@@ -78,7 +78,7 @@ ModeState.prototype.draw = function()
 	context.drawImage(Title, canvas.width / 2 - center.width * 3 - 65, 20);
 	
 	context.fillStyle = "white";
-	context.font = "25px Cooper Black";
+	context.font = "25px Onyx";
 	var contText = "Wave Mode";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);

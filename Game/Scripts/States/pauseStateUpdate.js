@@ -46,7 +46,7 @@ PauseState.prototype.draw = function()
 	context.drawImage(Pause, canvas.width / 2 - center.width - 30, 25);
 	
 	context.fillStyle = "white";
-	context.font = "25px Cooper Black";
+	context.font = "25px Onyx";
 	var contText = "Press 'Space' To Continue Playing";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);	

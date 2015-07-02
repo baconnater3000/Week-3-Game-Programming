@@ -40,7 +40,7 @@ WinState.prototype.draw = function()
 	context.drawImage(Title, canvas.width / 2 - center.width * 3 - 65, canvas.height / 2 - 75);
 	
 	context.fillStyle = "white";
-	context.font = "25px Cooper Black";
+	context.font = "25px Onyx";
 	var contText = "You Win With " + player.score + " (1000 Point Bonus) Points";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);

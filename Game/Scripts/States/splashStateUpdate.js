@@ -79,7 +79,7 @@ SplashState.prototype.draw = function()
 	context.drawImage(Title, canvas.width / 2 - center.width * 2, canvas.height / 2 - 75);
 	
 	context.fillStyle = "white";
-	context.font = "25px Cooper Black";
+	context.font = "25px Onyx";
 	var startText = "Play";
 	center = context.measureText(startText);
 	context.fillText(startText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
