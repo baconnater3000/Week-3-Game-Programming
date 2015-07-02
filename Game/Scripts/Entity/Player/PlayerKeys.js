@@ -18,7 +18,6 @@ playerKeys.prototype.keybinds = function(deltaTime){
 	}else if (keyboard.isKeyDown(keyboard.KEY_W) == false || keyboard.isKeyDown(keyboard.KEY_S) == false){
 		player.directionY = 0;
 		player.isMoving = false;
-		//thrustSfx.stop('thrust');
 	}
 
 	if(keyboard.isKeyDown(keyboard.KEY_A) == true){
@@ -40,12 +39,15 @@ playerKeys.prototype.keybinds = function(deltaTime){
 	}else if(keyboard.isKeyDown(keyboard.KEY_D) == false && keyboard.isKeyDown(keyboard.KEY_A) == false){
 		player.angularVelocity = 0;
 	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true && !player.isDead){
+	if(player.cooldownTimer > 0)
+	{
+		player.cooldownTimer -= deltaTime;
+	}
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true && !player.isDead && player.cooldownTimer <= 0){
 		player.isShooting = true;
 		bulletSfx.play('fire');
+		player.cooldownTimer = 0.5;
 	}else{
 		player.isShooting = false;
-		//bulletSfx.stop('fire');
 	}
 }

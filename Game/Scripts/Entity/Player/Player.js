@@ -10,6 +10,8 @@ var player = function(){
 
 	this.playerHealthImage = document.createElement("img");
 	
+	this.cooldownTimer = 0;
+	
 	this.bullets = [];
 	this.bulletImage = document.createElement("img");
 	this.bulletImage.src = 'Media/Art/Bullet.png';
@@ -151,7 +153,6 @@ player.prototype.update = function(deltaTime){
 	{
 		this.shootTimer = this.maxShootTimer;
 		this.playerShoot();
-		bulletSfx.play();
 	}
 	
 	//this.fireEmitter.update(deltaTime);
