@@ -1,19 +1,19 @@
-var survivalState = function()
+var SurvivalState = function()
 {
 	this.prototype = BaseState;
 }
 
-survivalState.prototype.load = function()
+SurvivalState.prototype.load = function()
 {
 	
 }
 
-survivalState.prototype.unload = function()
+SurvivalState.prototype.unload = function()
 {
 	
 }
 
-survivalState.prototype.update = function(deltaTime)
+SurvivalState.prototype.update = function(deltaTime)
 {
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
@@ -65,7 +65,7 @@ survivalState.prototype.update = function(deltaTime)
 	}
 }
 
-survivalState.prototype.draw = function()
+SurvivalState.prototype.draw = function()
 {
 	
 }
