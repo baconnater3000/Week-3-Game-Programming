@@ -1,14 +1,14 @@
-var player = function(){
-	this.playerImage = document.createElement("img");
-	this.playerImage.src = 'Media/Art/ship.png';
+var player2 = function(){
+	this.player2Image = document.createElement("img");
+	this.player2Image.src = 'Media/Art/ship.png';
 	
-	this.playerHeartImage = document.createElement("img");
-	this.playerHeartImage.src = "Media/PlayerHealth/Heart.png";
+	this.player2HeartImage = document.createElement("img");
+	this.player2HeartImage.src = "Media/playerHealth/Heart.png";
 	
 	this.thrustImage = document.createElement("img");
 	this.thrustImage.src = 'Media/Art/thrust.png';
 
-	this.playerHealthImage = document.createElement("img");
+	this.player2HealthImage = document.createElement("img");
 	
 	this.bulletSfxCooldownTimer = 0;
 	this.thrusterSfxCooldownTimer = 0;
@@ -17,7 +17,7 @@ var player = function(){
 	this.bulletImage = document.createElement("img");
 	this.bulletImage.src = 'Media/Art/Bullet.png';
 
-	this.playerKeys = new playerKeys();
+	this.player2Keys = new player2Keys();
 	
 	this.width = 40,
 	this.height = 60,
@@ -58,7 +58,7 @@ var player = function(){
 	this.hasDecreasedFireRate = false;
 }
 
-player.prototype.playerShoot = function(){
+player2.prototype.player2Shoot = function(){
 	var bullet = {
 		image : this.bulletImage,
 		
@@ -93,7 +93,7 @@ player.prototype.playerShoot = function(){
 	this.bullets.push(bullet);
 }
 
-player.prototype.playerBorders = function(){
+player2.prototype.player2Borders = function(){
 	if(this.position.y <= 0 - (this.height / 2)){
 		this.position.y = canvas.height + (this.height / 2);
 	}else if(this.position.y >= canvas.height + (this.height / 2)){
@@ -113,7 +113,7 @@ player.prototype.playerBorders = function(){
 	}
 }
 
-player.prototype.update = function(deltaTime){
+player2.prototype.update = function(deltaTime){
 	this.shootTimer += deltaTime;
 	
 	if(this.fireRateIncrease){
@@ -137,8 +137,8 @@ player.prototype.update = function(deltaTime){
 		this.cooldownTimer = 0.5;
 	}
 	
-	this.playerHealth = ["Media/PlayerHealth/HealthBar05.png", "Media/PlayerHealth/HealthBar04.png", "Media/PlayerHealth/HealthBar03.png", "Media/PlayerHealth/HealthBar02.png", "Media/PlayerHealth/HealthBar01.png"];
-	this.playerHealthImage.src = this.playerHealth[this.health];
+	this.player2Health = ["Media/player2Health/HealthBar05.png", "Media/player2Health/HealthBar04.png", "Media/player2Health/HealthBar03.png", "Media/player2Health/HealthBar02.png", "Media/player2Health/HealthBar01.png"];
+	this.player2HealthImage.src = this.player2Health[this.health];
 	
 	var sine = Math.sin(this.angle);
 	var cosine = Math.cos(this.angle);
@@ -154,20 +154,20 @@ player.prototype.update = function(deltaTime){
 	
 	this.angle += this.angularVelocity * deltaTime * this.rotationSpeed;
 	
-	this.playerBorders();
-	this.playerKeys.keybinds(deltaTime);
+	this.player2Borders();
+	this.player2Keys.keybinds(deltaTime);
 	
 	/** Bullets **/
 	if(this.isShooting && this.shootTimer > this.maxShootTimer){
 		this.shootTimer = 0;
-		this.playerShoot();
+		this.player2Shoot();
 		bulletSfx.play('fire');
 	}
 	
 	//this.fireEmitter.update(deltaTime);
 	//this.fireEmitter.draw();
 	
-	/** Handles Player Lives and Health **/
+	/** Handles player2 Lives and Health **/
 	if(this.health == 0 && this.lives > 0 && !this.isDead){
 		this.health = 4;
 		this.lives -= 1;
@@ -179,17 +179,17 @@ player.prototype.update = function(deltaTime){
 	}
 }
 
-player.prototype.draw = function(){
+player2.prototype.draw = function(){
 	if(!this.isDead){
 		context.save();
 		context.translate(this.position.x, this.position.y);
 		context.rotate(this.angle);
 		
-		context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
+		context.drawImage(this.player2Image, -this.width / 2, -this.height / 2);
 		//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 		
 		context.restore();
 		
-		context.drawImage(player.playerHealthImage, player.position.x - player.healthWidth / 2, player.position.y + player.height / 2 + 10);
+		context.drawImage(player2.player2HealthImage, player2.position.x - player2.healthWidth / 2, player2.position.y + player2.height / 2 + 10);
 	}
 }
