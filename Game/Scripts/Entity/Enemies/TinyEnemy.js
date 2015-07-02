@@ -39,11 +39,6 @@ TinyEnemy.prototype.update = function(deltaTime)
 	{
 		this.velocityX = -this.velocityX;
 	}
-	
-	if (100 >= this.speed >= -100)
-	{
-		this.speed = 180;
-	}
 }
 
 TinyEnemy.prototype.draw = function()
