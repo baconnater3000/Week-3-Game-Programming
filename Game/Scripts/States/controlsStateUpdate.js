@@ -15,14 +15,17 @@ ControlsState.prototype.unload = function()
 
 ControlsState.prototype.update = function(deltaTime)
 {
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
+	if(player.mouseClicked)
 	{
-		stateManager.switchState(new GameState());
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_BACKSPACE) == true)
-	{
-		stateManager.switchState(new SplashState());
+		if(player.mousePos.x >= canvas.width / 2 - 50 && player.mousePos.x <= canvas.width / 2 + 50)
+		{
+			//Back Button
+			if(player.mousePos.y >= canvas.height - 40 && player.mousePos.y <= canvas.height - 15)
+			{
+				stateManager.switchState(new SplashState());
+			}
+		}
+		player.mouseClicked = false;
 	}
 }
 
@@ -31,18 +34,23 @@ ControlsState.prototype.draw = function()
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
+	/*
+	context.strokeStyle = "White";
+	context.strokeRect(canvas.width / 2 - 50, canvas.height - 40, 100, 25);
+	*/
+	
 	var Control = document.createElement("img");
 	Control.src = "Media/Art/Controls.png";
 	var center = context.measureText(Control);
 	context.drawImage(Control, canvas.width / 2 - center.width * 2, 50);
 	
 	context.fillStyle = "white";
-	context.font = "50px Cooper Black";
+	context.font = "50px Onyx";
 	var contText = "Player 1";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);
 	
-	context.font = "25px Cooper Black";
+	context.font = "25px Onyx";
 	contText = "W = Forward";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 250);
@@ -67,7 +75,7 @@ ControlsState.prototype.draw = function()
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 450);
 	
-	contText = "Press 'Backspace' To Go Back Or Press 'Space' To Play";
+	contText = "Back";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
 }
