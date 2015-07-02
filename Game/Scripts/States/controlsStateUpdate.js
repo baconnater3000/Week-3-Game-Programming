@@ -1,8 +1,6 @@
 var ControlsState = function()
 {
 	this.prototype = BaseState;
-	
-	canvas.addEventListener("mousedown", this.getPosition, false);
 }
 
 ControlsState.prototype.load = function()
@@ -13,20 +11,6 @@ ControlsState.prototype.load = function()
 ControlsState.prototype.unload = function()
 {
 	
-}
-
-ControlsState.prototype.getPosition = function(evt){
-	var x = evt.x;
-	var y = evt.y;
-	
-	x -= canvas.offsetLeft;
-	y -= canvas.offsetTop;
-	
-	//console.log("Mouse clicked! at: X - " + x + " Y - " + y);
-	
-	player.mousePos.set(x, y);
-	
-	player.mouseClicked = true;
 }
 
 ControlsState.prototype.update = function(deltaTime)

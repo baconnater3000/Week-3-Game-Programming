@@ -1,8 +1,6 @@
 var SplashState = function()
 {
 	this.prototype = BaseState;
-	
-	canvas.addEventListener("mousedown", this.getPosition, false);
 }
 
 SplashState.prototype.load = function()
@@ -13,20 +11,6 @@ SplashState.prototype.load = function()
 SplashState.prototype.unload = function()
 {
 	
-}
-
-SplashState.prototype.getPosition = function(evt){
-	var x = evt.x;
-	var y = evt.y;
-	
-	x -= canvas.offsetLeft;
-	y -= canvas.offsetTop;
-	
-	//console.log("Mouse clicked! at: X - " + x + " Y - " + y);
-	
-	player.mousePos.set(x, y);
-	
-	player.mouseClicked = true;
 }
 
 SplashState.prototype.update = function(deltaTime)

@@ -1,7 +1,5 @@
 var ModeState = function()
 {
-	canvas.addEventListener("mousedown", this.getPosition, false);
-
 	this.prototype = BaseState;
 }
 
@@ -13,20 +11,6 @@ ModeState.prototype.load = function()
 ModeState.prototype.unload = function()
 {
 	
-}
-
-ModeState.prototype.getPosition = function(evt){
-	var x = evt.x;
-	var y = evt.y;
-	
-	x -= canvas.offsetLeft;
-	y -= canvas.offsetTop;
-	
-	//console.log("Mouse clicked! at: X - " + x + " Y - " + y);
-	
-	player.mousePos.set(x, y);
-	
-	player.mouseClicked = true;
 }
 
 ModeState.prototype.update = function(deltaTime)
