@@ -135,7 +135,7 @@ enemyManager.prototype.update = function(deltaTime)
 					this.massiveEnemies[m].health -= 1;
 					player.health -= 1;
 				}else
-				if (MHit && this.massiveEnemies[m].health <= 0);
+				if (MHit && this.massiveEnemies[m].health <= 0)
 				{
 					this.massiveEnemies[m].isDead = true;
 				}
@@ -219,19 +219,19 @@ enemyManager.prototype.update = function(deltaTime)
 			{
 				if (!this.massiveEnemies[m].isDead)
 				{
-					var MHit = intersects(
+					var mHit = intersects(
 							player.bullets[j].xPos - player.bullets[j].width / 2, player.bullets[j].yPos - player.bullets[j].height / 2,
 							player.bullets[j].width, player.bullets[j].height,
 							this.massiveEnemies[m].x, this.massiveEnemies[m].y,
 							this.massiveEnemies[m].width, this.massiveEnemies[m].height);
 					
-					if (MHit)
+					if (mHit)
 					{
 						player.bullets[j].isDead = true;
 						this.massiveEnemies[m].health -= 1;
 						player.score += 20;
 					}else
-					if (MHit && this.massiveEnemies[m].health == 0);
+					if (mHit && this.massiveEnemies[m].health <= 0)
 					{
 						player.bullets[j].isDead = true;
 						this.massiveEnemies[m].isDead = true;
