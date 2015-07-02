@@ -66,7 +66,7 @@ WaveState.prototype.update = function(deltaTime)
 	if (this.waveNumber == 4 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		//enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		//enemyManager.createMassiveEnemies(5);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -76,7 +76,7 @@ WaveState.prototype.update = function(deltaTime)
 	if (this.waveNumber == 5 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		//enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		//enemyManager.createMassiveEnemies(5);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -86,7 +86,7 @@ WaveState.prototype.update = function(deltaTime)
 	if (this.waveNumber == 6 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		//enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		//enemyManager.createMassiveEnemies(5);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -96,7 +96,7 @@ WaveState.prototype.update = function(deltaTime)
 	if (this.waveNumber == 7 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		//enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		//enemyManager.createMassiveEnemies(5);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -106,7 +106,7 @@ WaveState.prototype.update = function(deltaTime)
 	if (this.waveNumber == 8 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		//enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		//enemyManager.createMassiveEnemies(5);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -116,7 +116,7 @@ WaveState.prototype.update = function(deltaTime)
 	if (this.waveNumber == 9 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		//enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		//enemyManager.createMassiveEnemies(5);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -127,6 +127,7 @@ WaveState.prototype.update = function(deltaTime)
 		enemyManager.createEnemies(1);
 		//enemyManager.createBigEnemies(2);
 		//enemyManager.createNewEnemies(5);
+		enemyManager.createMassiveEnemies(1);
 		
 		this.displayCountdownTimer = false;
 		this.hasSpawned = true;
