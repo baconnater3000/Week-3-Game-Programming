@@ -41,7 +41,11 @@ shop.prototype.update = function(deltaTime){
 				
 			//THIRD BUTTON
 				if(player.mousePos.y >= 150 + (48 * 2) && player.mousePos.y <= 150 + (48 * 2) + 35){
-					
+					if(player.score >= 2000){
+						player.score -= 2000;
+						player.maxShootTimer -= 0.30;
+						player.shootTimer = player.maxShootTimer;
+					}
 				}
 				
 			//FOURTH BUTTON

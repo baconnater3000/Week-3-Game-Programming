@@ -65,8 +65,6 @@ GameState.prototype.update = function(deltaTime)
 	{
 		stateManager.switchState(new PauseState());
 	}
-	
-	console.log(enemyManager.enemies.length + enemyManager.bigEnemies.length + enemyManager.tinyEnemies.length);
 }
 
 GameState.prototype.draw = function()
