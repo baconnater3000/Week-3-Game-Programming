@@ -66,7 +66,7 @@ WinState.prototype.draw = function()
 	
 	context.fillStyle = "white";
 	context.font = "25px Onyx";
-	var contText = "You Win With " + player.score + " (1000 Point Bonus) Points";
+	var contText = "You Won With " + player.score + " Points";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
 

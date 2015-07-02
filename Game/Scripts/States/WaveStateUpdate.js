@@ -6,7 +6,7 @@ var WaveState = function()
 	this.nextWave = false;
 	
 	this.displayCountdownTimer = false;
-	this.waveCountdownTimer = 10;
+	this.waveCountdownTimer = 5;
 	this.maxwaveCountdownTimer = this.waveCountdownTimer;
 }
 
@@ -38,8 +38,8 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 1 && !this.hasSpawned){
-		enemyManager.createEnemies(5);
-		//enemyManager.createBigEnemies(1);
+		enemyManager.createEnemies(3);
+		enemyManager.createBigEnemies(5);
 		
 		this.hasSpawned = true
 		this.nextWave = true;
@@ -47,7 +47,7 @@ WaveState.prototype.update = function(deltaTime)
 	
 	if (this.waveNumber == 2 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		enemyManager.createEnemies(8);
-		//enemyManager.createBigEnemies(1);
+		enemyManager.createBigEnemies(1);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -56,7 +56,7 @@ WaveState.prototype.update = function(deltaTime)
 	
 	if (this.waveNumber == 3 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		enemyManager.createEnemies(1);
-		//enemyManager.createBigEnemies(2);
+		enemyManager.createBigEnemies(2);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -65,8 +65,7 @@ WaveState.prototype.update = function(deltaTime)
 	
 	if (this.waveNumber == 4 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		enemyManager.createEnemies(1);
-		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		enemyManager.createBigEnemies(2);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -74,9 +73,9 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 5 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		enemyManager.createEnemies(1);
-		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		enemyManager.createEnemies(10);
+		enemyManager.createBigEnemies(2);
+		enemyManager.createMassiveEnemies(1);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -85,8 +84,7 @@ WaveState.prototype.update = function(deltaTime)
 	
 	if (this.waveNumber == 6 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		enemyManager.createEnemies(1);
-		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		enemyManager.createBigEnemies(2);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -95,8 +93,8 @@ WaveState.prototype.update = function(deltaTime)
 	
 	if (this.waveNumber == 7 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
 		enemyManager.createEnemies(1);
-		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		enemyManager.createBigEnemies(2);
+		enemyManager.createMassiveEnemies(1);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -104,9 +102,8 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 8 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		//enemyManager.createEnemies(1);
-		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		enemyManager.createEnemies(1);
+		enemyManager.createBigEnemies(2);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -114,9 +111,9 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 9 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		//enemyManager.createEnemies(1);
-		//enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		enemyManager.createEnemies(1);
+		enemyManager.createBigEnemies(2);
+		enemyManager.createMassiveEnemies(2);
 		
 		this.displayCountdownTimer = false;
 		this.nextWave = true;
@@ -124,12 +121,14 @@ WaveState.prototype.update = function(deltaTime)
 	}
 	
 	if (this.waveNumber == 10 && this.waveCountdownTimer <= 0 && !this.hasSpawned){
-		enemyManager.createEnemies(10);
+		enemyManager.createEnemies(1);
 		enemyManager.createBigEnemies(2);
-		//enemyManager.createNewEnemies(5);
+		enemyManager.createNewEnemies(5);
+		enemyManager.createMassiveEnemies(5);
 		
 		this.displayCountdownTimer = false;
 		this.hasSpawned = true;
+		this.nextWave = true;
 	}
 	
 	if(enemyManager.tinyEnemies.length <= 0 && enemyManager.enemies.length <= 0 && enemyManager.bigEnemies.length <= 0 /* && enemyManager.massiveEnemies.length <= 0*/ && this.nextWave){
