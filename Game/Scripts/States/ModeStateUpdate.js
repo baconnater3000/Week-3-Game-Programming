@@ -19,7 +19,6 @@ ModeState.prototype.update = function(deltaTime)
 	{
 		if(player.mousePos.x >= canvas.width / 2 - 100 && player.mousePos.x <= canvas.width / 2 + 100)
 		{
-			console.log("Xpos Striking!");
 			//GM1 BUTTON
 			if(player.mousePos.y >= 180 && player.mousePos.y <= 180 + 25)
 			{
