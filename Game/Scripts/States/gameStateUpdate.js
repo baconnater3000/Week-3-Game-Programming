@@ -25,7 +25,8 @@ GameState.prototype.update = function(deltaTime)
 	shop.draw();
 	
 	timer += deltaTime;
-
+	enemyTimer += deltaTime;
+	
 	fpsTime += deltaTime;
 	fpsCount++;
 	if(fpsTime >= 1)
@@ -37,9 +38,9 @@ GameState.prototype.update = function(deltaTime)
 
 		console.log(timer);
 	
-	if (timer >= 10)
+	if (enemyTimer >= 10)
 	{
-		timer = 0;
+		enemyTimer = 0;
 		
 		enemyManager.createEnemies(10);
 		enemyManager.createBigEnemies(2);

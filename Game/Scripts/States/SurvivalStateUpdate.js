@@ -25,6 +25,7 @@ survivalState.prototype.update = function(deltaTime)
 	shop.draw();
 	
 	timer += deltaTime;
+	enemyTimer += deltaTime;
 
 	fpsTime += deltaTime;
 	fpsCount++;
@@ -35,9 +36,9 @@ survivalState.prototype.update = function(deltaTime)
 		fpsCount = 0;
 	}		
 	
-	if (timer >= 10)
+	if (enemyTimer >= 2)
 	{
-		timer = 0;
+		enemyTimer = 0;
 		
 		enemyManager.createEnemies(10);
 		enemyManager.createBigEnemies(2);

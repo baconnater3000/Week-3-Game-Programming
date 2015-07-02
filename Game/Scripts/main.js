@@ -18,6 +18,7 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 var timer = 0;
+var enemyTimer = 0;
 
 var gameOverBool = false;
 
