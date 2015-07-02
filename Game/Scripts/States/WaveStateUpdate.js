@@ -5,8 +5,8 @@ var WaveState = function()
 	this.hasSpawned = false;
 	
 	this.displayCountdownTimer = false;
-	this.waveCountdownTimer = 10;
-	this.maxWaveCountdownTimer = this.waveCountdownTimer;
+	this.waveTimer = 10;
+	this.maxWaveTimer = this.waveTimer;
 }
 
 WaveState.prototype.load = function()
@@ -103,7 +103,7 @@ WaveState.prototype.update = function(deltaTime)
 	
 	if(enemyManager.tinyEnemies.length <= 0 && enemyManager.enemies.length <= 0 && enemyManager.bigEnemies.length <= 0 /* && enemyManager.massiveEnemies.length <= 0*/){
 		this.hasSpawned = false;
-		this.waveCountdownTimer = maxWaveCountdownTimer;
+		this.waveTimer = this.maxWaveTimer;
 		this.displayCountdownTimer = true;
 		this.waveNumber += 1;
 	}
@@ -114,7 +114,6 @@ WaveState.prototype.update = function(deltaTime)
 	
 	enemyManager.update(deltaTime);
 	enemyManager.draw();
-	enemyManager.enemiesOnScreen();
 	
 	if(player.isDead == true)
 	{
