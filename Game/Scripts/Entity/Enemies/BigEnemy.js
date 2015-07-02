@@ -8,8 +8,8 @@ var BigEnemy = function()
 	this.image = document.createElement("img");
 	this.image.src = "Media/Art/Enemies/BigEnemy.png";
 	
-	this.height = 28;
-	this.width = 28;
+	this.height = 56;
+	this.width = 56;
 	
 	this.dimensionsTimer = 0;
 	this.fullSize = 0.5;
