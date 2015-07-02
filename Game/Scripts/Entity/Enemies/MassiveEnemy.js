@@ -31,12 +31,9 @@ var MassiveEnemy = function()
 	
 	this.x = rand(250, canvas.width - this.width);
 	this.y = rand(this.height, canvas.height - this.height);
-	
 	this.angle = 0;
 	
-	this.enemyOnScreen = true;
 	this.isDead = false;
-	
 	this.health = 5;
 	
 	this.massiveHealth = ["Media/Art/Enemies/MassiveHealth/MassiveHealth00.png",
@@ -79,19 +76,16 @@ MassiveEnemy.prototype.update = function(deltaTime)
 
 MassiveEnemy.prototype.draw = function()
 {
-	if(!this.isDead)
+	context.save();
+	context.translate(this.x, this.y);
+	context.rotate(this.angle);
+	
+	for (var m = 0; m < enemyManager.massiveEnemies.length; ++m)
 	{
-		context.save();
-		context.translate(this.x, this.y);
-		context.rotate(this.angle);
-		
-		for (var m = 0; m < enemyManager.massiveEnemies.length; ++m)
-		{
-			this.massiveHealthImage.src = this.massiveHealth[this.health];
-		}
-		context.drawImage(this.massiveHealthImage, this.x / this.x, this.y / this.y, (this.dimensionsTimer / this.fullSize) * this.width,
-						(this.dimensionsTimer / this.fullSize) * this.height);
-		
-		context.restore();
+		this.massiveHealthImage.src = this.massiveHealth[this.health];
 	}
+	context.drawImage(this.massiveHealthImage, this.x / this.x, this.y / this.y, (this.dimensionsTimer / this.fullSize) * this.width,
+					(this.dimensionsTimer / this.fullSize) * this.height);
+	
+	context.restore();
 };
