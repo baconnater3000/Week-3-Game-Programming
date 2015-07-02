@@ -1,3 +1,8 @@
+function rand(floor, ceil)
+{
+	return Math.floor( (Math.random()* (ceil-floor)) +floor );
+};
+
 var enemyManager = function ()
 {
 	this.tinyEnemies = [];
@@ -190,7 +195,7 @@ enemyManager.prototype.update = function(deltaTime)
 						player.score += 150;
 						var tempVector = new Vector2();
 						tempVector.set(this.bigEnemies[b].x, this.bigEnemies[b].y);
-						this.createTinyEnemies(4, tempVector);
+						this.createTinyEnemies(rand(2, 4), tempVector);
 						this.bigEnemies[b].isDead = true;
 						this.bigEnemies.splice(b, 1);
 					}
@@ -240,7 +245,7 @@ enemyManager.prototype.update = function(deltaTime)
 						player.score += 300;
 						var tempVector = new Vector2();
 						tempVector.set(this.massiveEnemies[m].x, this.massiveEnemies[m].y);
-						this.createTinyEnemies(8, tempVector);
+						this.createTinyEnemies(rand(4, 8), tempVector);
 						this.massiveEnemies.splice(m, 1);
 					}
 				}
