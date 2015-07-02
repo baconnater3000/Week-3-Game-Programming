@@ -38,7 +38,7 @@ ModeState.prototype.update = function(deltaTime)
 			//GM1 BUTTON
 			if(player.mousePos.y >= 180 && player.mousePos.y <= 180 + 25)
 			{
-				stateManager.switchState(new GameState());
+				stateManager.switchState(new WaveState());
 			}
 			
 			//GM2 BUTTON
