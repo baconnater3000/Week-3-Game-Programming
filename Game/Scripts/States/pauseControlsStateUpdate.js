@@ -33,6 +33,11 @@ PauseControlsState.prototype.draw = function()
 {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	
+	/*
+	context.strokeStyle = "White";
+	context.strokeRect(canvas.width / 2 - 50, canvas.height - 40, 100, 25);
+	*/
+	
 	var Control = document.createElement("img");
 	Control.src = "Media/Art/Controls.png";
 	var center = context.measureText(Control);

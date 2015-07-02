@@ -19,10 +19,28 @@ PauseState.prototype.update = function(deltaTime)
 	{
 		if(player.mousePos.x >= canvas.width / 2 - 50 && player.mousePos.x <= canvas.width / 2 + 50)
 		{
-			//Back Button
+			//Resume Button
+			if(player.mousePos.y >= 180 && player.mousePos.y <= 205)
+			{
+				stateManager.switchState(new GameState());
+			}
+			
+			//Replay Button
+			if(player.mousePos.y >= 220 && player.mousePos.y <= 230)
+			{
+				location.reload();
+			}
+			
+			//Controls Button
+			if(player.mousePos.y >= 260 && player.mousePos.y <= 285)
+			{
+				stateManager.switchState(new PauseControlsState());
+			}
+			
+			//Quit Button
 			if(player.mousePos.y >= canvas.height - 40 && player.mousePos.y <= canvas.height - 15)
 			{
-				close();
+				stateManager.switchState(new SplashState());
 			}
 		}
 		player.mouseClicked = false;
@@ -53,8 +71,13 @@ PauseState.prototype.draw = function()
 {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	
+	/*
 	context.strokeStyle = "White";
+	context.strokeRect(canvas.width / 2 - 50, 180, 100, 25);
+	context.strokeRect(canvas.width / 2 - 50, 220, 100, 25);
+	context.strokeRect(canvas.width / 2 - 50, 260, 100, 25);
 	context.strokeRect(canvas.width / 2 - 50, canvas.height - 40, 100, 25);
+	*/
 	
 	var Pause = document.createElement("img");
 	Pause.src = "Media/Art/PauseMenu.png";
@@ -63,7 +86,7 @@ PauseState.prototype.draw = function()
 	
 	context.fillStyle = "white";
 	context.font = "25px Onyx";
-	var contText = "Continue";
+	var contText = "Resume";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 200);	
 	
