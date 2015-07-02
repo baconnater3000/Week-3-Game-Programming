@@ -64,7 +64,7 @@ LoseState.prototype.draw = function()
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 80);
 	
-	contText = "Quit";
+	contText = "Main Menu";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 110);
 

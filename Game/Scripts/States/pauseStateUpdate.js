@@ -45,26 +45,6 @@ PauseState.prototype.update = function(deltaTime)
 		}
 		player.mouseClicked = false;
 	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true)
-	{
-		stateManager.switchState(new GameState());
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_R) == true)
-	{
-		location.reload();
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_Q) == true)
-	{
-		close();
-	}
-	
-	if(keyboard.isKeyDown(keyboard.KEY_I) == true)
-	{
-		stateManager.switchState(new PauseControlsState());
-	}
 }
 
 PauseState.prototype.draw = function()
@@ -98,7 +78,7 @@ PauseState.prototype.draw = function()
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 280);
 	
-	var contText = "Quit";
+	var contText = "Main Menu";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height - 20);
 }

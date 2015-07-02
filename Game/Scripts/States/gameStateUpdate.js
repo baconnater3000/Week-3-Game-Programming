@@ -35,6 +35,8 @@ GameState.prototype.update = function(deltaTime)
 		fps = fpsCount;
 		fpsCount = 0;
 	}	
+
+		console.log(timer);
 	
 	if (enemyTimer >= 10)
 	{
@@ -42,7 +44,6 @@ GameState.prototype.update = function(deltaTime)
 		
 		enemyManager.createEnemies(10);
 		enemyManager.createBigEnemies(2);
-		enemyManager.createMassiveEnemies(1);
 	}
 	
 	enemyManager.update(deltaTime);
@@ -55,7 +56,6 @@ GameState.prototype.update = function(deltaTime)
 	
 	if(player.isDead == false && player.score == 50000)
 	{
-		player.score += 1000;
 		stateManager.switchState(new WinState());
 	}
 	
@@ -63,8 +63,6 @@ GameState.prototype.update = function(deltaTime)
 	{
 		stateManager.switchState(new PauseState());
 	}
-	
-	//console.log(enemyManager.enemies.length + enemyManager.bigEnemies.length + enemyManager.tinyEnemies.length);
 }
 
 GameState.prototype.draw = function()

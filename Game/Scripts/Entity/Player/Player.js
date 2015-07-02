@@ -50,14 +50,15 @@ var player = function(){
 	this.health = 4,
 	this.lives = 3,
 	
-	this.shootTimer = 0.35,
-	this.maxShootTimer = this.shootTimer
+	this.shootTimer = 0;
+	this.maxShootTimer = 0.5;
+	this.resetShootTimer = 0;
+	this.fireRateIncrease = false;
+	this.hasDecreasedFireRate = false;
 }
 
-player.prototype.playerShoot = function()
-{
-	var bullet = 
-	{
+player.prototype.playerShoot = function(){
+	var bullet = {
 		image : this.bulletImage,
 		
 		xPos : this.position.x,
@@ -91,31 +92,20 @@ player.prototype.playerShoot = function()
 	this.bullets.push(bullet);
 }
 
-player.prototype.playerBorders = function()
-{
-	if(this.position.y <= 0 - (this.height / 2))
-	{
+player.prototype.playerBorders = function(){
+	if(this.position.y <= 0 - (this.height / 2)){
 		this.position.y = canvas.height + (this.height / 2);
-	}else
-	if(this.position.y >= canvas.height + (this.height / 2))
-	{
+	}else if(this.position.y >= canvas.height + (this.height / 2)){
 		this.position.y = 0 - (this.height / 2);
-	}else
-	if(this.position.x <= 0 - (this.height / 2) + menuSize)
-	{
+	}else if(this.position.x <= 0 - (this.height / 2) + menuSize){
 		this.position.x = canvas.width + (this.height / 2);
-	}else
-	if(this.position.x >= canvas.width + (this.height / 2))
-	{
+	}else if(this.position.x >= canvas.width + (this.height / 2)){
 		this.position.x = 0 - (this.height / 2) + menuSize;
 	}
 	
-	for(var j = 0; j < this.bullets.length; j++)
-	{
-		if(this.bullets[j].isDead == false)
-		{
-			if(this.bullets[j].xPos < 0 + menuSize || this.bullets[j].xPos > canvas.width || this.bullets[j].yPos < 0 || this.bullets[j].yPos > canvas.height)
-			{
+	for(var j = 0; j < this.bullets.length; j++){
+		if(this.bullets[j].isDead == false){
+			if(this.bullets[j].xPos < 0 + menuSize || this.bullets[j].xPos > canvas.width || this.bullets[j].yPos < 0 || this.bullets[j].yPos > canvas.height){
 				this.bullets[j].isDead = true;
 			}
 		}
@@ -123,7 +113,26 @@ player.prototype.playerBorders = function()
 }
 
 player.prototype.update = function(deltaTime){
-	this.shootTimer -= deltaTime;
+	this.shootTimer += deltaTime;
+	
+	if(this.fireRateIncrease){
+		this.resetShootTimer += deltaTime;
+	}
+	
+	if(this.resetShootTimer >= 10){
+		this.fireRateIncrease = false;
+	}
+	
+	if(this.fireRateIncrease && !this.hasDecreasedFireRate){
+		this.maxShootTimer -= 0.30;
+		this.shootTimer = this.maxShootTimer;
+		this.hasDecreasedFireRate = true;
+	}
+	
+	if(!this.fireRateIncrease && this.hasDecreasedFireRate){
+		this.hasDecreasedFireRate = false;
+		this.maxShootTimer += 0.3;
+	}
 	
 	this.playerHealth = ["Media/PlayerHealth/HealthBar05.png", "Media/PlayerHealth/HealthBar04.png", "Media/PlayerHealth/HealthBar03.png", "Media/PlayerHealth/HealthBar02.png", "Media/PlayerHealth/HealthBar01.png"];
 	this.playerHealthImage.src = this.playerHealth[this.health];
@@ -146,9 +155,8 @@ player.prototype.update = function(deltaTime){
 	this.playerKeys.keybinds(deltaTime);
 	
 	/** Bullets **/
-	if(this.isShooting && this.shootTimer <= 0)
-	{
-		this.shootTimer = this.maxShootTimer;
+	if(this.isShooting && this.shootTimer > this.maxShootTimer){
+		this.shootTimer = 0;
 		this.playerShoot();
 	}
 	
@@ -156,23 +164,19 @@ player.prototype.update = function(deltaTime){
 	//this.fireEmitter.draw();
 	
 	/** Handles Player Lives and Health **/
-	if(this.health == 0 && this.lives > 0 && !this.isDead)
-	{
+	if(this.health == 0 && this.lives > 0 && !this.isDead){
 		this.health = 4;
 		this.lives -= 1;
 		explosionSfx.play();
 	}
 	
-	if(this.lives <= 0)
-	{
+	if(this.lives <= 0){
 		this.isDead = true;
 	}
 }
 
-player.prototype.draw = function()
-{
-	if(!this.isDead)
-	{
+player.prototype.draw = function(){
+	if(!this.isDead){
 		context.save();
 		context.translate(this.position.x, this.position.y);
 		context.rotate(this.angle);

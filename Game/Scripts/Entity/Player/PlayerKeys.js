@@ -45,6 +45,7 @@ playerKeys.prototype.keybinds = function(deltaTime){
 	}
 	if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true && !player.isDead && player.cooldownTimer <= 0){
 		player.isShooting = true;
+	}else if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true && player.cooldownTimer <= 0){
 		bulletSfx.play('fire');
 		player.cooldownTimer = 0.5;
 	}else{
