@@ -52,6 +52,9 @@ var player = function(){
 	
 	this.shootTimer = 0;
 	this.maxShootTimer = 0.5;
+	this.resetShootTimer = 0;
+	this.fireRateIncrease = false;
+	this.hasDecreasedFireRate = false;
 }
 
 player.prototype.playerShoot = function(){
@@ -111,7 +114,27 @@ player.prototype.playerBorders = function(){
 
 player.prototype.update = function(deltaTime){
 	this.shootTimer += deltaTime;
-	console.log("SHOOT TIMER: " + this.shootTimer + " MAX SHOOT: " + this.maxShootTimer);
+	
+	if(this.fireRateIncrease){
+		this.resetShootTimer += deltaTime;
+	}
+	
+	if(this.resetShootTimer >= 10){
+		this.fireRateIncrease = false;
+	}
+	
+	if(this.fireRateIncrease && !this.hasDecreasedFireRate){
+		this.maxShootTimer -= 0.30;
+		this.shootTimer = this.maxShootTimer;
+		this.hasDecreasedFireRate = true;
+	}
+	
+	if(!this.fireRateIncrease && this.hasDecreasedFireRate){
+		this.hasDecreasedFireRate = false;
+		this.maxShootTimer += 0.3;
+	}
+	
+	console.log("fireRateIncrease:" + this.fireRateIncrease + " || hasDecreasedFireRate:" + this.hasDecreasedFireRate + " || resetShootTimer:" + Math.floor(this.resetShootTimer));
 	
 	this.playerHealth = ["Media/PlayerHealth/HealthBar05.png", "Media/PlayerHealth/HealthBar04.png", "Media/PlayerHealth/HealthBar03.png", "Media/PlayerHealth/HealthBar02.png", "Media/PlayerHealth/HealthBar01.png"];
 	this.playerHealthImage.src = this.playerHealth[this.health];
