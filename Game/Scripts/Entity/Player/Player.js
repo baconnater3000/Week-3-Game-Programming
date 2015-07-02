@@ -10,7 +10,8 @@ var player = function(){
 
 	this.playerHealthImage = document.createElement("img");
 	
-	this.cooldownTimer = 0;
+	this.bulletSfxCooldownTimer = 0;
+	this.thrusterSfxCooldownTimer = 0;
 	
 	this.bullets = [];
 	this.bulletImage = document.createElement("img");

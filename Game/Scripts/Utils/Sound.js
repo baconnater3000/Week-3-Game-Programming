@@ -8,7 +8,7 @@ var bgMusic = new Howl(
 
 var bulletSfx = new Howl(
 {
-	urls: ["Media/Sounds/Bullet01.mp3"],
+	urls: ["Media/Sounds/BulletEffect.mp3"],
 	buffer: true,
 	volume: 0.2,
 	sprite: 
@@ -32,14 +32,14 @@ var explosionSfx = new Howl(
 	}
 } );
 
-/*var thrustSfx = new Howl(
+var thrustSfx = new Howl(
 {
-	urls: ["Media/Sounds/BulletEffect.ogg"],
-	//loop: true,
+	urls: ["Media/Sounds/ThrusterEffect.wav"],
+	loop: false,
 	buffer: true,
 	volume: 0.1,
-	sprite: 
+	onend: function() 
 	{
-		thrust: [0, 1000]
+		isSfxPlaying = false;
 	}
-} );*/
+} );

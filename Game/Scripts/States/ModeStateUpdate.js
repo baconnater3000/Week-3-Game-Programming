@@ -82,7 +82,7 @@ ModeState.prototype.draw = function()
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 280);
 	
-	contText = "Go Back";
+	contText = "Back";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 320);
 }
