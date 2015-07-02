@@ -3,9 +3,6 @@ var enemyManager = function ()
 	this.tinyEnemies = [];
 	this.bigEnemies = [];
 	this.enemies = [];
-	
-	this.createEnemies(10);
-	this.createBigEnemies(5);
 }
 
 enemyManager.prototype.createTinyEnemies = function(number, startPosition)

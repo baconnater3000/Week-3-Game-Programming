@@ -1,19 +1,19 @@
-var GameState = function()
+var SurvivalState = function()
 {
 	this.prototype = BaseState;
 }
 
-GameState.prototype.load = function()
+SurvivalState.prototype.load = function()
 {
 	
 }
 
-GameState.prototype.unload = function()
+SurvivalState.prototype.unload = function()
 {
 	
 }
 
-GameState.prototype.update = function(deltaTime)
+SurvivalState.prototype.update = function(deltaTime)
 {
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
@@ -26,7 +26,7 @@ GameState.prototype.update = function(deltaTime)
 	
 	timer += deltaTime;
 	enemyTimer += deltaTime;
-	
+
 	fpsTime += deltaTime;
 	fpsCount++;
 	if(fpsTime >= 1)
@@ -34,17 +34,15 @@ GameState.prototype.update = function(deltaTime)
 		fpsTime -= 1;
 		fps = fpsCount;
 		fpsCount = 0;
-	}	
-
-		console.log(timer);
+	}		
 	
-	if (enemyTimer >= 10)
+	if (enemyTimer >= 2)
 	{
 		enemyTimer = 0;
 		
 		enemyManager.createEnemies(10);
 		enemyManager.createBigEnemies(2);
-	}
+	}	
 	
 	enemyManager.update(deltaTime);
 	enemyManager.draw();
@@ -65,10 +63,9 @@ GameState.prototype.update = function(deltaTime)
 	{
 		stateManager.switchState(new PauseState());
 	}
-	
-	console.log(enemyManager.enemies.length + enemyManager.bigEnemies.length + enemyManager.tinyEnemies.length);
 }
 
-GameState.prototype.draw = function()
+SurvivalState.prototype.draw = function()
 {
+	
 }

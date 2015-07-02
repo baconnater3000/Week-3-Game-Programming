@@ -99,6 +99,4 @@ shop.prototype.draw = function(){
 	//context.strokeRect(0, 150 + (48 * 3) + 1, menuSize, 35);
 	//context.strokeRect(0, 150 + (48 * 4) + 2, menuSize, 35);
 	//context.strokeRect(0, 150 + (48 * 5) + 3, menuSize, 35);
-	
-	
 }
