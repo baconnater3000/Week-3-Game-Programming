@@ -54,9 +54,9 @@ ModeState.prototype.draw = function()
 	context.drawImage(background, 0, 0);
 	
 	context.strokeStyle = "White";
-	context.strokeRect(canvas.width / 2 - 100, 180, 200, 25);
-	context.strokeRect(canvas.width / 2 - 100, 220, 200, 25);
-	context.strokeRect(canvas.width / 2 - 100, 260, 200, 25);
+	//context.strokeRect(canvas.width / 2 - 100, 180, 200, 25);
+	//context.strokeRect(canvas.width / 2 - 100, 220, 200, 25);
+	//context.strokeRect(canvas.width / 2 - 100, 260, 200, 25);
 	
 	var Title = document.createElement("img");
 	Title.src = "Media/Art/Mode.png";
