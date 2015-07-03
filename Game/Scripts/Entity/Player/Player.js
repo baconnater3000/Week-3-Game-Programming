@@ -142,11 +142,10 @@ player.prototype.update = function(deltaTime){
 	if(this.speedDecreaseTimer <= 0){
 		this.speedIncreased = false;
 	}
-=======
+
 	this.speedIncrease ? this.speedDecreaseTimer -= deltaTime : this.speedDecreaseTimer = 0;
 	this.speedDecreaseTimer <= 0 ? this.speedIncreased = false
->>>>>>> 53a5b41c17e786eb5dd38446477cc1a210f90113
-	
+
 	if(this.speedIncreased && !this.hasSpeedDecreased){
 		this.speed = 700;
 		this.hasSpeedDecreased = true;
