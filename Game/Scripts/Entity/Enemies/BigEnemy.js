@@ -64,7 +64,7 @@ BigEnemy.prototype.update = function(deltaTime)
 	if(this.x + this.width >= canvas.width - (this.height / this.height))
 	{
 		this.velocityX = -this.velocityX;
-	}a
+	}
 };
 
 BigEnemy.prototype.draw = function()
