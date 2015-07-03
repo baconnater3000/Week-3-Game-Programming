@@ -72,6 +72,13 @@ enemyManager.prototype.update = function(deltaTime)
 		this.massiveEnemies[m].update(deltaTime);
 	}
 	
+	/*
+	if (shop.killAll)
+	{
+		
+	}
+	*/
+	
 	if (!player.isDead)
 	{
 		for(var i = 0; i < this.enemies.length; ++i)

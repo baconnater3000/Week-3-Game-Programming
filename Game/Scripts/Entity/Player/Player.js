@@ -127,7 +127,7 @@ player.prototype.update = function(deltaTime){
 	
 	/** Speed Increase for Shop **/
 	this.speedIncrease ? this.speedDecreaseTimer -= deltaTime : this.speedDecreaseTimer = 0;
-	this.speedDecreaseTimer <= 0 ? this.speedIncreased = false;
+	this.speedDecreaseTimer <= 0 ? this.speedIncreased = false
 	
 	if(this.speedIncreased && !this.hasSpeedDecreased){
 		this.speed = this.speed * 2;
