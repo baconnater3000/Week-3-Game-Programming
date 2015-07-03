@@ -25,7 +25,7 @@ LoseState.prototype.update = function(deltaTime)
 				location.reload();
 			}
 			
-			//Quit Button
+			//Main Men Button
 			if(player.mousePos.y >= canvas.height / 2 + 90 && player.mousePos.y <= canvas.height / 2 + 90 + 25)
 			{
 				location.reload();
