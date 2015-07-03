@@ -20,6 +20,8 @@ WaveState.prototype.unload = function()
 	
 }
 
+var spawn = false
+
 WaveState.prototype.update = function(deltaTime)
 {
 	if(!stateManager.isPaused){
@@ -38,10 +40,11 @@ WaveState.prototype.update = function(deltaTime)
 			this.waveCountdownTimer -= deltaTime;
 		}
 		
-		if (this.waveNumber == 1 && !this.hasSpawned){
+		if (this.waveNumber == 1 && !this.hasSpawned && spawn == false){
 			enemyManager.createEnemies(10);
 			enemyManager.createBigEnemies(2);
 			
+			spawn = true;
 			this.hasSpawned = true
 			this.nextWave = true;
 		}
@@ -159,12 +162,15 @@ WaveState.prototype.update = function(deltaTime)
 	}
 		if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 		{
-			if(!stateManager.isPaused){
+			if(!stateManager.isPaused)
+			{
 				var ps = new PauseState();
 				ps.currentState = "WS";
 				stateManager.switchState(ps);
 				stateManager.isPaused = true;
-			}else {
+				
+			}else 
+			{
 				stateManager.isPaused = false;
 			}
 		}
