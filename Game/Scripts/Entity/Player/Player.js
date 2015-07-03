@@ -6,7 +6,7 @@ var player = function(){
 	this.playerHeartImage.src = "Media/PlayerHealth/Heart.png";
 	
 	this.thrustImage = document.createElement("img");
-	this.thrustImage.src = 'Media/Art/thrust.png';
+	this.thrustImage.src = 'Media/Art/ShipThrust.png';
 
 	this.playerHealthImage = document.createElement("img");
 	
@@ -19,8 +19,10 @@ var player = function(){
 
 	this.playerKeys = new playerKeys();
 	
+	this.isMoving = false,
+	
 	this.width = 40,
-	this.height = 60,
+	this.height = this.isMoving? 65 : 60,
 	this.healthWidth = 98,
 	this.healthHeight = 12,
 	
@@ -42,8 +44,7 @@ var player = function(){
 	this.directionX = 0,
 	this.directionY = 0,
 	this.angularVelocity = 0,
-	
-	this.isMoving = false,
+
 	this.isDead = false,
 	this.isShooting = false;
 	
@@ -116,6 +117,8 @@ player.prototype.playerBorders = function(){
 player.prototype.update = function(deltaTime){
 	this.shootTimer += deltaTime;
 	
+	console.log("isMoving:" + this.isMoving + " || imageHeight:" + this.height);
+	
 	if(this.fireRateIncrease){
 		this.resetShootTimer += deltaTime;
 	}
@@ -180,14 +183,15 @@ player.prototype.draw = function(){
 	if(!this.isDead){
 		context.save();
 		context.translate(this.position.x, this.position.y);
-		context.rotate(this.angle);
-		
-		context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
-		
+		context.rotate(this.angle);	
+			
 		if(this.isMoving){
+			context.drawImage(this.thrustImage, -this.width / 2, -this.height / 2);
 			//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 			//this.fireEmitter.update(deltaTime);
 			//this.fireEmitter.draw();
+		}else{
+			context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
 		}
 		
 		context.restore();
