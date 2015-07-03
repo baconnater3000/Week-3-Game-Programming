@@ -13,6 +13,8 @@ PauseState.prototype.unload = function()
 	
 }
 
+PauseState.prototype.currentState = 0;
+
 PauseState.prototype.update = function(deltaTime)
 {
 	if(player.mouseClicked)
@@ -22,7 +24,23 @@ PauseState.prototype.update = function(deltaTime)
 			//Resume Button
 			if(player.mousePos.y >= 180 && player.mousePos.y <= 205)
 			{
-				stateManager.switchState(new GameState());
+				if(this.currentState == "WS")
+				{
+					stateManager.switchState(new WaveState());
+					stateManager.isPaused = false;
+				}
+				
+				if(this.currentState == "GS")
+				{
+					stateManager.switchState(new GameState());
+					stateManager.isPaused = false;
+				}
+				
+				if(this.currentState  == "SS")
+				{
+					stateManager.switchState(new SurvivalState());
+					stateManager.isPaused = false;
+				}
 			}
 			
 			//Replay Button
@@ -64,7 +82,7 @@ PauseState.prototype.draw = function()
 	var Pause = document.createElement("img");
 	Pause.src = "Media/Art/PauseMenu.png";
 	var center = context.measureText(Pause);
-	context.drawImage(Pause, canvas.width / 2 - center.width - 30, 25);
+	context.drawImage(Pause, canvas.width / 2 - center.width * 2 - 60, 25);
 	
 	context.fillStyle = "white";
 	context.font = "25px Onyx";
