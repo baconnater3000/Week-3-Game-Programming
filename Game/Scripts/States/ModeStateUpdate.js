@@ -33,15 +33,8 @@ ModeState.prototype.update = function(deltaTime)
 				stateManager.switchState(new SurvivalState());
 			}
 			
-			//Multiplayer Button
-			if(player.mousePos.y >= 260 && player.mousePos.y <= 260 + 25)
-			{
-				player.score = 0;
-				stateManager.switchState(new GameState());
-			}
-			
 			//Back Button
-			if(player.mousePos.y >= 300 && player.mousePos.y <= 300 + 25)
+			if(player.mousePos.y >= 260 && player.mousePos.y <= 260 + 25)
 			{
 				stateManager.switchState(new SplashState());
 			}
@@ -63,7 +56,6 @@ ModeState.prototype.draw = function()
 	context.strokeRect(canvas.width / 2 - 100, 180, 200, 25);
 	context.strokeRect(canvas.width / 2 - 100, 220, 200, 25);
 	context.strokeRect(canvas.width / 2 - 100, 260, 200, 25);
-	context.strokeRect(canvas.width / 2 - 100, 300, 200, 25);
 	*/
 	
 	var Title = document.createElement("img");
@@ -81,11 +73,7 @@ ModeState.prototype.draw = function()
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, 240);
 	
-	contText = "Multiplayer Mode";
-	center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 280);
-	
 	contText = "Back";
 	center = context.measureText(contText);
-	context.fillText(contText, canvas.width / 2 - center.width / 2, 320);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, 280);
 }
