@@ -19,7 +19,7 @@ GameState.prototype.update = function(deltaTime)
 	context.drawImage(background, 0, 0);
 	
 	player.update(deltaTime);
-	player.draw();
+	player.draw(deltaTime);
 	
 	shop.update(deltaTime);
 	shop.draw();
