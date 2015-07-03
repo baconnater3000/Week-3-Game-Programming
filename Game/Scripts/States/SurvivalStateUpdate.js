@@ -62,8 +62,9 @@ SurvivalState.prototype.update = function(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		if(!stateManager.isPaused){
-				PauseState.currentState = SurvivalState;
-				stateManager.switchState(new PauseState());
+				var ss = new SurvivalState();
+				ss.currentState = "SS";
+				stateManager.switchState(ss);
 				stateManager.isPaused = true;
 				
 			}else {
