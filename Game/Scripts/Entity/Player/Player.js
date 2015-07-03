@@ -6,11 +6,7 @@ var player = function(){
 	this.playerHeartImage.src = "Media/PlayerHealth/Heart.png";
 	
 	this.thrustImage = document.createElement("img");
-<<<<<<< HEAD
-	this.thrustImage.src = 'Media/Art/fire.png';
-=======
 	this.thrustImage.src = 'Media/Art/ShipThrust.png';
->>>>>>> f8226ca1f099112f23970e05512b42474464b509
 
 	this.playerHealthImage = document.createElement("img");
 	
@@ -190,18 +186,12 @@ player.prototype.draw = function(deltaTime){
 		context.rotate(this.angle);	
 			
 		if(this.isMoving){
-<<<<<<< HEAD
-			this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
-			this.fireEmitter.update(deltaTime);
-			this.fireEmitter.draw();
-=======
 			context.drawImage(this.thrustImage, -this.width / 2, -this.height / 2);
 			//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 			//this.fireEmitter.update(deltaTime);
 			//this.fireEmitter.draw();
 		}else{
 			context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
->>>>>>> f8226ca1f099112f23970e05512b42474464b509
 		}
 		
 		context.restore();
