@@ -1,6 +1,8 @@
 var SurvivalState = function()
 {
 	this.prototype = BaseState;
+	
+	this.firstSpawn = false;
 }
 
 SurvivalState.prototype.load = function()
@@ -36,14 +38,21 @@ SurvivalState.prototype.update = function(deltaTime)
 		fpsCount = 0;
 	}		
 	
-	if (enemyTimer >= 15)
+	if(!this.firstSpawn){
+		enemyManager.createEnemies(5);
+		enemyManager.createBigEnemies(3);
+		enemyManager.createMassiveEnemies(1);
+		this.firstSpawn = true;
+	}
+	
+	if (enemyTimer >= 11.5)
 	{
 		enemyTimer = 0;
 		
 		enemyManager.createEnemies(5);
 		enemyManager.createBigEnemies(3);
 		enemyManager.createMassiveEnemies(1);
-	}	
+	}		
 	
 	enemyManager.draw();	
 	enemyManager.update(deltaTime);
