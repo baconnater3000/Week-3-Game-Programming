@@ -218,9 +218,6 @@ player.prototype.draw = function(deltaTime){
 			
 		if(this.isMoving){
 			context.drawImage(this.thrustImage, -this.width / 2, -this.height / 2);
-			//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
-			//this.fireEmitter.update(deltaTime);
-			//this.fireEmitter.draw();
 		}else{
 			context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
 		}
