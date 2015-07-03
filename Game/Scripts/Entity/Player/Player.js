@@ -58,7 +58,7 @@ var player = function(){
 	
 	this.shootTimer = 0;
 	this.maxShootTimer = 0.5;
-	this.resetShootTimer = 0;
+	this.resetShootTimer = -1;
 	this.fireRateIncrease = false;
 	this.hasDecreasedFireRate = false;
 }
@@ -151,10 +151,10 @@ player.prototype.update = function(deltaTime){
 	
 	/** Fire Rate increase for shop **/
 	if(this.fireRateIncrease){
-		this.resetShootTimer += deltaTime;
+		this.resetShootTimer -= deltaTime;
 	}
 	
-	if(this.resetShootTimer >= 10){
+	if(this.resetShootTimer <= 0){
 		this.fireRateIncrease = false;
 	}
 	
