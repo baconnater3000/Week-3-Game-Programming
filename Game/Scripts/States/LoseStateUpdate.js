@@ -43,10 +43,11 @@ LoseState.prototype.draw = function()
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);
 	
+	/*
 	context.strokeStyle = "White";
 	context.strokeRect(canvas.width / 2 - 60, canvas.height / 2 + 90, 120, 25);
 	context.strokeRect(canvas.width / 2 - 60, canvas.height / 2 + 120, 120, 25);
-	
+	*/
 	
 	var Title = document.createElement("img");
 	Title.src = "Media/Art/GameOver.png";
