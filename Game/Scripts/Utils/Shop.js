@@ -75,12 +75,14 @@ shop.prototype.update = function(deltaTime){
 					if(player.score >= 10000 && !this.killAll){
 						player.score -= 10000;
 						this.killAll = true;
+						enemyManager.deathTimer = 3;
 					}
 				}
 				
 			//GIVE SCORE
 				if(player.mousePos.y >= 0 && player.mousePos.y <= 35){
 					player.score += 10000;
+					enemyManager.deathTimer = 3;
 				}
 			player.mouseClicked = false;
 		}
