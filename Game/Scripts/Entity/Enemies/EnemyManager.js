@@ -197,7 +197,8 @@ enemyManager.prototype.update = function(deltaTime)
 					{
 						player.score += 150;
 						var tempVector = new Vector2();
-						tempVector.set(this.bigEnemies[b].x + b * 10, this.bigEnemies[b].y - b * 10);
+						tempVector.set(rand(this.bigEnemies[b].x, this.bigEnemies[b].x + this.bigEnemies[b].width),
+										rand(this.bigEnemies[b].y, this.bigEnemies[b].y + this.bigEnemies[b].height));
 						this.createTinyEnemies(rand(2, 4), tempVector);
 						this.bigEnemies[b].isDead = true;
 						this.bigEnemies.splice(b, 1);
@@ -247,7 +248,8 @@ enemyManager.prototype.update = function(deltaTime)
 						this.massiveEnemies[m].isDead = true;
 						player.score += 300;
 						var tempVector = new Vector2();
-						tempVector.set(this.massiveEnemies[m].x, this.massiveEnemies[m].y);
+						tempVector.set(rand(this.massiveEnemies[m].x, this.massiveEnemies[m].x + this.massiveEnemies[m].width),
+										rand(this.massiveEnemies[m].y, this.massiveEnemies[m].y + this.massiveEnemies[m].height));
 						this.createTinyEnemies(rand(4, 8), tempVector);
 						this.massiveEnemies.splice(m, 1);
 					}
