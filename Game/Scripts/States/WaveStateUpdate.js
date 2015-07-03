@@ -8,6 +8,7 @@ var WaveState = function()
 	this.displayCountdownTimer = false;
 	this.waveCountdownTimer = 5;
 	this.maxwaveCountdownTimer = this.waveCountdownTimer;
+	this.spawn = false
 }
 
 WaveState.prototype.load = function()
@@ -19,8 +20,6 @@ WaveState.prototype.unload = function()
 {
 	
 }
-
-var spawn = false
 
 WaveState.prototype.update = function(deltaTime)
 {
@@ -44,7 +43,7 @@ WaveState.prototype.update = function(deltaTime)
 			enemyManager.createEnemies(10);
 			enemyManager.createBigEnemies(2);
 			
-			spawn = true;
+			this.spawn = true;
 			this.hasSpawned = true
 			this.nextWave = true;
 		}
@@ -53,6 +52,7 @@ WaveState.prototype.update = function(deltaTime)
 			enemyManager.createEnemies(12);
 			enemyManager.createBigEnemies(4);
 			//enemyManager.createMassiveEnemies(1);
+			
 			this.displayCountdownTimer = false;
 			this.nextWave = true;
 			this.hasSpawned = true;
