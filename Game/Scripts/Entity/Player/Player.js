@@ -22,7 +22,7 @@ var player = function(){
 	this.isMoving = false,
 	
 	this.width = 40,
-	this.height = this.isMoving ? 65 : 60,
+	this.height = this.isMoving? 65 : 60,
 	this.healthWidth = 98,
 	this.healthHeight = 12,
 	
@@ -116,6 +116,8 @@ player.prototype.playerBorders = function(){
 
 player.prototype.update = function(deltaTime){
 	this.shootTimer += deltaTime;
+	
+	console.log("isMoving:" + this.isMoving + " || imageHeight:" + this.height);
 	
 	if(this.fireRateIncrease){
 		this.resetShootTimer += deltaTime;
