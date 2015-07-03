@@ -53,7 +53,7 @@ SurvivalState.prototype.update = function(deltaTime)
 		stateManager.switchState(new LoseState());
 	}
 	
-	if(player.isDead == false && player.score == 50000)
+	if(!player.isDead && player.score == 50000)
 	{
 		player.score += 1000;
 		stateManager.switchState(new WinState());
@@ -62,9 +62,9 @@ SurvivalState.prototype.update = function(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		if(!stateManager.isPaused){
-				var ss = new SurvivalState();
-				ss.currentState = "SS";
-				stateManager.switchState(ss);
+				var ps = new PauseState();
+				ps.currentState = "SS";
+				stateManager.switchState(ps);
 				stateManager.isPaused = true;
 				
 			}else {
