@@ -39,7 +39,7 @@ WaveState.prototype.update = function(deltaTime)
 			this.waveCountdownTimer -= deltaTime;
 		}
 		
-		if (this.waveNumber == 1 && !this.hasSpawned && spawn == false){
+		if (this.waveNumber == 1 && !this.hasSpawned && this.spawn == false){
 			enemyManager.createEnemies(10);
 			enemyManager.createBigEnemies(2);
 			
