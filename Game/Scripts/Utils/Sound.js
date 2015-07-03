@@ -6,6 +6,8 @@ var bgMusic = new Howl(
 	volume: 0.8
 } );
 
+//Music credit goes to Holder / MLW on Sound cloud.
+
 var bulletSfx = new Howl(
 {
 	urls: ["Media/Sounds/BulletEffect.mp3"],
@@ -21,6 +23,8 @@ var bulletSfx = new Howl(
 	}
 } );
 
+//Bullet sound effect credit goes to AIE for giving me the sound file in week 2.
+
 var explosionSfx = new Howl(
 {
 	urls: ["Media/Sounds/ExplosionEffect.mp3"],
@@ -31,6 +35,8 @@ var explosionSfx = new Howl(
 		isSfxPlaying = false;
 	}
 } );
+
+//Explosion sound effect credit goes to ZebZorb.
 
 /*var thrustSfx = new Howl(
 {
