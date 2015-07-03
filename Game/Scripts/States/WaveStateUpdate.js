@@ -132,7 +132,7 @@ WaveState.prototype.update = function(deltaTime)
 			this.nextWave = true;
 		}
 		
-		if(enemyManager.tinyEnemies.length <= 0 && enemyManager.enemies.length <= 0 && enemyManager.bigEnemies.length <= 0 /* && enemyManager.massiveEnemies.length <= 0*/ && this.nextWave){
+		if(enemyManager.tinyEnemies.length <= 0 && enemyManager.enemies.length <= 0 && enemyManager.bigEnemies.length <= 0 && enemyManager.massiveEnemies.length <= 0 && this.nextWave){
 			this.hasSpawned = false;
 
 			this.nextWave = false;
@@ -175,7 +175,7 @@ WaveState.prototype.draw = function()
 	context.fillStyle = "White";
 	context.font = "25px Onyx";
 	
-	context.fillText("The Current Wave is: " + this.waveNumber + "/10", canvas.width / 2, canvas.height / 2);
+	context.fillText("The Current Wave is: " + this.waveNumber + "/10", 10, 60);
 	
 	context.font = "50px Onyx";
 	

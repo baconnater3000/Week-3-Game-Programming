@@ -32,11 +32,8 @@ var player = function(){
 	this.mousePos = new Vector2();
 	this.mouseClicked = false,
 	
-<<<<<<< HEAD
-=======
-	this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
-	
->>>>>>> a1610f7f2b2b96217d995b9dc1756f7886e6baa1
+	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
+
 	this.randomCountdownTimer = 2,
 	this.maxRandomCountdownTimer = this.randomCountdownTimer,
 	
