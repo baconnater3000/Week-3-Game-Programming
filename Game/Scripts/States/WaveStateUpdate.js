@@ -176,12 +176,14 @@ WaveState.prototype.draw = function()
 	context.fillStyle = "White";
 	context.font = "25px Onyx";
 	
-	context.fillText("The Current Wave is: " + this.waveNumber + "/10", 10, 60);
+	context.fillText("Wave: " + this.waveNumber + " / 10", 10, 60);
 	
 	context.font = "50px Onyx";
 	
+	var text = "Next wave in: " + Math.floor(this.waveCountdownTimer) + " seconds!";
+	var center = context.measureText(text);
 	if(this.displayCountdownTimer){
-		context.fillText("Next wave in: " + Math.floor(this.waveCountdownTimer) + " seconds!", canvas.width / 2, canvas.height / 2 + 100);
+		context.fillText(text, canvas.width / 2, canvas.height / 2 - 25);
 	}
 	
 	context.restore();
