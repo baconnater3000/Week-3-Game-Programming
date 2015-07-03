@@ -56,17 +56,21 @@ LoseState.prototype.draw = function()
 	
 	context.fillStyle = "white";
 	context.font = "25px Onyx";
-	var contText = "You Lose With " + player.score + " Points";
+	var contText = "You Lose With " + player.score + " Points!";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
 	
-	contText = "Replay";
+	contText = "With a time of " + Math.floor(timer) + " seconds!";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 80);
 	
-	contText = "Main Menu";
+	contText = "Replay?";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 110);
+	
+	contText = "Main Menu";
+	center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 140);
 
 	
 }
