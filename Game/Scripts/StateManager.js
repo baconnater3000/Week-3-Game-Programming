@@ -9,6 +9,8 @@ StateManager.prototype.pushState = function(state)
 	this.states.push(state);
 }
 
+StateManager.prototype.isPaused = false;
+
 StateManager.prototype.switchState = function(state)
 {
 	this.states[ this.states.length - 1 ].unload();

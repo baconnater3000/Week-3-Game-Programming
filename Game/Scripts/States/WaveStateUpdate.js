@@ -22,7 +22,7 @@ WaveState.prototype.unload = function()
 
 WaveState.prototype.update = function(deltaTime)
 {
-	//if(!isPaused){
+	if(!stateManager.isPaused){
 		canvas.width = canvas.width;
 		context.drawImage(background, 0, 0);
 		
@@ -155,22 +155,19 @@ WaveState.prototype.update = function(deltaTime)
 		{
 			stateManager.switchState(new WinState());
 		}
-	//}
+	}
 		if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 		{
-			/*if(!gamestatemanager.ispaused){
+			if(!stateManager.isPaused){				
 				stateManager.switchState(new PauseState());
-				
-				
-				STOPS UPDATING THE GAME eg: update function or deltaTime
-				DRAWS A SCREEN OVER THE GAME
-				ispaused = true;
+				//DRAWS A SCREEN OVER THE GAME
+				stateManager.isPaused = true;
 			}else{
-				resumes the updating of the game which in turn will continue the game to draw over the paused menu background
-				ispaused = false;
-			}*/
+				stateManager.popState();
+				//resumes the updating of the game which in turn will continue the game to draw over the paused menu background
+				stateManager.isPaused = false;
+			}
 		}
-	
 }
 
 WaveState.prototype.draw = function()

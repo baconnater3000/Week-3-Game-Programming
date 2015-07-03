@@ -49,7 +49,9 @@ PauseState.prototype.update = function(deltaTime)
 
 PauseState.prototype.draw = function()
 {
-	context.clearRect(0, 0, canvas.width, canvas.height);
+	//context.clearRect(0, 0, canvas.width, canvas.height);
+	canvas.width = canvas.width;
+	context.drawImage(background, 0, 0);	
 	
 	/*
 	context.strokeStyle = "White";
