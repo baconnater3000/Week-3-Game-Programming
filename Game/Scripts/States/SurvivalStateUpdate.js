@@ -45,8 +45,9 @@ SurvivalState.prototype.update = function(deltaTime)
 		enemyManager.createMassiveEnemies(1);
 	}	
 	
+	enemyManager.draw();	
 	enemyManager.update(deltaTime);
-	enemyManager.draw();
+
 	
 	if(player.isDead == true)
 	{

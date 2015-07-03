@@ -33,7 +33,8 @@ var Emitter = function(imageFilename, positionX, positionY)
 	
 	this.emissionSize = new Vector2();
 	this.emissionSize.set(5, 5);
-	this.emissionRate = 1000;
+	this.emissionRate = 1000.0;
+	this.showEmitter = false;
 
 	this.minLife = 0.5;
 	this.maxLife = 3;
@@ -50,52 +51,58 @@ var Emitter = function(imageFilename, positionX, positionY)
 
 Emitter.prototype.update = function(dt) 
 {	
-	this.elapsedEmittionTime += dt;
-
-	while( this.elapsedEmittionTime > (1.0 / this.emissionRate))
+	if (this.showEmitter)
 	{
-		this.spawnParticle();
-		this.elapsedEmittionTime -= (1.0 / this.emissionRate);
-	}
+		this.elapsedEmittionTime += dt;
 
-	for (var i = this.particles.length - 1; i >= 0; i--)
-	{
-		var p = this.particles[i];
+		while( this.elapsedEmittionTime > (1.0 / this.emissionRate))
+		{
+			this.spawnParticle();
+			this.elapsedEmittionTime -= (1.0 / this.emissionRate);
+		}
 
-		p.life -= dt;
-		if (p.life <= 0.0) 
-			this.particles.splice(i, 1);
+		for (var i = this.particles.length - 1; i >= 0; i--)
+		{
+			var p = this.particles[i];
 
-		p.acceleration.y += this.gravity * dt;
-		p.acceleration.x += this.wind * dt;
+			p.life -= dt;
+			if (p.life <= 0.0) 
+				this.particles.splice(i, 1);
 
-		p.velocity.set( p.velocity.x + p.acceleration.x * dt, p.velocity.y + p.acceleration.y );
-		p.position.x += p.velocity.x * dt;
-		p.position.y -= p.velocity.y * dt;
+			p.acceleration.y += this.gravity * dt;
+			p.acceleration.x += this.wind * dt;
 
-		if (p.life <= 1.0)
-			p.alpha = p.life * this.transparency;
+			p.velocity.set( p.velocity.x + p.acceleration.x * dt, p.velocity.y + p.acceleration.y );
+			p.position.x += p.velocity.x * dt;
+			p.position.y -= p.velocity.y * dt;
+
+			if (p.life <= 1.0)
+				p.alpha = p.life * this.transparency;
+		}
 	}
 }
 
 Emitter.prototype.draw = function() 
 {	
-	var origin = new Vector2();
-	origin.set(this.texture.width / 2, this.texture.height / 2);
-
-	for(var i=0; i<this.particles.length; i++ )
+	if (this.showEmitter)
 	{
-		var p = this.particles[i];
+		var origin = new Vector2();
+		origin.set(this.texture.width / 2, this.texture.height / 2);
+
+		for(var i=0; i<this.particles.length; i++ )
+		{
+			var p = this.particles[i];
+			
+			var scale = new Vector2();
+			scale.set( p.size.x / this.texture.width, p.size.y / this.texture.height);
 		
-		var scale = new Vector2();
-		scale.set( p.size.x / this.texture.width, p.size.y / this.texture.height);
-	
-		context.save();
-		context.translate(p.position.x, p.position.y);
-		context.rotate(p.rotation);
-		context.globalAlpha = p.alpha;
-		context.drawImage(this.texture, origin.x * scale.x, origin.y * scale.y, p.size.x, p.size.y);
-		context.restore();		
+			context.save();
+			context.translate(p.position.x, p.position.y);
+			context.rotate(p.rotation);
+			context.globalAlpha = p.alpha;
+			context.drawImage(this.texture, origin.x * scale.x, origin.y * scale.y, p.size.x, p.size.y);
+			context.restore();		
+		}
 	}
 }
 

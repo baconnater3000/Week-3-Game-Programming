@@ -42,7 +42,6 @@ var MassiveEnemy = function()
 								"Media/Art/Enemies/MassiveHealth/MassiveHealth03.png",
 								"Media/Art/Enemies/MassiveHealth/MassiveHealth04.png",
 								"Media/Art/Enemies/MassiveHealth/MassiveHealth05.png"];
-
 };
 
 MassiveEnemy.prototype.update = function(deltaTime)

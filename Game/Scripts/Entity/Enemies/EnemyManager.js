@@ -9,8 +9,6 @@ var enemyManager = function ()
 	this.bigEnemies = [];
 	this.enemies = [];
 	this.massiveEnemies = [];
-	
-	this.deathTimer = 0;
 }
 
 enemyManager.prototype.createTinyEnemies = function(number, startPosition)
@@ -54,10 +52,6 @@ enemyManager.prototype.createMassiveEnemies = function(numOfEnemies)
 
 enemyManager.prototype.update = function(deltaTime)
 {
-	if(shop.killAll){
-		this.deathTimer -= deltaTime;
-	}
-	
 	for (var t = 0; t < this.tinyEnemies.length; ++t)
 	{
 		this.tinyEnemies[t].update(deltaTime);
@@ -80,61 +74,27 @@ enemyManager.prototype.update = function(deltaTime)
 	
 	if (shop.killAll)
 	{
-		//PARTICLE EFFECTS GO HERE
-		
-		
 		for(var i = 0; i < this.enemies.length; ++i)
 		{
-			var fireEnemyEmitter = createFireEmitter("Media/Art/Fire.png", this.enemies[i].x, this.enemies[i].y);
-			fireEnemyEmitter.update(deltaTime);
-			fireEnemyEmitter.draw();
+			this.enemies.splice(i, this.enemies.length);
 		}
 		
 		for(var b = 0; b < this.bigEnemies.length; ++b)
 		{
-			var fireBigEnemyEmitter = createFireEmitter("Media/Art/Fire.png", this.bigEnemies[b].x, this.bigEnemies[b].y);
-			fireBigEnemyEmitter.update(deltaTime);
-			fireBigEnemyEmitter.draw();
+			this.bigEnemies.splice(b, this.bigEnemies.length);
 		}
 		
 		for(var m = 0; m < this.massiveEnemies.length; ++m)
 		{
-			var fireMassiveEmitter = createFireEmitter("Media/Art/Fire.png", this.massiveEnemies[m].x, this.massiveEnemies[m].y);
-			fireMassiveEmitter.update(deltaTime);
-			fireMassiveEmitter.draw();
+			this.massiveEnemies.splice(m, 1);
 		}
 		
 		for(var t = 0; t < this.tinyEnemies.length; ++t)
 		{
-			var fireTinyEmitter = createFireEmitter("Media/Art/Fire.png", this.tinyEnemies[t].x, this.tinyEnemies[t].y);
-			fireTinyEmitter.update(deltaTime);
-			fireTinyEmitter.draw();
+			this.tinyEnemies.splice(t, this.tinyEnemies.length);
 		}
-		
-		if(this.deathTimer <= 0)
-		{
-			for(var i = 0; i < this.enemies.length; ++i)
-			{
-				this.enemies.splice(i, this.enemies.length);
-			}
-			
-			for(var b = 0; b < this.bigEnemies.length; ++b)
-			{
-				this.bigEnemies.splice(b, this.bigEnemies.length);
-			}
-			
-			for(var m = 0; m < this.massiveEnemies.length; ++m)
-			{
-				this.massiveEnemies.splice(m, 1);
-			}
-			
-			for(var t = 0; t < this.tinyEnemies.length; ++t)
-			{
-				this.tinyEnemies.splice(t, this.tinyEnemies.length);
-			}
-			
-			shop.killAll = false;
-		}
+
+		shop.killAll = false;
 	}
 	
 	if (!player.isDead)
