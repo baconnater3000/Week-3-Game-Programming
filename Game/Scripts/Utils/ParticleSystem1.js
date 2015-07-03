@@ -121,12 +121,6 @@ Emitter.prototype.spawnParticle = function()
 	this.particles.push(p);
 }
 
-		
-function createBurstEmitter(particleTexture, posX, posY)
-{
-	var emitter = new Emitter(particleTexture, posX, posY);
-	return emitter;
-}
 
 function createFireEmitter(particleTexture, posX, posY)
 {
@@ -143,7 +137,7 @@ function createFireEmitter(particleTexture, posX, posY)
 
 	e.emissionSize.set(10.0, 1.0);
 	e.transparency = 0.15;
-
+	
 	return e;
 }
 
