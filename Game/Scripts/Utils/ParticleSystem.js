@@ -137,7 +137,7 @@ function createFireEmitter(particleTexture, posX, posY)
 
 	e.emissionSize.set(10.0, 1.0);
 	e.transparency = 0.15;
-
+	
 	return e;
 }
 

@@ -6,12 +6,12 @@ var player = function(){
 	this.playerHeartImage.src = "Media/PlayerHealth/Heart.png";
 	
 	this.thrustImage = document.createElement("img");
-	this.thrustImage.src = 'Media/Art/thrust.png';
+	this.thrustImage.src = 'Media/Art/fire.png';
 
 	this.playerHealthImage = document.createElement("img");
 	
 	this.bulletSfxCooldownTimer = 0;
-	this.thrusterSfxCooldownTimer = 0;
+	//this.thrusterSfxCooldownTimer = 0;
 	
 	this.bullets = [];
 	this.bulletImage = document.createElement("img");
@@ -30,7 +30,7 @@ var player = function(){
 	this.mousePos = new Vector2();
 	this.mouseClicked = false,
 	
-	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
+	this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 	
 	this.randomCountdownTimer = 2,
 	this.maxRandomCountdownTimer = this.randomCountdownTimer,
@@ -176,7 +176,7 @@ player.prototype.update = function(deltaTime){
 	}
 }
 
-player.prototype.draw = function(){
+player.prototype.draw = function(deltaTime){
 	if(!this.isDead){
 		context.save();
 		context.translate(this.position.x, this.position.y);
@@ -185,9 +185,9 @@ player.prototype.draw = function(){
 		context.drawImage(this.playerImage, -this.width / 2, -this.height / 2);
 		
 		if(this.isMoving){
-			//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
-			//this.fireEmitter.update(deltaTime);
-			//this.fireEmitter.draw();
+			this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
+			this.fireEmitter.update(deltaTime);
+			this.fireEmitter.draw();
 		}
 		
 		context.restore();
