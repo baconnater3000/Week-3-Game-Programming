@@ -34,7 +34,7 @@ SplashState.prototype.update = function(deltaTime)
 			//Quit Button
 			if(player.mousePos.y >= canvas.height / 2 + 90 && player.mousePos.y <= canvas.height / 2 + 120)
 			{
-				close();
+				window.close();
 			}
 		}
 		player.mouseClicked = false;
