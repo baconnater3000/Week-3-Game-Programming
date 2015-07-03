@@ -22,7 +22,7 @@ var player = function(){
 	this.isMoving = false,
 	
 	this.width = 40,
-	this.height = this.isMoving? 65 : 60,
+	this.height = 60,
 	this.healthWidth = 98,
 	this.healthHeight = 12,
 	
@@ -32,8 +32,11 @@ var player = function(){
 	this.mousePos = new Vector2();
 	this.mouseClicked = false,
 	
+<<<<<<< HEAD
+=======
 	this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 	
+>>>>>>> a1610f7f2b2b96217d995b9dc1756f7886e6baa1
 	this.randomCountdownTimer = 2,
 	this.maxRandomCountdownTimer = this.randomCountdownTimer,
 	
@@ -116,8 +119,6 @@ player.prototype.playerBorders = function(){
 
 player.prototype.update = function(deltaTime){
 	this.shootTimer += deltaTime;
-	
-	console.log("isMoving:" + this.isMoving + " || imageHeight:" + this.height);
 	
 	if(this.fireRateIncrease){
 		this.resetShootTimer += deltaTime;
