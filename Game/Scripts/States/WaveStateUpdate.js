@@ -158,7 +158,7 @@ WaveState.prototype.update = function(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		/*if(!gamestatemanager.ispaused){
-			stateManager.switchState(new PauseState());
+			
 			
 			
 			STOPS UPDATING THE GAME eg: update function or deltaTime
@@ -167,7 +167,7 @@ WaveState.prototype.update = function(deltaTime)
 		}else{
 			resumes the updating of the game which in turn will continue the game to draw over the paused menu background
 			ispaused = false;
-		}*/
+		}*/ //stateManager.switchState(new PauseState());
 	}
 }
 
