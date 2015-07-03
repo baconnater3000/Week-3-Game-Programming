@@ -17,10 +17,10 @@ WinState.prototype.update = function(deltaTime)
 {
 	if(player.mouseClicked)
 	{
-		if(player.mousePos.x >= canvas.width / 2 - 50 && player.mousePos.x <= canvas.width / 2 + 50)
+		if(player.mousePos.x >= canvas.width / 2 - 60 && player.mousePos.x <= canvas.width / 2 + 60)
 		{
 			//Resume Button
-			if(player.mousePos.y >= canvas.height / 2 + 60 && player.mousePos.y <= canvas.height / 2 + 60 + 25)
+			if(player.mousePos.y >= canvas.height / 2 + 90 && player.mousePos.y <= canvas.height / 2 + 90 + 25)
 			{
 				if(this.currentState == "WS")
 				{
@@ -37,7 +37,7 @@ WinState.prototype.update = function(deltaTime)
 			}
 			
 			//Main Menu Button
-			if(player.mousePos.y >= canvas.height / 2 + 90 && player.mousePos.y <= canvas.height / 2 + 90 + 25)
+			if(player.mousePos.y >= canvas.height / 2 + 120 && player.mousePos.y <= canvas.height / 2 + 120 + 25)
 			{
 				location.reload();
 			}
@@ -56,8 +56,8 @@ WinState.prototype.draw = function()
 	
 	/*
 	context.strokeStyle = "White";
-	context.strokeRect(canvas.width / 2 - 50, canvas.height / 2 + 60, 100, 25);
-	context.strokeRect(canvas.width / 2 - 50, canvas.height / 2 + 90, 100, 25);
+	context.strokeRect(canvas.width / 2 - 60, canvas.height / 2 + 90, 120, 25);
+	context.strokeRect(canvas.width / 2 - 60, canvas.height / 2 + 120, 120, 25);
 	*/
 	
 	var Title = document.createElement("img");
@@ -71,13 +71,17 @@ WinState.prototype.draw = function()
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 50);
 
-	contText = "Resume";
+	contText = "With a time of " + Math.floor(timer) + " seconds!";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 80);
 	
-	contText = "Main Menu";
+	contText = "Resume";
 	center = context.measureText(contText);
 	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 110);
+	
+	contText = "Main Menu";
+	center = context.measureText(contText);
+	context.fillText(contText, canvas.width / 2 - center.width / 2, canvas.height / 2 + 140);
 
 	
 }
