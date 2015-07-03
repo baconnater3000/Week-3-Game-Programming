@@ -32,18 +32,15 @@ var player = function(){
 	this.mousePos = new Vector2();
 	this.mouseClicked = false,
 
-<<<<<<< HEAD
 	this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
-	
-=======
+
 	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 
->>>>>>> 7ffe1b520979d32b7175e09660441e7a2b136aba
 	this.randomCountdownTimer = 2,
 	this.maxRandomCountdownTimer = this.randomCountdownTimer,
 	
 	this.speed = 350,
-	this.speedDecreaseTimer = 10,
+	this.speedDecreaseTimer = 0,
 	this.speedIncreased = false,
 	this.hasSpeedDecreased = false,
 	
@@ -58,6 +55,9 @@ var player = function(){
 	this.isShooting = false;
 	
 	this.score = 0,
+	
+	this.isI = false,
+	this.ITimer = 0,
 	this.health = 4,
 	this.lives = 3,
 	
@@ -126,27 +126,41 @@ player.prototype.playerBorders = function(){
 player.prototype.update = function(deltaTime){
 	this.shootTimer += deltaTime;
 	
-	if(this.fireRateIncrease){
-		this.resetShootTimer += deltaTime;
+	/** Player Invulnerability for Shop **/
+	if(this.isI){
+		this.ITimer -= deltaTime;
 	}
 	
+	if(this.ITimer <= 0){
+		this.isI = false;
+	}
+	
+	console.log("isI:" + this.isI + " || ITimer:" + Math.floor(this.ITimer));
+	
 	/** Speed Increase for Shop **/
-	this.speedIncrease ? this.speedDecreaseTimer -= deltaTime : this.speedDecreaseTimer = 0;
-	this.speedDecreaseTimer <= 0 ? this.speedIncreased = false;
+	if(this.speedIncreased){
+		this.speedDecreaseTimer -= deltaTime;
+	}
+	
+	if(this.speedDecreaseTimer <= 0){
+		this.speedIncreased = false;
+	}
 	
 	if(this.speedIncreased && !this.hasSpeedDecreased){
-		this.speed = this.speed * 2;
-		this.speedDecreaseTimer = 10;
+		this.speed = 700;
+		this.hasSpeedDecreased = true;
 	}
 	
 	if(!this.speedIncreased && this.hasSpeedDecreased){
 		this.hasSpeedDecreased = false;
-		this.speed = this.speed / 2;
+		this.speed = 350;
 	}
 	
-	console.log("speedDecreaseTimer:" + this.speedDecreaseTimer + " || speedIncreased:" + this.speedIncreased + " || hasSpeedDecreased:" + this.hasSpeedDecreased);
-	
 	/** Fire Rate increase for shop **/
+	if(this.fireRateIncrease){
+		this.resetShootTimer += deltaTime;
+	}
+	
 	if(this.resetShootTimer >= 10){
 		this.fireRateIncrease = false;
 	}

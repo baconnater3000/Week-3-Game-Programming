@@ -88,7 +88,7 @@ enemyManager.prototype.update = function(deltaTime)
 				{
 					this.enemies[i].isDead = true;
 					this.enemies.splice(i, 1);
-					player.health -= 1;
+					if(!player.isI){player.health -= 1;}
 				}
 			}
 		}
@@ -107,7 +107,7 @@ enemyManager.prototype.update = function(deltaTime)
 				{
 					this.bigEnemies[b].isDead = true;
 					this.bigEnemies.splice(b, 1);
-					player.health -= 2;
+					if(!player.isI){player.health -= 2;}
 				}
 			}
 		}
@@ -126,7 +126,7 @@ enemyManager.prototype.update = function(deltaTime)
 				{
 					this.tinyEnemies[t].isDead = true;
 					this.tinyEnemies.splice(t, 1);
-					player.health -= 1;
+					if(!player.isI){player.health -= 1;}
 				}
 			}
 		}
@@ -144,7 +144,7 @@ enemyManager.prototype.update = function(deltaTime)
 				if (MHit)
 				{
 					this.massiveEnemies[m].health -= 1;
-					player.health -= 1;
+					if(!player.isI){player.health -= 1;}
 				}else
 				if (MHit && this.massiveEnemies[m].health <= 0)
 				{

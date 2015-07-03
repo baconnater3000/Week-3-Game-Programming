@@ -6,6 +6,8 @@ var shop = function(){
 	
 	this.healthPrice = 100;
 	this.lifePrice = 400;
+	
+	this.killAll = false;
 }
 
 shop.prototype.getPosition = function(evt){
@@ -52,20 +54,28 @@ shop.prototype.update = function(deltaTime){
 			//FOURTH BUTTON
 				if(player.mousePos.y >= 150 + (48 * 3) + 1 && player.mousePos.y <= 150 + (48 * 3) + 35){
 					if(player.score >= 2000 && !player.speedIncreased){
-						player.score -+ 2000;
+						player.score -= 2000;
 						player.speedIncreased = true;
 						player.hasSpeedDecreased = false;
+						player.speedDecreaseTimer = 10;
 					}
 				}
 				
 			//FIFTH BUTTON
 				if(player.mousePos.y >= 150 + (48 * 4) + 2 && player.mousePos.y <= 150 + (48 * 4) + 35){
-					
+					if(player.score >= 5000 && !this.isI){
+						player.score -= 5000;
+						player.ITimer = 10;
+						player.isI = true;
+					}
 				}
 				
 			//SIXTH BUTTON
 				if(player.mousePos.y >= 150 + (48 * 5) + 3 && player.mousePos.y <= 150 + (48 * 5) + 35){
-					
+					if(player.score >= 10000 && !this.killAll){
+						player.score -= 10000;
+						this.killAll = true;
+					}
 				}
 				
 			//GIVE SCORE
