@@ -31,17 +31,17 @@ var player = function(){
 	
 	this.mousePos = new Vector2();
 	this.mouseClicked = false,
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> df9cd99fffdf7e5396ace40beefe406c51686bd5
 	this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 	
 	this.randomCountdownTimer = 2,
 	this.maxRandomCountdownTimer = this.randomCountdownTimer,
 	
 	this.speed = 350,
+	this.speedDecreaseTimer = 10,
+	this.speedIncreased = false,
+	this.hasSpeedDecreased = false,
+	
 	this.angle = 0,
 	this.rotationSpeed = 2.25,
 	
@@ -125,6 +125,23 @@ player.prototype.update = function(deltaTime){
 		this.resetShootTimer += deltaTime;
 	}
 	
+	/** Speed Increase for Shop **/
+	this.speedIncrease ? this.speedDecreaseTimer -= deltaTime : this.speedDecreaseTimer = 0;
+	this.speedDecreaseTimer <= 0 ? this.speedIncreased = false;
+	
+	if(this.speedIncreased && !this.hasSpeedDecreased){
+		this.speed = this.speed * 2;
+		this.speedDecreaseTimer = 10;
+	}
+	
+	if(!this.speedIncreased && this.hasSpeedDecreased){
+		this.hasSpeedDecreased = false;
+		this.speed = this.speed / 2;
+	}
+	
+	console.log("speedDecreaseTimer:" + this.speedDecreaseTimer + " || speedIncreased:" + this.speedIncreased + " || hasSpeedDecreased:" + this.hasSpeedDecreased);
+	
+	/** Fire Rate increase for shop **/
 	if(this.resetShootTimer >= 10){
 		this.fireRateIncrease = false;
 	}
