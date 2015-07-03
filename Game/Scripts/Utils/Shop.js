@@ -51,7 +51,11 @@ shop.prototype.update = function(deltaTime){
 				
 			//FOURTH BUTTON
 				if(player.mousePos.y >= 150 + (48 * 3) + 1 && player.mousePos.y <= 150 + (48 * 3) + 35){
-					
+					if(player.score >= 2000 && !player.speedIncreased){
+						player.score -+ 2000;
+						player.speedIncreased = true;
+						player.hasSpeedDecreased = false;
+					}
 				}
 				
 			//FIFTH BUTTON
@@ -74,12 +78,6 @@ shop.prototype.update = function(deltaTime){
 }
 
 shop.prototype.draw = function(){
-	/*context.save();
-	context.fillStyle = "aqua";
-	context.globalAlpha=0.2;
-    context.fillRect(0, 0, menuSize, canvas.height);
-	context.restore();*/
-	
 	context.drawImage(this.shopImage, 0, 0);
 	
 	for(var i = 0; i < player.lives; i++){
