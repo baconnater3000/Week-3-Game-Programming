@@ -11,7 +11,6 @@ var player = function(){
 	this.playerHealthImage = document.createElement("img");
 	
 	this.bulletSfxCooldownTimer = 0;
-	//this.thrusterSfxCooldownTimer = 0;
 	
 	this.bullets = [];
 	this.bulletImage = document.createElement("img");
@@ -36,7 +35,7 @@ var player = function(){
 	this.maxRandomCountdownTimer = this.randomCountdownTimer,
 	
 	this.speed = 350,
-	this.speedDecreaseTimer = 0,
+	this.speedDecreaseTimer = -1,
 	this.speedIncreased = false,
 	this.hasSpeedDecreased = false,
 	
@@ -53,7 +52,7 @@ var player = function(){
 	this.score = 0,
 	
 	this.isI = false,
-	this.ITimer = 0,
+	this.ITimer = -1,
 	this.health = 4,
 	this.lives = 3,
 	
@@ -131,8 +130,6 @@ player.prototype.update = function(deltaTime){
 		this.isI = false;
 	}
 	
-	console.log("isI:" + this.isI + " || ITimer:" + Math.floor(this.ITimer));
-	
 	/** Speed Increase for Shop **/
 	if(this.speedIncreased){
 		this.speedDecreaseTimer -= deltaTime;
@@ -141,8 +138,6 @@ player.prototype.update = function(deltaTime){
 	if(this.speedDecreaseTimer <= 0){
 		this.speedIncreased = false;
 	}
-
-	this.speedIncrease ? this.speedDecreaseTimer -= deltaTime : this.speedDecreaseTimer = 0;
 
 	if(this.speedIncreased && !this.hasSpeedDecreased){
 		this.speed = 700;
