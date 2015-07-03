@@ -87,6 +87,7 @@ shop.prototype.draw = function(){
 		}
 	}
 
+	
 	context.save();
 	context.font="30px ONYX";
 	context.fillStyle = "White";
