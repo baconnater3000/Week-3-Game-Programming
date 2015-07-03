@@ -48,8 +48,9 @@ GameState.prototype.update = function(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		if(!stateManager.isPaused){
-				PauseState.currentState = GameState;
-				stateManager.switchState(new PauseState());
+				var ps = new PauseState();
+				ps.currentState = "GS";
+				stateManager.switchState(ps);
 				stateManager.isPaused = true;
 				
 			}else {

@@ -13,7 +13,7 @@ PauseState.prototype.unload = function()
 	
 }
 
-PauseState.prototype.currentState = WaveState;
+PauseState.prototype.currentState = 0;
 
 PauseState.prototype.update = function(deltaTime)
 {
@@ -24,19 +24,20 @@ PauseState.prototype.update = function(deltaTime)
 			//Resume Button
 			if(player.mousePos.y >= 180 && player.mousePos.y <= 205)
 			{
-				if(this.currentState = WaveState)
+				if(this.currentState == "WS")
 				{
 					stateManager.switchState(new WaveState());
 					stateManager.isPaused = false;
+					
 				}
 				
-				if(this.currentState = GameState)
+				if(this.currentState == "GS")
 				{
 					stateManager.switchState(new GameState());
 					stateManager.isPaused = false;
 				}
 				
-				if(this.currentState = SurvivalState)
+				if(this.currentState  == "SS")
 				{
 					stateManager.switchState(new SurvivalState());
 					stateManager.isPaused = false;
@@ -67,7 +68,6 @@ PauseState.prototype.update = function(deltaTime)
 
 PauseState.prototype.draw = function()
 {
-	//context.clearRect(0, 0, canvas.width, canvas.height);
 	canvas.width = canvas.width;
 	context.drawImage(background, 0, 0);	
 	

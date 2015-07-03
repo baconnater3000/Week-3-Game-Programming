@@ -159,10 +159,10 @@ WaveState.prototype.update = function(deltaTime)
 		if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 		{
 			if(!stateManager.isPaused){
-				PauseState.currentState = WaveState;
-				stateManager.switchState(new PauseState());
+				var ps = new PauseState();
+				ps.currentState = "WS";
+				stateManager.switchState(ps);
 				stateManager.isPaused = true;
-				
 			}else {
 				stateManager.isPaused = false;
 			}

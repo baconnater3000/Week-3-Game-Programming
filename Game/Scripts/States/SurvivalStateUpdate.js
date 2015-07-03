@@ -40,9 +40,9 @@ SurvivalState.prototype.update = function(deltaTime)
 	{
 		enemyTimer = 0;
 		
-		enemyManager.createEnemies(6);
-		enemyManager.createBigEnemies(4);
-		enemyManager.createMassiveEnemies(2);
+		enemyManager.createEnemies(5);
+		enemyManager.createBigEnemies(3);
+		enemyManager.createMassiveEnemies(1);
 	}	
 	
 	enemyManager.update(deltaTime);
@@ -53,7 +53,7 @@ SurvivalState.prototype.update = function(deltaTime)
 		stateManager.switchState(new LoseState());
 	}
 	
-	if(player.isDead == false && player.score == 50000)
+	if(!player.isDead && player.score == 50000)
 	{
 		player.score += 1000;
 		stateManager.switchState(new WinState());
@@ -62,8 +62,9 @@ SurvivalState.prototype.update = function(deltaTime)
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
 		if(!stateManager.isPaused){
-				PauseState.currentState = SurvivalState;
-				stateManager.switchState(new PauseState());
+				var ps = new PauseState();
+				ps.currentState = "SS";
+				stateManager.switchState(ps);
 				stateManager.isPaused = true;
 				
 			}else {
