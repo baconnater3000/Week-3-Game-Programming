@@ -134,7 +134,6 @@ player.prototype.update = function(deltaTime){
 	console.log("isI:" + this.isI + " || ITimer:" + Math.floor(this.ITimer));
 	
 	/** Speed Increase for Shop **/
-<<<<<<< HEAD
 	if(this.speedIncreased){
 		this.speedDecreaseTimer -= deltaTime;
 	}
@@ -144,7 +143,7 @@ player.prototype.update = function(deltaTime){
 	}
 
 	this.speedIncrease ? this.speedDecreaseTimer -= deltaTime : this.speedDecreaseTimer = 0;
-	this.speedDecreaseTimer <= 0 ? this.speedIncreased = false
+	//this.speedDecreaseTimer <= 0 ? this.speedIncreased = false;
 
 	if(this.speedIncreased && !this.hasSpeedDecreased){
 		this.speed = 700;
