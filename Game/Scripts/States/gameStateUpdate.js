@@ -19,7 +19,7 @@ GameState.prototype.update = function(deltaTime)
 	context.drawImage(background, 0, 0);
 	
 	player.update(deltaTime);
-	player.draw();
+	player.draw(deltaTime);
 	
 	shop.update(deltaTime);
 	shop.draw();
@@ -47,7 +47,14 @@ GameState.prototype.update = function(deltaTime)
 	
 	if(keyboard.isKeyDown(keyboard.KEY_ESCAPE) == true)
 	{
-		stateManager.switchState(new PauseState());
+		if(!stateManager.isPaused){
+				PauseState.currentState = GameState;
+				stateManager.switchState(new PauseState());
+				stateManager.isPaused = true;
+				
+			}else {
+				stateManager.isPaused = false;
+			}
 	}
 }
 

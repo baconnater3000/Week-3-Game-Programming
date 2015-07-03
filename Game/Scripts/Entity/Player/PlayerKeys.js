@@ -18,12 +18,10 @@ playerKeys.prototype.keybinds = function(deltaTime){
 		player.directionX = 0;
 		player.directionY = -1;
 		player.isMoving = true;
+		
 	}else if (keyboard.isKeyDown(keyboard.KEY_W) == false || keyboard.isKeyDown(keyboard.KEY_S) == false){
 		player.directionY = 0;
 		player.isMoving = false;
-	}else if(keyboard.isKeyDown(keyboard.KEY_W) == true && player.thrusterSfxCooldownTimer <= 0){
-	player.thrusterSfxCooldownTimer = 2;
-	thrustSfx.play();
 	}
 	
 	if(keyboard.isKeyDown(keyboard.KEY_A) == true){
