@@ -22,18 +22,21 @@ ModeState.prototype.update = function(deltaTime)
 			//Wave Button
 			if(player.mousePos.y >= 180 && player.mousePos.y <= 180 + 25)
 			{
+				player.score = 0;
 				stateManager.switchState(new WaveState());
 			}
 			
 			//Survival Button
 			if(player.mousePos.y >= 220 && player.mousePos.y <= 220 + 25)
 			{
+				player.score = 0;
 				stateManager.switchState(new SurvivalState());
 			}
 			
 			//Multiplayer Button
 			if(player.mousePos.y >= 260 && player.mousePos.y <= 260 + 25)
 			{
+				player.score = 0;
 				stateManager.switchState(new GameState());
 			}
 			

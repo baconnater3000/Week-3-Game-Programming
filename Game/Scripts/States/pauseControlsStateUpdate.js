@@ -31,7 +31,8 @@ PauseControlsState.prototype.update = function(deltaTime)
 
 PauseControlsState.prototype.draw = function()
 {
-	context.clearRect(0, 0, canvas.width, canvas.height);
+	canvas.width = canvas.width;
+	context.drawImage(background, 0, 0);	
 	
 	/*
 	context.strokeStyle = "White";
@@ -41,7 +42,7 @@ PauseControlsState.prototype.draw = function()
 	var Control = document.createElement("img");
 	Control.src = "Media/Art/Controls.png";
 	var center = context.measureText(Control);
-	context.drawImage(Control, canvas.width / 2 - center.width + 50, 25);
+	context.drawImage(Control, canvas.width / 2 - center.width * 2, 25);
 	
 	context.fillStyle = "white";
 	context.font = "25px Onyx";
