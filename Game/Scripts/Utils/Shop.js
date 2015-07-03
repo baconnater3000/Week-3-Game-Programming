@@ -96,7 +96,6 @@ shop.prototype.draw = function(){
 			context.drawImage(player.playerHeartImage, 75 - ((player.playerHeartImage.width - 270) * i) - 60, canvas.height - 100, 50, 50);
 		}
 	}
-
 	
 	context.save();
 	context.font="30px ONYX";
@@ -104,6 +103,11 @@ shop.prototype.draw = function(){
 	context.fillText("Score: " + player.score, 10, 30);
 	context.fillText(Math.floor(timer) + " Seconds", 20, canvas.height - 20, menuSize - 40);
 	context.fillText("Lives: ", 20, canvas.height - 110);
+	
+	context.font="25px ONYX";
+	context.fillText("You have " + Math.floor(10 - player.resetShootTimer) + " seconds of Fire Rate left!", 2, 185 + (48 * 5) + 50);
+	context.fillText("You have " + Math.floor(player.speedDecreaseTimer + 1) + " seconds of Speed left!", 2, 185 + (48 * 5) + 80);
+	context.fillText("You have " + Math.floor(player.ITimer + 1) + " seconds of Invulnerability left!", 2, 185 + (48 * 5) + 110);
 	context.restore();
 	
 	context.strokeStyle = "White";
