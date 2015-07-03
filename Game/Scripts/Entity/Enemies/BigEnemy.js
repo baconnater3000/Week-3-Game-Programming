@@ -69,16 +69,13 @@ BigEnemy.prototype.update = function(deltaTime)
 
 BigEnemy.prototype.draw = function()
 {
-	if(!this.isDead)
-	{
-		context.save();
-		context.translate(this.x, this.y);
-		context.rotate(this.angle);
-		
-		context.drawImage(this.image, this.x / this.x, this.y / this.y, (this.dimensionsTimer / this.fullSize) * this.width,
-						(this.dimensionsTimer / this.fullSize) * this.height);
+	context.save();
+	context.translate(this.x, this.y);
+	context.rotate(this.angle);
+	
+	context.drawImage(this.image, this.x / this.x, this.y / this.y, (this.dimensionsTimer / this.fullSize) * this.width,
+					(this.dimensionsTimer / this.fullSize) * this.height);
 
-		
-		context.restore();
-	}
+	
+	context.restore();
 };

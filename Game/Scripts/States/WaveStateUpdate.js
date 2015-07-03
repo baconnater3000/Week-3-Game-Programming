@@ -144,8 +144,9 @@ WaveState.prototype.update = function(deltaTime)
 			this.waveNumber += 1;
 		}
 		
-		enemyManager.update(deltaTime);
 		enemyManager.draw();
+		enemyManager.update(deltaTime);
+
 		
 		if(player.isDead == true)
 		{
