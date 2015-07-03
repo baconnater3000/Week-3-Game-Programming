@@ -44,10 +44,10 @@ shop.prototype.update = function(deltaTime){
 			//THIRD BUTTON
 				if(player.mousePos.y >= 150 + (48 * 2) && player.mousePos.y <= 150 + (48 * 2) + 35){
 					if(player.score >= 2000 && !player.fireRateIncrease){
-						player.score -= 2000;
+						player.score -= 2000;						
 						player.fireRateIncrease = true;
 						player.hasDecreasedFireRate = false;
-						player.resetShootTimer = 0;
+						player.resetShootTimer = 10;
 					}
 				}
 				
@@ -107,7 +107,7 @@ shop.prototype.draw = function(){
 	context.fillText("Lives: ", 20, canvas.height - 110);
 	
 	context.font="25px ONYX";
-	context.fillText("You have " + Math.floor(10 - player.resetShootTimer) + " seconds of Fire Rate left!", 2, 185 + (48 * 5) + 50);
+	context.fillText("You have " + Math.floor(player.resetShootTimer + 1) + " seconds of Fire Rate left!", 2, 185 + (48 * 5) + 50);
 	context.fillText("You have " + Math.floor(player.speedDecreaseTimer + 1) + " seconds of Speed left!", 2, 185 + (48 * 5) + 80);
 	context.fillText("You have " + Math.floor(player.ITimer + 1) + " seconds of Invulnerability left!", 2, 185 + (48 * 5) + 110);
 	context.restore();

@@ -26,9 +26,10 @@ PauseState.prototype.update = function(deltaTime)
 			{
 				if(this.currentState == "WS")
 				{
+					this.SpawnEnemy = true;
 					stateManager.switchState(new WaveState());
+					this.SpawnEnemy = false;
 					stateManager.isPaused = false;
-					
 				}
 				
 				if(this.currentState == "GS")
