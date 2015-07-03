@@ -16,11 +16,11 @@ enemyManager.prototype.createTinyEnemies = function(number, startPosition)
 	for (var t = 0; t < number; ++t)
 	{
 		var tempTiny = new TinyEnemy(startPosition);
-		console.log("CREATED ENEMY AT: " + startPosition.x + " " + startPosition.y);
+		//console.log("CREATED ENEMY AT: " + startPosition.x + " " + startPosition.y);
 		this.tinyEnemies.push(tempTiny);
 	}
 	
-	console.log("CREATED: " + number + " ENEMIES");
+	//console.log("CREATED: " + number + " ENEMIES");
 }
 
 enemyManager.prototype.createEnemies = function(numOfEnemies)
@@ -144,7 +144,7 @@ enemyManager.prototype.update = function(deltaTime)
 				if (MHit)
 				{
 					this.massiveEnemies[m].health -= 1;
-					player.health -= 0.5;
+					player.health -= 1;
 				}else
 				if (MHit && this.massiveEnemies[m].health <= 0)
 				{

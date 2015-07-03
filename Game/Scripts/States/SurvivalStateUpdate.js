@@ -40,9 +40,9 @@ SurvivalState.prototype.update = function(deltaTime)
 	{
 		enemyTimer = 0;
 		
-		enemyManager.createEnemies(6);
-		enemyManager.createBigEnemies(4);
-		enemyManager.createMassiveEnemies(2);
+		enemyManager.createEnemies(5);
+		enemyManager.createBigEnemies(3);
+		enemyManager.createMassiveEnemies(1);
 	}	
 	
 	enemyManager.update(deltaTime);
