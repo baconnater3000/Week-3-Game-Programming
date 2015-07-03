@@ -31,11 +31,17 @@ var player = function(){
 	
 	this.mousePos = new Vector2();
 	this.mouseClicked = false,
+<<<<<<< HEAD
 
 	this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 
 	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
 
+=======
+	
+	//this.fireEmitter = createFireEmitter("Media/Art/fire.png", this.position.x, this.position.y);
+	
+>>>>>>> 53a5b41c17e786eb5dd38446477cc1a210f90113
 	this.randomCountdownTimer = 2,
 	this.maxRandomCountdownTimer = this.randomCountdownTimer,
 	
@@ -138,6 +144,7 @@ player.prototype.update = function(deltaTime){
 	console.log("isI:" + this.isI + " || ITimer:" + Math.floor(this.ITimer));
 	
 	/** Speed Increase for Shop **/
+<<<<<<< HEAD
 	if(this.speedIncreased){
 		this.speedDecreaseTimer -= deltaTime;
 	}
@@ -145,6 +152,10 @@ player.prototype.update = function(deltaTime){
 	if(this.speedDecreaseTimer <= 0){
 		this.speedIncreased = false;
 	}
+=======
+	this.speedIncrease ? this.speedDecreaseTimer -= deltaTime : this.speedDecreaseTimer = 0;
+	this.speedDecreaseTimer <= 0 ? this.speedIncreased = false
+>>>>>>> 53a5b41c17e786eb5dd38446477cc1a210f90113
 	
 	if(this.speedIncreased && !this.hasSpeedDecreased){
 		this.speed = 700;
