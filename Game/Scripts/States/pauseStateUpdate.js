@@ -28,6 +28,7 @@ PauseState.prototype.update = function(deltaTime)
 				{
 					stateManager.switchState(new WaveState());
 					stateManager.isPaused = false;
+					
 				}
 				
 				if(this.currentState == "GS")
