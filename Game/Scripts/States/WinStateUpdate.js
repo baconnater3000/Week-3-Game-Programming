@@ -22,7 +22,18 @@ WinState.prototype.update = function(deltaTime)
 			//Resume Button
 			if(player.mousePos.y >= canvas.height / 2 + 60 && player.mousePos.y <= canvas.height / 2 + 60 + 25)
 			{
-				stateManager.switchState(new GameState());
+				if(this.currentState == "WS")
+				{
+					stateManager.switchState(new WaveState());
+					stateManager.isPaused = false;
+					
+				}
+				
+				if(this.currentState == "GS")
+				{
+					stateManager.switchState(new GameState());
+					stateManager.isPaused = false;
+				}
 			}
 			
 			//Quit Button
